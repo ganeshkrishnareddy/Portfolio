@@ -85,7 +85,8 @@ You can add more sections like Projects, Resume, and Contact as needed.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License.  
+See the [LICENSE](./LICENSE) file for more information.
 
 ## Author
 
