@@ -177,6 +177,13 @@ const Education: React.FC = () => {
       date: "November 2023",
       credentialId: "1f305a31-6d98-4043-ac2b-35c76bc38a0c",
       link: "https://cs50.harvard.edu/certificates/1f305a31-6d98-4043-ac2b-35c76bc38a0c"
+    },
+    {
+      title: "Summer Training on Linux System Administration",
+      issuer: "Lovely Professional University – Centre for Professional Enhancement",
+      date: "August 2024",
+      credentialId: "Registration No: 12212186",
+      link: "https://drive.google.com/file/d/1ZfYZAIalNs9-qdog4RvJONdAzibGeSUb/view?usp=sharing"
     }
   ];
 
