@@ -26,11 +26,11 @@ const EducationItem: React.FC<EducationItemProps> = ({
       <div className="absolute top-0 left-0 w-6 h-6 rounded-full bg-teal-500 border-4 border-white dark:border-slate-900 z-10" />
       <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
         <div className="flex flex-wrap items-center gap-3 mb-3 text-sm text-slate-500 dark:text-slate-400">
-          <div className="flex items-center" aria-label="Period">
+          <div className="flex items-center">
             <Calendar className="h-4 w-4 mr-1" />
             <span>{period}</span>
           </div>
-          <div className="flex items-center" aria-label="Location">
+          <div className="flex items-center">
             <MapPin className="h-4 w-4 mr-1" />
             <span>{location}</span>
           </div>
@@ -52,13 +52,13 @@ interface CertificationItemProps {
   link?: string;
 }
 
-const CertificationItem: React.FC<CertificationItemProps> = ({ 
-  title, 
-  issuer, 
-  date, 
-  expiryDate, 
-  credentialId, 
-  link 
+const CertificationItem: React.FC<CertificationItemProps> = ({
+  title,
+  issuer,
+  date,
+  expiryDate,
+  credentialId,
+  link
 }) => (
   <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md border-l-4 border-teal-500 hover:shadow-lg transition-shadow">
     <div className="flex items-start justify-between">
@@ -149,6 +149,13 @@ const Education: React.FC = () => {
       link: "https://coursera.org/verify/specialization/SHY8XOE77RB5"
     },
     {
+      title: "QuickHeal Certified Digital Forensic Investigator",
+      issuer: "Quick Heal Academy",
+      date: "January 2025",
+      credentialId: "LPU-0000-780553",
+      link: "https://lms.quickhealacademy.com/certificates/verification/exam?id=LPU-0000-780553"
+    },
+    {
       title: "CompTIA Security+ CE",
       issuer: "CompTIA",
       date: "January 2025",
@@ -157,11 +164,11 @@ const Education: React.FC = () => {
       link: "https://www.certmetrics.com/comptia/public/verification.aspx?code=YLP7LZ44L706VHCZ"
     },
     {
-      title: "QuickHeal Certified Digital Forensic Investigator",
-      issuer: "Quick Heal Academy",
-      date: "January 2025",
-      credentialId: "LPU-0000-780553",
-      link: "https://lms.quickhealacademy.com/certificates/verification/exam?id=LPU-0000-780553"
+      title: "Summer Training on Linux System Administration",
+      issuer: "Lovely Professional University – Centre for Professional Enhancement",
+      date: "August 2024",
+      credentialId: "Registration No: 12212186",
+      link: "https://drive.google.com/file/d/1ZfYZAIalNs9-qdog4RvJONdAzibGeSUb/view?usp=sharing"
     },
     {
       title: "CompTIA Network+ CE",
@@ -177,13 +184,6 @@ const Education: React.FC = () => {
       date: "November 2023",
       credentialId: "1f305a31-6d98-4043-ac2b-35c76bc38a0c",
       link: "https://cs50.harvard.edu/certificates/1f305a31-6d98-4043-ac2b-35c76bc38a0c"
-    },
-    {
-      title: "Summer Training on Linux System Administration",
-      issuer: "Lovely Professional University – Centre for Professional Enhancement",
-      date: "August 2024",
-      credentialId: "Registration No: 12212186",
-      link: "https://drive.google.com/file/d/1ZfYZAIalNs9-qdog4RvJONdAzibGeSUb/view?usp=sharing"
     }
   ];
 
@@ -208,11 +208,9 @@ const Education: React.FC = () => {
               </span>
               Education
             </h3>
-            <div>
-              {educationData.map((edu, index) => (
-                <EducationItem key={index} {...edu} isLast={edu.isLast || index === educationData.length - 1} />
-              ))}
-            </div>
+            {educationData.map((edu, index) => (
+              <EducationItem key={index} {...edu} isLast={edu.isLast || index === educationData.length - 1} />
+            ))}
           </div>
 
           <div>
@@ -242,9 +240,7 @@ const Education: React.FC = () => {
                 }
               ].map((item, i) => (
                 <div key={i}>
-                  <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-2">
-                    {item.title}
-                  </h4>
+                  <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-2">{item.title}</h4>
                   <p className="text-slate-600 dark:text-slate-300 mb-1">{item.desc}</p>
                   <p className="text-sm text-slate-500 dark:text-slate-400">{item.date}</p>
                 </div>
