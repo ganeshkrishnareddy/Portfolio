@@ -11,8 +11,8 @@ const About: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-teal-600 mx-auto mb-6"></div>
           <p className="max-w-3xl mx-auto text-slate-600 dark:text-slate-300 text-lg">
-            A passionate and detail-oriented Computer Science student aspiring to become a cybersecurity analyst, 
-            full stack developer, and Linux administrator.
+            A passionate and detail-oriented Computer Science Student Aspiring to become a Cyber Security Analyst, 
+            Full Stack Developer & Linux administrator.
           </p>
         </div>
         
