@@ -1,14 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu as MenuIcon, X, Github, Linkedin, Mail, Code, Users, Briefcase } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showServices, setShowServices] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      
+      // Update active section based on scroll position
+      const sections = ['home', 'about', 'skills', 'experience', 'services', 'projects', 'education', 'contact'];
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -19,14 +38,22 @@ const Header: React.FC = () => {
     {
       title: "Web Development",
       icon: <Code className="h-5 w-5" />,
+      path: "/services/web-development"
+    },
+    {
+      title: "App Development", 
+      icon: <Users className="h-5 w-5" />,
+      path: "/services/app-development"
     },
     {
       title: "Digital Marketing",
       icon: <Users className="h-5 w-5" />,
+      path: "/services/digital-marketing"
     },
     {
       title: "Business Solutions",
       icon: <Briefcase className="h-5 w-5" />,
+      path: "/services/business-solutions"
     }
   ];
 
@@ -35,6 +62,7 @@ const Header: React.FC = () => {
     { name: 'About', link: '#about' },
     { name: 'Skills', link: '#skills' },
     { name: 'Experience', link: '#experience' },
+    { name: 'Services', link: '#services' },
     { name: 'Projects', link: '#projects' },
     { name: 'Education', link: '#education' },
     { name: 'Contact', link: '#contact' },
@@ -46,6 +74,39 @@ const Header: React.FC = () => {
     { icon: <Mail className="h-5 w-5" />, link: 'mailto:pganeshkrishnareddy@gmail.com', ariaLabel: 'Email' },
   ];
 
+  const handleNavClick = (link: string) => {
+    setIsOpen(false);
+    
+    if (location.pathname !== '/') {
+      // If not on home page, navigate to home first then scroll
+      navigate('/');
+      setTimeout(() => {
+        scrollToSection(link);
+      }, 100);
+    } else {
+      // If on home page, scroll directly
+      scrollToSection(link);
+    }
+  };
+
+  const scrollToSection = (link: string) => {
+    const targetId = link.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  const handleServiceNavigation = (path: string) => {
+    setShowServices(false);
+    navigate(path);
+  };
+
+  const isServicePage = location.pathname.startsWith('/services/');
+
   return (
     <header 
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
@@ -54,20 +115,27 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <a href="#home" className="text-xl font-bold text-slate-800 dark:text-white transition-colors">
+          <button 
+            onClick={() => handleNavClick('#home')}
+            className="text-xl font-bold text-slate-800 dark:text-white transition-colors hover:text-teal-600 dark:hover:text-teal-400"
+          >
             <span className="text-teal-600">Ganesh</span>Krishna
-          </a>
+          </button>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.link}
-                className="px-4 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 transition-colors"
+            {navLinks.map((navLink) => (
+              <button
+                key={navLink.name}
+                onClick={() => handleNavClick(navLink.link)}
+                className={`px-4 py-2 text-sm transition-colors ${
+                  activeSection === navLink.link.replace('#', '') && !isServicePage
+                    ? 'text-teal-600 dark:text-teal-400 font-medium'
+                    : 'text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400'
+                }`}
               >
-                {link.name}
-              </a>
+                {navLink.name}
+              </button>
             ))}
             
             {/* Services Dropdown */}
@@ -77,7 +145,7 @@ const Header: React.FC = () => {
                 onMouseLeave={() => setShowServices(false)}
                 className="px-4 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 transition-colors"
               >
-                Services
+                Service Pages
               </button>
               
               {showServices && (
@@ -87,14 +155,14 @@ const Header: React.FC = () => {
                   className="absolute top-full left-0 w-48 py-2 mt-1 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700"
                 >
                   {services.map((service, index) => (
-                    <a
+                    <button
                       key={index}
-                      href="#services"
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                      onClick={() => handleServiceNavigation(service.path)}
+                      className="flex items-center gap-2 w-full px-4 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left"
                     >
                       {service.icon}
                       {service.title}
-                    </a>
+                    </button>
                   ))}
                 </div>
               )}
@@ -136,30 +204,32 @@ const Header: React.FC = () => {
       >
         <div className="container mx-auto px-4 py-4">
           <nav className="flex flex-col gap-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.link}
-                className="px-4 py-2 text-slate-800 hover:text-teal-600 dark:text-slate-200 dark:hover:text-teal-400 transition-colors"
-                onClick={() => setIsOpen(false)}
+            {navLinks.map((navLink) => (
+              <button
+                key={navLink.name}
+                onClick={() => handleNavClick(navLink.link)}
+                className={`px-4 py-2 text-left transition-colors ${
+                  activeSection === navLink.link.replace('#', '') && !isServicePage
+                    ? 'text-teal-600 dark:text-teal-400 font-medium'
+                    : 'text-slate-800 hover:text-teal-600 dark:text-slate-200 dark:hover:text-teal-400'
+                }`}
               >
-                {link.name}
-              </a>
+                {navLink.name}
+              </button>
             ))}
             
             {/* Services in Mobile Menu */}
             <div className="px-4 py-2">
-              <p className="text-sm font-semibold text-slate-400 mb-2">Services</p>
+              <p className="text-sm font-semibold text-slate-400 mb-2">Service Pages</p>
               {services.map((service, index) => (
-                <a
+                <button
                   key={index}
-                  href="#services"
-                  className="flex items-center gap-2 py-2 text-slate-800 hover:text-teal-600 dark:text-slate-200 dark:hover:text-teal-400 transition-colors"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => handleServiceNavigation(service.path)}
+                  className="flex items-center gap-2 w-full py-2 text-slate-800 hover:text-teal-600 dark:text-slate-200 dark:hover:text-teal-400 transition-colors text-left"
                 >
                   {service.icon}
                   {service.title}
-                </a>
+                </button>
               ))}
             </div>
           </nav>

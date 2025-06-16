@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Code, Smartphone, TrendingUp, Briefcase, ArrowRight, Users, Globe, Zap } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -6,13 +7,18 @@ interface ServiceCardProps {
   description: string;
   icon: React.ReactNode;
   features: string[];
-  onClick: () => void;
+  path: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, features, onClick }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, features, path }) => {
+  const navigate = useNavigate();
+
+  const handleLearnMore = () => {
+    navigate(path);
+  };
+
   return (
-    <div className="group bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 hover:border-teal-200 dark:hover:border-teal-700 cursor-pointer transform hover:-translate-y-2"
-         onClick={onClick}>
+    <div className="group bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 hover:border-teal-200 dark:hover:border-teal-700 transform hover:-translate-y-2">
       <div className="mb-6 bg-gradient-to-br from-teal-100 to-blue-100 dark:from-teal-900/30 dark:to-blue-900/30 p-4 rounded-full w-max group-hover:scale-110 transition-transform">
         {icon}
       </div>
@@ -34,19 +40,18 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, fea
         ))}
       </ul>
       
-      <div className="flex items-center text-teal-600 dark:text-teal-400 font-semibold group-hover:text-teal-700 dark:group-hover:text-teal-300 transition-colors">
+      <button
+        onClick={handleLearnMore}
+        className="flex items-center text-teal-600 dark:text-teal-400 font-semibold group-hover:text-teal-700 dark:group-hover:text-teal-300 transition-colors hover:gap-3"
+      >
         <span>Learn More</span>
         <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-      </div>
+      </button>
     </div>
   );
 };
 
-interface ServicesProps {
-  onServiceClick: (service: string) => void;
-}
-
-const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
+const Services: React.FC = () => {
   const services = [
     {
       title: "Web Development",
@@ -57,7 +62,8 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
         "E-commerce Solutions",
         "Content Management Systems",
         "Performance Optimization"
-      ]
+      ],
+      path: "/services/web-development"
     },
     {
       title: "App Development",
@@ -68,7 +74,8 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
         "Desktop Applications",
         "API Integration",
         "User Experience Design"
-      ]
+      ],
+      path: "/services/app-development"
     },
     {
       title: "Digital Marketing",
@@ -79,7 +86,8 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
         "Social Media Marketing",
         "Content Strategy",
         "Analytics & Reporting"
-      ]
+      ],
+      path: "/services/digital-marketing"
     },
     {
       title: "Business Solutions",
@@ -90,7 +98,8 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
         "Custom Software Development",
         "System Integration",
         "Data Analytics Solutions"
-      ]
+      ],
+      path: "/services/business-solutions"
     }
   ];
 
@@ -139,7 +148,7 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
               description={service.description}
               icon={service.icon}
               features={service.features}
-              onClick={() => onServiceClick(service.title.toLowerCase().replace(' ', '-'))}
+              path={service.path}
             />
           ))}
         </div>
@@ -153,6 +162,13 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
           <a 
             href="#contact" 
             className="inline-flex items-center px-8 py-3 bg-white text-teal-600 rounded-lg font-semibold hover:bg-slate-100 transition-colors shadow-lg"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.getElementById('contact');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
           >
             Get Started Today
             <ArrowRight className="h-5 w-5 ml-2" />

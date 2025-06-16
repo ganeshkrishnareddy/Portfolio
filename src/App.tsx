@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -17,7 +18,7 @@ import { Moon, Sun } from 'lucide-react';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const [currentView, setCurrentView] = useState('home');
+  const location = useLocation();
   
   // Check for user's preferred color scheme on initial load
   useEffect(() => {
@@ -28,6 +29,11 @@ function App() {
     // Update the document title
     document.title = "Ganesh Krishna Reddy - Portfolio";
   }, []);
+  
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   
   // Toggle dark mode
   const toggleDarkMode = () => {
@@ -43,43 +49,23 @@ function App() {
     }
   }, [darkMode]);
 
-  const handleServiceClick = (service: string) => {
-    setCurrentView(service);
-  };
-
-  const handleBackToHome = () => {
-    setCurrentView('home');
-  };
-
-  const renderCurrentView = () => {
-    switch (currentView) {
-      case 'web-development':
-        return <WebDevelopment onBack={handleBackToHome} />;
-      case 'app-development':
-        return <AppDevelopment onBack={handleBackToHome} />;
-      case 'digital-marketing':
-        return <DigitalMarketing onBack={handleBackToHome} />;
-      case 'business-solutions':
-        return <BusinessSolutions onBack={handleBackToHome} />;
-      default:
-        return (
-          <>
-            <Header />
-            <main>
-              <Hero />
-              <About />
-              <Skills />
-              <Experience />
-              <Projects />
-              <Services onServiceClick={handleServiceClick} />
-              <Education />
-              <Contact />
-            </main>
-            <Footer />
-          </>
-        );
-    }
-  };
+  // Main portfolio page component
+  const MainPortfolio = () => (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Services />
+        <Projects />
+        <Education />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
   
   return (
     <div className="antialiased text-slate-800 dark:text-white">
@@ -91,7 +77,13 @@ function App() {
         {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
       </button>
       
-      {renderCurrentView()}
+      <Routes>
+        <Route path="/" element={<MainPortfolio />} />
+        <Route path="/services/web-development" element={<WebDevelopment />} />
+        <Route path="/services/app-development" element={<AppDevelopment />} />
+        <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+        <Route path="/services/business-solutions" element={<BusinessSolutions />} />
+      </Routes>
     </div>
   );
 }
