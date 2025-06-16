@@ -8,10 +8,16 @@ import Projects from './components/Projects';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Services from './components/Services';
+import WebDevelopment from './components/ServicePages/WebDevelopment';
+import AppDevelopment from './components/ServicePages/AppDevelopment';
+import DigitalMarketing from './components/ServicePages/DigitalMarketing';
+import BusinessSolutions from './components/ServicePages/BusinessSolutions';
 import { Moon, Sun } from 'lucide-react';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [currentView, setCurrentView] = useState('home');
   
   // Check for user's preferred color scheme on initial load
   useEffect(() => {
@@ -36,6 +42,44 @@ function App() {
       document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
+
+  const handleServiceClick = (service: string) => {
+    setCurrentView(service);
+  };
+
+  const handleBackToHome = () => {
+    setCurrentView('home');
+  };
+
+  const renderCurrentView = () => {
+    switch (currentView) {
+      case 'web-development':
+        return <WebDevelopment onBack={handleBackToHome} />;
+      case 'app-development':
+        return <AppDevelopment onBack={handleBackToHome} />;
+      case 'digital-marketing':
+        return <DigitalMarketing onBack={handleBackToHome} />;
+      case 'business-solutions':
+        return <BusinessSolutions onBack={handleBackToHome} />;
+      default:
+        return (
+          <>
+            <Header />
+            <main>
+              <Hero />
+              <About />
+              <Skills />
+              <Experience />
+              <Projects />
+              <Services onServiceClick={handleServiceClick} />
+              <Education />
+              <Contact />
+            </main>
+            <Footer />
+          </>
+        );
+    }
+  };
   
   return (
     <div className="antialiased text-slate-800 dark:text-white">
@@ -47,17 +91,7 @@ function App() {
         {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
       </button>
       
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Education />
-        <Contact />
-      </main>
-      <Footer />
+      {renderCurrentView()}
     </div>
   );
 }
