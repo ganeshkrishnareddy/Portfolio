@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDownCircle, Shield, Code, Server, Download } from 'lucide-react';
+import { ArrowDownCircle, Shield, Code, Server, Download, Calendar } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -11,25 +11,28 @@ const Hero: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 dark:text-white mb-4">
               P Ganesh Krishna Reddy
             </h1>
-            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-6">
-              A <span className="font-semibold text-teal-600 dark:text-teal-400">Computer Science</span> Student 
-              & Aspiring <span className="font-semibold">Cyber Security Analyst</span>, 
-              <span className="font-semibold"> Full Stack Developer</span>, and
-              <span className="font-semibold"> Linux Administrator</span>.
-            </p>
+            <div className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-6">
+              <p className="font-semibold text-2xl text-slate-800 dark:text-white mb-2">
+                Securing Systems. Building Solutions.
+              </p>
+              <p className="text-lg">
+                Bridging <span className="font-semibold text-teal-600 dark:text-teal-400">Cybersecurity</span> & 
+                <span className="font-semibold text-teal-600 dark:text-teal-400"> Web Development</span> with Precision.
+              </p>
+            </div>
             
             <div className="flex flex-wrap gap-4 mb-8">
               <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm">
                 <Shield className="h-5 w-5 text-teal-500" />
-                <span className="text-slate-700 dark:text-slate-200">Cyber Security</span>
+                <span className="text-slate-700 dark:text-slate-200">Security+ Certified</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm">
                 <Code className="h-5 w-5 text-teal-500" />
-                <span className="text-slate-700 dark:text-slate-200">Development</span>
+                <span className="text-slate-700 dark:text-slate-200">Full Stack Developer</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm">
                 <Server className="h-5 w-5 text-teal-500" />
-                <span className="text-slate-700 dark:text-slate-200">System Admin</span>
+                <span className="text-slate-700 dark:text-slate-200">Red Hat Trained</span>
               </div>
             </div>
             
@@ -44,7 +47,7 @@ const Hero: React.FC = () => {
                 href="#contact" 
                 className="px-6 py-3 bg-white dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md transition-colors shadow-md border border-slate-200 dark:border-slate-600"
               >
-                Contact Me
+                Hire Me
               </a>
               <a 
                 href="https://drive.google.com/file/d/19lJoyBZQaV3dGkbjDskPyDy4GvjsapZM/view?usp=sharing"
@@ -55,6 +58,15 @@ const Hero: React.FC = () => {
                 <Download className="h-5 w-5" />
                 Download Resume
               </a>
+              <a 
+                href="https://calendly.com/pganeshkrishnareddy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors shadow-md flex items-center gap-2"
+              >
+                <Calendar className="h-5 w-5" />
+                Book Consultation
+              </a>
             </div>
           </div>
           
@@ -63,7 +75,7 @@ const Hero: React.FC = () => {
               <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-teal-400 to-blue-500 blur-3xl opacity-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
               <img 
                 src="https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                alt="Ganesh Krishna Reddy" 
+                alt="Ganesh Krishna Reddy - Cybersecurity Analyst & Full Stack Developer" 
                 className="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-full border-8 border-white dark:border-slate-800 shadow-xl relative z-10"
               />
               

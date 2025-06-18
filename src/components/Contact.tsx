@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, Calendar, MessageCircle, Clock } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -16,8 +16,16 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Form submission logic would go here
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(formData.subject || 'Contact from Portfolio Website');
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    const mailtoLink = `mailto:pganeshkrishnareddy@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
     
     // Reset form
     setFormData({
@@ -27,8 +35,8 @@ const Contact: React.FC = () => {
       message: '',
     });
     
-    // Show success message (in a real app)
-    alert('Thank you for your message! I will get back to you soon.');
+    // Show success message
+    alert('Thank you for your message! Your email client should open now. I will get back to you soon.');
   };
 
   const contactInfo = [
@@ -36,19 +44,46 @@ const Contact: React.FC = () => {
       icon: <Phone className="h-5 w-5 text-teal-500" />,
       title: "Phone",
       details: "+91-8374622779",
-      link: "tel:+918374622779"
+      link: "tel:+918374622779",
+      description: "Available Mon-Fri, 9 AM - 6 PM IST"
     },
     {
       icon: <Mail className="h-5 w-5 text-teal-500" />,
       title: "Email",
       details: "pganeshkrishnareddy@gmail.com",
-      link: "mailto:pganeshkrishnareddy@gmail.com"
+      link: "mailto:pganeshkrishnareddy@gmail.com",
+      description: "I respond within 24 hours"
     },
     {
       icon: <MapPin className="h-5 w-5 text-teal-500" />,
       title: "Location",
       details: "Punjab, India",
-      link: null
+      link: null,
+      description: "Available for remote work globally"
+    }
+  ];
+
+  const quickActions = [
+    {
+      title: "Schedule a Meeting",
+      description: "Book a free 30-minute consultation",
+      icon: <Calendar className="h-6 w-6" />,
+      link: "https://calendly.com/pganeshkrishnareddy",
+      color: "bg-blue-600 hover:bg-blue-700"
+    },
+    {
+      title: "Quick Chat",
+      description: "Send me a direct message",
+      icon: <MessageCircle className="h-6 w-6" />,
+      link: "mailto:pganeshkrishnareddy@gmail.com?subject=Quick Chat Request",
+      color: "bg-green-600 hover:bg-green-700"
+    },
+    {
+      title: "Project Inquiry",
+      description: "Discuss your project requirements",
+      icon: <Send className="h-6 w-6" />,
+      link: "mailto:pganeshkrishnareddy@gmail.com?subject=Project Inquiry",
+      color: "bg-purple-600 hover:bg-purple-700"
     }
   ];
 
@@ -61,19 +96,47 @@ const Contact: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-teal-600 mx-auto mb-6"></div>
           <p className="max-w-3xl mx-auto text-slate-600 dark:text-slate-300 text-lg">
-            Feel free to reach out if you're looking for a dedicated professional for your team, 
-            have questions, or just want to connect.
+            Ready to collaborate? Whether you're looking for a cybersecurity expert, full-stack developer, 
+            or need help with your digital transformation, I'm here to help bring your vision to life.
           </p>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {quickActions.map((action, index) => (
+            <a
+              key={index}
+              href={action.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${action.color} text-white p-6 rounded-xl text-center transition-all duration-300 hover:scale-105 shadow-lg`}
+            >
+              <div className="flex justify-center mb-4">
+                {action.icon}
+              </div>
+              <h3 className="text-lg font-semibold mb-2">{action.title}</h3>
+              <p className="text-sm opacity-90">{action.description}</p>
+            </a>
+          ))}
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Send me a message</h3>
             
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mb-6">
+              <div className="flex items-center text-blue-700 dark:text-blue-300">
+                <Mail className="h-5 w-5 mr-2" />
+                <span className="text-sm font-medium">
+                  All messages are forwarded directly to: pganeshkrishnareddy@gmail.com
+                </span>
+              </div>
+            </div>
+            
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Your Name
+                  Your Name *
                 </label>
                 <input
                   type="text"
@@ -89,7 +152,7 @@ const Contact: React.FC = () => {
               
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Your Email
+                  Your Email *
                 </label>
                 <input
                   type="email"
@@ -105,7 +168,7 @@ const Contact: React.FC = () => {
               
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Subject
+                  Subject *
                 </label>
                 <input
                   type="text"
@@ -115,13 +178,13 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
-                  placeholder="Job Opportunity"
+                  placeholder="Job Opportunity / Project Inquiry / Collaboration"
                 />
               </div>
               
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Your Message
+                  Your Message *
                 </label>
                 <textarea
                   id="message"
@@ -154,32 +217,46 @@ const Contact: React.FC = () => {
                   <div className="bg-teal-100 dark:bg-teal-900/30 p-3 rounded-full mr-4">
                     {item.icon}
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h4 className="text-lg font-semibold text-slate-800 dark:text-white">{item.title}</h4>
                     {item.link ? (
                       <a 
                         href={item.link} 
-                        className="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400"
+                        className="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 font-medium"
                       >
                         {item.details}
                       </a>
                     ) : (
-                      <p className="text-slate-600 dark:text-slate-300">{item.details}</p>
+                      <p className="text-slate-600 dark:text-slate-300 font-medium">{item.details}</p>
                     )}
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{item.description}</p>
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Response Time Info */}
+            <div className="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 p-6 rounded-xl mb-8">
+              <div className="flex items-center mb-3">
+                <Clock className="h-5 w-5 text-teal-600 dark:text-teal-400 mr-2" />
+                <h4 className="font-semibold text-slate-800 dark:text-white">Response Time</h4>
+              </div>
+              <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                <li>• <span className="font-medium">Email:</span> Within 24 hours</li>
+                <li>• <span className="font-medium">Project Inquiries:</span> Same day response</li>
+                <li>• <span className="font-medium">Urgent Matters:</span> Call directly for immediate assistance</li>
+              </ul>
+            </div>
             
             <div className="bg-white dark:bg-slate-700 p-6 rounded-lg shadow-md">
-              <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Find Me On</h4>
+              <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Connect With Me</h4>
               
-              <div className="flex gap-4 flex-wrap">
+              <div className="grid grid-cols-4 gap-4">
                 <a 
                   href="https://github.com/ganeshkrishnareddy" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors flex items-center justify-center"
                   aria-label="GitHub"
                 >
                   <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
@@ -191,7 +268,7 @@ const Contact: React.FC = () => {
                   href="https://linkedin.com/in/pganeshkrishnareddy" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors flex items-center justify-center"
                   aria-label="LinkedIn"
                 >
                   <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
@@ -203,7 +280,7 @@ const Contact: React.FC = () => {
                   href="https://x.com/_this_is_ganesh" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors flex items-center justify-center"
                   aria-label="Twitter/X"
                 >
                   <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
@@ -212,48 +289,11 @@ const Contact: React.FC = () => {
                 </a>
                 
                 <a 
-                  href="https://www.instagram.com/_this_is_ganesh/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
-                  aria-label="Instagram"
-                >
-                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                  </svg>
-                </a>
-                
-                <a 
-                  href="https://www.facebook.com/GaneshKrishnaReddy0902" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
-                  aria-label="Facebook"
-                >
-                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                </a>
-                
-                <a 
                   href="mailto:pganeshkrishnareddy@gmail.com" 
-                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors flex items-center justify-center"
                   aria-label="Email"
                 >
-                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                </a>
-                
-                <a 
-                  href="tel:+918374622779" 
-                  className="bg-slate-200 dark:bg-slate-600 hover:bg-teal-100 dark:hover:bg-teal-900/30 p-3 rounded-full text-slate-700 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
-                  aria-label="Phone"
-                >
-                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                  </svg>
+                  <Mail className="h-6 w-6" />
                 </a>
               </div>
             </div>

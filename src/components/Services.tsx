@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Code, Smartphone, TrendingUp, Briefcase, ArrowRight, Users, Globe, Zap } from 'lucide-react';
+import { Code, Smartphone, TrendingUp, Briefcase, ArrowRight, Users, Globe, Zap, Star, Award } from 'lucide-react';
 
 interface ServiceCardProps {
   title: string;
@@ -104,9 +104,10 @@ const Services: React.FC = () => {
   ];
 
   const stats = [
-    { number: "200+", label: "Satisfied Clients", icon: <Users className="h-6 w-6" /> },
-    { number: "25+", label: "Websites Delivered", icon: <Globe className="h-6 w-6" /> },
-    { number: "3+", label: "Years Experience", icon: <Zap className="h-6 w-6" /> }
+    { number: "200+", label: "Projects Delivered", icon: <Users className="h-6 w-6" /> },
+    { number: "25+", label: "Websites Built", icon: <Globe className="h-6 w-6" /> },
+    { number: "3+", label: "Years Experience", icon: <Zap className="h-6 w-6" /> },
+    { number: "100%", label: "Client Satisfaction", icon: <Star className="h-6 w-6" /> }
   ];
 
   return (
@@ -119,22 +120,34 @@ const Services: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-teal-600 mx-auto mb-6"></div>
           <p className="max-w-3xl mx-auto text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
-            Comprehensive digital solutions through ProgVision, my freelance agency. From web development to digital marketing, 
-            I help businesses establish and grow their online presence with cutting-edge technology and strategic insights.
+            Comprehensive digital solutions through <span className="font-semibold text-teal-600 dark:text-teal-400">ProgVision</span>, 
+            my freelance agency. From web development to digital marketing, I help businesses establish and grow their online presence 
+            with cutting-edge technology and strategic insights.
+          </p>
+        </div>
+
+        {/* Achievement Banner */}
+        <div className="bg-gradient-to-r from-teal-600 to-blue-600 p-6 rounded-xl text-white text-center mb-16">
+          <div className="flex items-center justify-center mb-3">
+            <Award className="h-6 w-6 mr-2" />
+            <span className="font-semibold">Trusted by 200+ Clients Worldwide</span>
+          </div>
+          <p className="text-sm opacity-90">
+            Delivering exceptional digital solutions with proven results and client satisfaction
           </p>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md">
+            <div key={index} className="text-center bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
               <div className="inline-flex items-center justify-center w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-full mb-4">
                 <div className="text-teal-600 dark:text-teal-400">
                   {stat.icon}
                 </div>
               </div>
-              <div className="text-3xl font-bold text-slate-800 dark:text-white mb-2">{stat.number}</div>
-              <div className="text-slate-600 dark:text-slate-300">{stat.label}</div>
+              <div className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-2">{stat.number}</div>
+              <div className="text-slate-600 dark:text-slate-300 text-sm">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -159,20 +172,30 @@ const Services: React.FC = () => {
           <p className="text-lg mb-6 opacity-90">
             Let's discuss how I can help bring your vision to life with innovative solutions tailored to your needs.
           </p>
-          <a 
-            href="#contact" 
-            className="inline-flex items-center px-8 py-3 bg-white text-teal-600 rounded-lg font-semibold hover:bg-slate-100 transition-colors shadow-lg"
-            onClick={(e) => {
-              e.preventDefault();
-              const element = document.getElementById('contact');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
-          >
-            Get Started Today
-            <ArrowRight className="h-5 w-5 ml-2" />
-          </a>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a 
+              href="#contact" 
+              className="inline-flex items-center px-8 py-3 bg-white text-teal-600 rounded-lg font-semibold hover:bg-slate-100 transition-colors shadow-lg"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById('contact');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+            >
+              Request a Quote
+              <ArrowRight className="h-5 w-5 ml-2" />
+            </a>
+            <a 
+              href="https://calendly.com/pganeshkrishnareddy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-teal-600 transition-colors"
+            >
+              Book Free Consultation
+            </a>
+          </div>
         </div>
       </div>
     </section>
