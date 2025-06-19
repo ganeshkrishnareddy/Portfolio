@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
                 Download Resume
               </a>
               <a 
-                href="https://calendly.com/pganeshkrishnareddy"
+                href="https://topmate.io/pganeshkrishnareddy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors shadow-md flex items-center gap-2"
