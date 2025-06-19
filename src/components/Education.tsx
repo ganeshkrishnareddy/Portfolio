@@ -232,15 +232,6 @@ const Education: React.FC = () => {
     }
   ];
 
-  const groupedCertifications = certificationData.reduce((acc, cert) => {
-    const category = cert.category || 'Other';
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    acc[category].push(cert);
-    return acc;
-  }, {} as Record<string, typeof certificationData>);
-
   return (
     <section id="education" className="py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -278,10 +269,16 @@ const Education: React.FC = () => {
             <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md space-y-6 mb-8">
               {[
                 {
-                  title: "Reliance Foundation Undergraduate Scholarship",
-                  desc: "Selected for and awarded ₹2,00,000 scholarship from the Reliance Foundation for academic excellence.",
-                  date: "January 2023",
-                  icon: "🏆"
+                  title: "ProgVision Freelance Success",
+                  desc: "Built and scaled freelance agency serving 200+ clients with web development and digital marketing services.",
+                  date: "2022–Present",
+                  icon: "💼"
+                },
+                {
+                  title: "CompTIA Security+ & Network+ Certified",
+                  desc: "Achieved industry-recognized certifications in cybersecurity and networking fundamentals.",
+                  date: "2024–2025",
+                  icon: "🛡️"
                 },
                 {
                   title: "Red Hat Linux System Administration",
@@ -290,16 +287,10 @@ const Education: React.FC = () => {
                   icon: "🐧"
                 },
                 {
-                  title: "CompTIA Security+ & Network+ Certified",
-                  desc: "Achieved industry-recognized certifications in cybersecurity and networking fundamentals.",
-                  date: "2024-2025",
-                  icon: "🛡️"
-                },
-                {
-                  title: "ProgVision Freelance Success",
-                  desc: "Built and scaled freelance agency serving 200+ clients with web development and digital marketing services.",
-                  date: "2022-Present",
-                  icon: "💼"
+                  title: "Reliance Foundation Undergraduate Scholarship",
+                  desc: "Awarded ₹2,00,000 scholarship from the Reliance Foundation for academic excellence.",
+                  date: "January 2023",
+                  icon: "🏆"
                 }
               ].map((item, i) => (
                 <div key={i} className="flex items-start">
@@ -322,20 +313,12 @@ const Education: React.FC = () => {
             </span>
             Professional Certifications
           </h3>
-          
-          {Object.entries(groupedCertifications).map(([category, certs]) => (
-            <div key={category} className="mb-8">
-              <h4 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-4 flex items-center">
-                <div className="w-3 h-3 bg-teal-500 rounded-full mr-2"></div>
-                {category} Certifications
-              </h4>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {certs.map((cert, index) => (
-                  <CertificationItem key={index} {...cert} />
-                ))}
-              </div>
-            </div>
-          ))}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
+            {certificationData.map((cert, index) => (
+              <CertificationItem key={index} {...cert} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
