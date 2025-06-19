@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin, Award, GraduationCap, Trophy, ExternalLink, Star } from 'lucide-react';
+import { Calendar, MapPin, Award, GraduationCap, Trophy, ExternalLink, Star, Github } from 'lucide-react';
 
 interface EducationItemProps {
   period: string;
@@ -58,7 +58,6 @@ interface CertificationItemProps {
   expiryDate?: string;
   credentialId?: string;
   link?: string;
-  category?: string;
 }
 
 const CertificationItem: React.FC<CertificationItemProps> = ({
@@ -67,41 +66,13 @@ const CertificationItem: React.FC<CertificationItemProps> = ({
   date,
   expiryDate,
   credentialId,
-  link,
-  category
+  link
 }) => {
-  const getCategoryColor = (cat?: string) => {
-    switch (cat) {
-      case 'Security': return 'border-red-500';
-      case 'Development': return 'border-blue-500';
-      case 'Cloud': return 'border-purple-500';
-      case 'System': return 'border-green-500';
-      default: return 'border-teal-500';
-    }
-  };
-
-  const getCategoryBadge = (cat?: string) => {
-    switch (cat) {
-      case 'Security': return 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400';
-      case 'Development': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400';
-      case 'Cloud': return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400';
-      case 'System': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400';
-      default: return 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-400';
-    }
-  };
-
   return (
-    <div className={`bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md border-l-4 ${getCategoryColor(category)} hover:shadow-lg transition-shadow`}>
+    <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
-          <div className="flex items-start justify-between mb-2">
-            <h3 className="text-lg font-semibold text-slate-800 dark:text-white pr-4">{title}</h3>
-            {category && (
-              <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryBadge(category)}`}>
-                {category}
-              </span>
-            )}
-          </div>
+          <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-2">{title}</h3>
           <p className="text-teal-600 dark:text-teal-400 font-medium mb-3">{issuer}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-500 dark:text-slate-400 mb-3">
             <div>
@@ -128,11 +99,33 @@ const CertificationItem: React.FC<CertificationItemProps> = ({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-md hover:bg-teal-700 transition-colors"
           >
-            <span>Verify Certification</span>
+            <span>Verify</span>
             <ExternalLink className="h-4 w-4" />
           </a>
         </div>
       )}
+    </div>
+  );
+};
+
+interface AchievementItemProps {
+  title: string;
+  description: string;
+  date: string;
+  icon: string;
+}
+
+const AchievementItem: React.FC<AchievementItemProps> = ({ title, description, date, icon }) => {
+  return (
+    <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+      <div className="flex items-start">
+        <div className="text-2xl mr-4 mt-1">{icon}</div>
+        <div className="flex-1">
+          <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">{title}</h3>
+          <p className="text-slate-600 dark:text-slate-300 mb-2 text-sm">{description}</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">{date}</p>
+        </div>
+      </div>
     </div>
   );
 };
@@ -169,32 +162,28 @@ const Education: React.FC = () => {
       issuer: "Forage",
       date: "June 2025",
       credentialId: "3o683ubu49Fa5G3wB",
-      link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/E9pA6qsdbeyEkp3ti_9PBTqmSxAf6zZTseP_SLa4iANMguG7m2Zin_1748834447065_completion_certificate.pdf",
-      category: "Security"
+      link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/E9pA6qsdbeyEkp3ti_9PBTqmSxAf6zZTseP_SLa4iANMguG7m2Zin_1748834447065_completion_certificate.pdf"
     },
     {
       title: "Tata Group - Cybersecurity Analyst Job Simulation",
       issuer: "Forage",
       date: "June 2025",
       credentialId: "X5R5dKq9DkjnwSQW4",
-      link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ifobHAoMjQs9s6bKS/gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_SLa4iANMguG7m2Zin_1749878938454_completion_certificate.pdf",
-      category: "Security"
+      link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ifobHAoMjQs9s6bKS/gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_SLa4iANMguG7m2Zin_1749878938454_completion_certificate.pdf"
     },
     {
       title: "Microsoft Power Platform Fundamentals (PL-900)",
       issuer: "Coursera",
       date: "April 2025",
       credentialId: "SHY8XOE77RB5",
-      link: "https://coursera.org/verify/specialization/SHY8XOE77RB5",
-      category: "Cloud"
+      link: "https://coursera.org/verify/specialization/SHY8XOE77RB5"
     },
     {
       title: "QuickHeal Certified Digital Forensic Investigator",
       issuer: "Quick Heal Academy",
       date: "January 2025",
       credentialId: "LPU-0000-780553",
-      link: "https://lms.quickhealacademy.com/certificates/verification/exam?id=LPU-0000-780553",
-      category: "Security"
+      link: "https://lms.quickhealacademy.com/certificates/verification/exam?id=LPU-0000-780553"
     },
     {
       title: "CompTIA Security+ CE",
@@ -202,16 +191,14 @@ const Education: React.FC = () => {
       date: "January 2025",
       expiryDate: "January 2028",
       credentialId: "QDR90YBSZJVQQKWS",
-      link: "https://www.certmetrics.com/comptia/public/verification.aspx?code=YLP7LZ44L706VHCZ",
-      category: "Security"
+      link: "https://www.certmetrics.com/comptia/public/verification.aspx?code=YLP7LZ44L706VHCZ"
     },
     {
       title: "Summer Training on Linux System Administration",
       issuer: "Lovely Professional University – Centre for Professional Enhancement",
       date: "August 2024",
       credentialId: "Registration No: 12212186",
-      link: "https://drive.google.com/file/d/1ZfYZAIalNs9-qdog4RvJONdAzibGeSUb/view?usp=sharing",
-      category: "System"
+      link: "https://drive.google.com/file/d/1ZfYZAIalNs9-qdog4RvJONdAzibGeSUb/view?usp=sharing"
     },
     {
       title: "CompTIA Network+ CE",
@@ -219,123 +206,140 @@ const Education: React.FC = () => {
       date: "August 2024",
       expiryDate: "January 2028",
       credentialId: "83JGFW2TN2RQQCKG",
-      link: "https://www.certmetrics.com/comptia/public/verification.aspx?code=9LGHCR89B7LLFLS1",
-      category: "Security"
+      link: "https://www.certmetrics.com/comptia/public/verification.aspx?code=9LGHCR89B7LLFLS1"
     },
     {
       title: "CS50's Understanding Technology",
       issuer: "Harvard University",
       date: "November 2023",
       credentialId: "1f305a31-6d98-4043-ac2b-35c76bc38a0c",
-      link: "https://cs50.harvard.edu/certificates/1f305a31-6d98-4043-ac2b-35c76bc38a0c",
-      category: "Development"
+      link: "https://cs50.harvard.edu/certificates/1f305a31-6d98-4043-ac2b-35c76bc38a0c"
     }
   ];
 
-  const groupedCertifications = certificationData.reduce((acc, cert) => {
-    const category = cert.category || 'Other';
-    if (!acc[category]) {
-      acc[category] = [];
+  const achievementData = [
+    {
+      title: "Deloitte & Tata Cybersecurity Job Simulations",
+      description: "Successfully completed industry-level cybersecurity simulations from leading consulting firms, demonstrating practical skills in threat analysis and security operations.",
+      date: "June 2025",
+      icon: "🏆"
+    },
+    {
+      title: "Microsoft Power Platform Certification",
+      description: "Achieved certification in Microsoft Power Platform fundamentals, expanding cloud and business automation expertise.",
+      date: "April 2025",
+      icon: "☁️"
+    },
+    {
+      title: "CompTIA Security+ & Network+ Certified",
+      description: "Achieved industry-recognized certifications in cybersecurity and networking fundamentals, validating core security knowledge.",
+      date: "January 2025",
+      icon: "🛡️"
+    },
+    {
+      title: "QuickHeal Digital Forensics Certification",
+      description: "Completed specialized training in digital forensics investigation techniques and cybercrime analysis.",
+      date: "January 2025",
+      icon: "🔍"
+    },
+    {
+      title: "Red Hat Linux System Administration Training",
+      description: "Completed intensive training in Linux system optimization, server security, and automation during internship program.",
+      date: "August 2024",
+      icon: "🐧"
+    },
+    {
+      title: "Reliance Foundation Undergraduate Scholarship",
+      description: "Selected for and awarded ₹2,00,000 scholarship from the Reliance Foundation for academic excellence and potential.",
+      date: "January 2023",
+      icon: "🎓"
+    },
+    {
+      title: "ProgVision Freelance Success",
+      description: "Built and scaled freelance agency serving 200+ clients with web development and digital marketing services.",
+      date: "February 2022 - Present",
+      icon: "💼"
     }
-    acc[category].push(cert);
-    return acc;
-  }, {} as Record<string, typeof certificationData>);
+  ];
 
   return (
     <section id="education" className="py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-            Education & <span className="text-teal-600 dark:text-teal-400">Certifications</span>
+            Education & <span className="text-teal-600 dark:text-teal-400">Credentials</span>
           </h2>
           <div className="w-24 h-1 bg-teal-600 mx-auto mb-6" />
           <p className="max-w-3xl mx-auto text-slate-600 dark:text-slate-300 text-lg">
-            My academic journey and professional certifications that have shaped my knowledge and expertise in technology.
+            My academic journey and professional achievements that have shaped my knowledge and expertise in technology.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-8 flex items-center">
-              <span className="bg-teal-100 dark:bg-teal-900/30 p-2 rounded-full mr-3">
-                <GraduationCap className="h-6 w-6 text-teal-600 dark:text-teal-400" />
-              </span>
-              Education
-            </h3>
+        {/* Education Timeline */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-8 flex items-center justify-center">
+            <span className="bg-teal-100 dark:bg-teal-900/30 p-2 rounded-full mr-3">
+              <GraduationCap className="h-6 w-6 text-teal-600 dark:text-teal-400" />
+            </span>
+            Education
+          </h3>
+          <div className="max-w-3xl mx-auto">
             {educationData.map((edu, index) => (
               <EducationItem key={index} {...edu} isLast={edu.isLast || index === educationData.length - 1} />
             ))}
           </div>
+        </div>
 
+        {/* Certifications & Achievements Side by Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Certifications */}
+          <div>
+            <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-8 flex items-center">
+              <span className="bg-teal-100 dark:bg-teal-900/30 p-2 rounded-full mr-3">
+                <Award className="h-6 w-6 text-teal-600 dark:text-teal-400" />
+              </span>
+              Certifications
+            </h3>
+            <div className="space-y-6">
+              {certificationData.map((cert, index) => (
+                <CertificationItem key={index} {...cert} />
+              ))}
+            </div>
+          </div>
+
+          {/* Achievements */}
           <div>
             <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-8 flex items-center">
               <span className="bg-teal-100 dark:bg-teal-900/30 p-2 rounded-full mr-3">
                 <Trophy className="h-6 w-6 text-teal-600 dark:text-teal-400" />
               </span>
-              Key Achievements
+              Achievements
             </h3>
-
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md space-y-6 mb-8">
-              {[
-                {
-                  title: "Reliance Foundation Undergraduate Scholarship",
-                  desc: "Selected for and awarded ₹2,00,000 scholarship from the Reliance Foundation for academic excellence.",
-                  date: "January 2023",
-                  icon: "🏆"
-                },
-                {
-                  title: "Red Hat Linux System Administration",
-                  desc: "Completed intensive training in Linux system optimization, server security, and automation during internship.",
-                  date: "July 2024",
-                  icon: "🐧"
-                },
-                {
-                  title: "CompTIA Security+ & Network+ Certified",
-                  desc: "Achieved industry-recognized certifications in cybersecurity and networking fundamentals.",
-                  date: "2024-2025",
-                  icon: "🛡️"
-                },
-                {
-                  title: "ProgVision Freelance Success",
-                  desc: "Built and scaled freelance agency serving 200+ clients with web development and digital marketing services.",
-                  date: "2022-Present",
-                  icon: "💼"
-                }
-              ].map((item, i) => (
-                <div key={i} className="flex items-start">
-                  <div className="text-2xl mr-4 mt-1">{item.icon}</div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-2">{item.title}</h4>
-                    <p className="text-slate-600 dark:text-slate-300 mb-1 text-sm">{item.desc}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{item.date}</p>
-                  </div>
-                </div>
+            <div className="space-y-6">
+              {achievementData.map((achievement, index) => (
+                <AchievementItem key={index} {...achievement} />
               ))}
             </div>
           </div>
         </div>
 
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-8 flex items-center justify-center">
-            <span className="bg-teal-100 dark:bg-teal-900/30 p-2 rounded-full mr-3">
-              <Award className="h-6 w-6 text-teal-600 dark:text-teal-400" />
-            </span>
-            Professional Certifications
-          </h3>
-          
-          {Object.entries(groupedCertifications).map(([category, certs]) => (
-            <div key={category} className="mb-8">
-              <h4 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-4 flex items-center">
-                <div className="w-3 h-3 bg-teal-500 rounded-full mr-2"></div>
-                {category} Certifications
-              </h4>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {certs.map((cert, index) => (
-                  <CertificationItem key={index} {...cert} />
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* GitHub Profile Link */}
+        <div className="text-center mt-16">
+          <div className="bg-gradient-to-r from-slate-800 to-slate-900 dark:from-slate-700 dark:to-slate-800 p-8 rounded-xl text-white">
+            <h3 className="text-2xl font-bold mb-4">Explore My Work</h3>
+            <p className="text-lg mb-6 opacity-90">
+              Check out my GitHub profile for more projects and contributions to open source.
+            </p>
+            <a 
+              href="https://github.com/ganeshkrishnareddy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-8 py-3 bg-white text-slate-800 rounded-lg font-semibold hover:bg-slate-100 transition-colors shadow-lg"
+            >
+              <Github className="h-5 w-5 mr-2" />
+              View All Projects on GitHub
+            </a>
+          </div>
         </div>
       </div>
     </section>

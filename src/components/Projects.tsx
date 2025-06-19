@@ -125,7 +125,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'Security', 'Web Development', 'System Administration'];
+  const categories = ['All', 'Cybersecurity', 'Web Development', 'System Administration'];
 
   const projectsData = [
     {
@@ -135,7 +135,7 @@ const Projects: React.FC = () => {
       technologies: ["Python", "AES Encryption", "SSH", "MySQL", "Logging"],
       image: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Lock className="h-5 w-5 text-teal-600 dark:text-teal-400" />,
-      category: "Security",
+      category: "Cybersecurity",
       githubLink: "https://github.com/ganeshkrishnareddy",
       achievements: [
         "Implemented AES-256 encryption for file security",
@@ -164,7 +164,7 @@ const Projects: React.FC = () => {
       technologies: ["Python", "Nmap", "Web Security", "Email Notifications", "Reporting"],
       image: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Shield className="h-5 w-5 text-teal-600 dark:text-teal-400" />,
-      category: "Security",
+      category: "Cybersecurity",
       githubLink: "https://github.com/ganeshkrishnareddy",
       achievements: [
         "Detected 95% of common vulnerabilities",
@@ -179,7 +179,7 @@ const Projects: React.FC = () => {
       technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Security Testing"],
       image: "https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Shield className="h-5 w-5 text-teal-600 dark:text-teal-400" />,
-      category: "Security",
+      category: "Cybersecurity",
       achievements: [
         "Identified 15+ critical vulnerabilities",
         "Provided detailed remediation guide",
@@ -207,6 +207,25 @@ const Projects: React.FC = () => {
     ? projectsData 
     : projectsData.filter(project => project.category === selectedCategory);
 
+  // Group projects by category for display
+  const groupedProjects = {
+    'Cybersecurity': projectsData.filter(p => p.category === 'Cybersecurity'),
+    'Web Development': projectsData.filter(p => p.category === 'Web Development'),
+    'System Administration': projectsData.filter(p => p.category === 'System Administration')
+  };
+
+  const categoryIcons = {
+    'Cybersecurity': <Shield className="h-6 w-6 text-red-600 dark:text-red-400" />,
+    'Web Development': <Code className="h-6 w-6 text-blue-600 dark:text-blue-400" />,
+    'System Administration': <Server className="h-6 w-6 text-green-600 dark:text-green-400" />
+  };
+
+  const categoryColors = {
+    'Cybersecurity': 'from-red-100 to-orange-100 dark:from-red-900/20 dark:to-orange-900/20',
+    'Web Development': 'from-blue-100 to-teal-100 dark:from-blue-900/20 dark:to-teal-900/20',
+    'System Administration': 'from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20'
+  };
+
   return (
     <section id="projects" className="py-20 bg-slate-50 dark:bg-slate-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -217,7 +236,7 @@ const Projects: React.FC = () => {
           <div className="w-24 h-1 bg-teal-600 mx-auto mb-6"></div>
           <p className="max-w-3xl mx-auto text-slate-600 dark:text-slate-300 text-lg">
             A showcase of my technical skills and problem-solving abilities through various projects, 
-            from cybersecurity tools to web applications.
+            organized by category and arranged from most recent to older.
           </p>
         </div>
 
@@ -243,15 +262,35 @@ const Projects: React.FC = () => {
             ))}
           </div>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard 
-              key={index}
-              {...project}
-            />
-          ))}
-        </div>
+
+        {/* Projects by Category */}
+        {selectedCategory === 'All' ? (
+          <div className="space-y-16">
+            {Object.entries(groupedProjects).map(([category, projects]) => (
+              <div key={category}>
+                <div className={`bg-gradient-to-r ${categoryColors[category as keyof typeof categoryColors]} p-6 rounded-xl mb-8`}>
+                  <h3 className="text-2xl font-bold text-slate-800 dark:text-white flex items-center justify-center">
+                    <span className="bg-white dark:bg-slate-800 p-2 rounded-full mr-3">
+                      {categoryIcons[category as keyof typeof categoryIcons]}
+                    </span>
+                    {category} Projects
+                  </h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                  {projects.map((project, index) => (
+                    <ProjectCard key={index} {...project} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={index} {...project} />
+            ))}
+          </div>
+        )}
 
         {/* GitHub CTA */}
         <div className="text-center mt-16">
@@ -267,7 +306,7 @@ const Projects: React.FC = () => {
               className="inline-flex items-center px-8 py-3 bg-white text-slate-800 rounded-lg font-semibold hover:bg-slate-100 transition-colors shadow-lg"
             >
               <Github className="h-5 w-5 mr-2" />
-              Visit GitHub Profile
+              View All Projects on GitHub
             </a>
           </div>
         </div>
