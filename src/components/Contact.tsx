@@ -66,23 +66,23 @@ const Contact: React.FC = () => {
   const quickActions = [
     {
       title: "Schedule a Meeting",
-      description: "Book a free 30-minute consultation",
+      description: "Book a free 15-minute consultation",
       icon: <Calendar className="h-6 w-6" />,
-      link: "https://calendly.com/pganeshkrishnareddy",
+      link: "https://topmate.io/pganeshkrishnareddy",
       color: "bg-blue-600 hover:bg-blue-700"
     },
     {
       title: "Quick Chat",
       description: "Send me a direct message",
       icon: <MessageCircle className="h-6 w-6" />,
-      link: "mailto:pganeshkrishnareddy@gmail.com?subject=Quick Chat Request",
+      link: "https://wa.me/918374622779?text=Ganesh%2C%20let%27s%20have%20a%20quick%20discussion",
       color: "bg-green-600 hover:bg-green-700"
     },
     {
       title: "Project Inquiry",
       description: "Discuss your project requirements",
       icon: <Send className="h-6 w-6" />,
-      link: "mailto:pganeshkrishnareddy@gmail.com?subject=Project Inquiry",
+      link: "https://wa.me/918374622779?text=Hi%20I%20have%20a%20project%20inquiry",
       color: "bg-purple-600 hover:bg-purple-700"
     }
   ];
