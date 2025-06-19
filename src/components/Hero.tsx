@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDownCircle, Shield, Code, Server, Download } from 'lucide-react';
+import { ArrowDownCircle, Shield, Code, Server, Download, Calendar } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -59,13 +59,13 @@ const Hero: React.FC = () => {
                 Download Resume
               </a>
               <a 
-                href="https://topmate.io/pganeshkrishnareddy"
+                href="https://calendly.com/pganeshkrishnareddy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors shadow-md flex items-center gap-2"
               >
-                <span>📞</span>
-                Discovery Call
+                <Calendar className="h-5 w-5" />
+                Book Consultation
               </a>
             </div>
           </div>
