@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, ExternalLink, Lock, Server, Shield, Github, Globe, Filter } from 'lucide-react';
+import { Calendar, ExternalLink, Lock, Server, Shield, Github, Globe, Filter, Code } from 'lucide-react';
 
 interface ProjectProps {
   title: string;
