@@ -1,7 +1,61 @@
 import React from 'react';
-import { ShieldCheck, GraduationCap, Briefcase, Code, Award, Users, Target, Lightbulb, ExternalLink, Building2, MapPin, Globe } from 'lucide-react';
+import { ShieldCheck, GraduationCap, Briefcase, Code, Award, Users, Target, Lightbulb, ExternalLink, Building2, MapPin, Globe, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const About: React.FC = () => {
+  const testimonials = [
+    {
+      quote: "Working with Ganesh was a game-changer. His full-stack development skills and deep understanding of business requirements helped us launch our platform on time and with exceptional quality.",
+      author: "Ramesh Varma",
+      position: "CEO, TechRise Solutions",
+      icon: <Code className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
+      bgColor: "bg-blue-100 dark:bg-blue-900/30"
+    },
+    {
+      quote: "Ganesh's cybersecurity insights saved our company from a critical vulnerability. His structured approach and hands-on testing proved his expertise in real-world environments.",
+      author: "Neha Sharma",
+      position: "CISO, FinSecure Corp",
+      icon: <ShieldCheck className="h-5 w-5 text-red-600 dark:text-red-400" />,
+      bgColor: "bg-red-100 dark:bg-red-900/30"
+    },
+    {
+      quote: "From idea to execution, Ganesh led our web revamp with strategy, precision, and creative flair. The new site boosted conversions by 35% in the first month.",
+      author: "Ankita Reddy",
+      position: "Marketing Director, Market Movers",
+      icon: <Award className="h-5 w-5 text-purple-600 dark:text-purple-400" />,
+      bgColor: "bg-purple-100 dark:bg-purple-900/30"
+    },
+    {
+      quote: "ProgVision's comprehensive approach to digital transformation exceeded our expectations. Their team delivered both technical excellence and strategic business value.",
+      author: "Vikram Singh",
+      position: "CTO, InnovateTech",
+      icon: <Building2 className="h-5 w-5 text-green-600 dark:text-green-400" />,
+      bgColor: "bg-green-100 dark:bg-green-900/30"
+    },
+    {
+      quote: "The automation solutions Ganesh developed for our operations reduced manual work by 60% and significantly improved our team's productivity and accuracy.",
+      author: "Priya Patel",
+      position: "Operations Manager, DataFlow Systems",
+      icon: <Target className="h-5 w-5 text-orange-600 dark:text-orange-400" />,
+      bgColor: "bg-orange-100 dark:bg-orange-900/30"
+    }
+  ];
+
+  const scrollTestimonials = (direction: 'left' | 'right') => {
+    const container = document.getElementById('testimonials-container');
+    if (container) {
+      const scrollAmount = 320; // Width of one testimonial card + gap
+      const currentScroll = container.scrollLeft;
+      const targetScroll = direction === 'left' 
+        ? currentScroll - scrollAmount 
+        : currentScroll + scrollAmount;
+      
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section id="about" className="py-16 sm:py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -226,55 +280,96 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Testimonials Section */}
+        {/* Enhanced Testimonials Section with Horizontal Scrolling */}
         <div className="mt-12 sm:mt-16">
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-6 sm:mb-8 text-center">What People Say</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            <div className="bg-slate-50 dark:bg-slate-800 p-4 sm:p-6 rounded-xl">
-              <p className="text-slate-600 dark:text-slate-300 italic mb-4 text-xs sm:text-sm">
-                "Ganesh delivered exceptional web development services for our business. His attention to detail and technical expertise exceeded our expectations."
-              </p>
-              <div className="flex items-center">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center mr-3">
-                  <Users className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600 dark:text-teal-400" />
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-800 dark:text-white text-xs sm:text-sm">Client Feedback</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">ProgVision Client</p>
-                </div>
-              </div>
-            </div>
+          <div className="flex items-center justify-between mb-6 sm:mb-8">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white flex items-center">
+              <Quote className="h-5 w-5 sm:h-6 sm:w-6 text-teal-600 dark:text-teal-400 mr-3" />
+              What People Say
+            </h3>
             
-            <div className="bg-slate-50 dark:bg-slate-800 p-4 sm:p-6 rounded-xl">
-              <p className="text-slate-600 dark:text-slate-300 italic mb-4 text-xs sm:text-sm">
-                "His cybersecurity knowledge and practical approach to problem-solving make him a valuable asset to any team."
-              </p>
-              <div className="flex items-center">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3">
-                  <Award className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400" />
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-800 dark:text-white text-xs sm:text-sm">Industry Recognition</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Professional Network</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-slate-50 dark:bg-slate-800 p-4 sm:p-6 rounded-xl">
-              <p className="text-slate-600 dark:text-slate-300 italic mb-4 text-xs sm:text-sm">
-                "Ganesh consistently demonstrates strong technical skills and leadership qualities in collaborative projects."
-              </p>
-              <div className="flex items-center">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mr-3">
-                  <GraduationCap className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600 dark:text-purple-400" />
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-800 dark:text-white text-xs sm:text-sm">Academic Excellence</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">University Peer</p>
-                </div>
-              </div>
+            {/* Navigation Buttons */}
+            <div className="hidden sm:flex gap-2">
+              <button
+                onClick={() => scrollTestimonials('left')}
+                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => scrollTestimonials('right')}
+                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
             </div>
           </div>
+
+          {/* Scrollable Testimonials Container */}
+          <div className="relative">
+            <div 
+              id="testimonials-container"
+              className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={index} 
+                  className="flex-none w-80 sm:w-96 bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 snap-start hover:shadow-xl transition-shadow"
+                >
+                  {/* Quote Icon */}
+                  <div className="flex items-start mb-4">
+                    <div className={`p-3 rounded-full ${testimonial.bgColor} mr-4 flex-shrink-0`}>
+                      {testimonial.icon}
+                    </div>
+                    <Quote className="h-6 w-6 text-slate-300 dark:text-slate-600 flex-shrink-0" />
+                  </div>
+                  
+                  {/* Testimonial Text */}
+                  <p className="text-slate-600 dark:text-slate-300 italic mb-6 leading-relaxed text-sm">
+                    "{testimonial.quote}"
+                  </p>
+                  
+                  {/* Author Info */}
+                  <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
+                    <p className="font-semibold text-slate-800 dark:text-white text-sm">
+                      {testimonial.author}
+                    </p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      {testimonial.position}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile Navigation Dots */}
+            <div className="flex justify-center gap-2 mt-6 sm:hidden">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    const container = document.getElementById('testimonials-container');
+                    if (container) {
+                      container.scrollTo({
+                        left: index * 320,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }}
+                  className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 hover:bg-teal-500 dark:hover:bg-teal-400 transition-colors"
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Scroll Hint for Mobile */}
+          <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-4 sm:hidden">
+            Swipe left or right to see more testimonials
+          </p>
         </div>
       </div>
     </section>
