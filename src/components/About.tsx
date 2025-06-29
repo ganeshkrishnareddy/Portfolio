@@ -16,8 +16,9 @@ const About: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
-          <div className="space-y-6 sm:space-y-8">
-            <div className="bg-slate-50 dark:bg-slate-800 p-6 sm:p-8 rounded-xl shadow-sm">
+          {/* Left Column - About Me Content */}
+          <div className="space-y-6 sm:space-y-8 h-full flex flex-col">
+            <div className="bg-slate-50 dark:bg-slate-800 p-6 sm:p-8 rounded-xl shadow-sm flex-grow">
               <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-4 sm:mb-6">Who I Am</h3>
               
               <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed text-sm sm:text-base">
@@ -119,97 +120,107 @@ const About: React.FC = () => {
                 <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 ml-2" />
               </a>
             </div>
-            
-            <div className="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 p-4 sm:p-6 rounded-xl">
-              <h4 className="text-base sm:text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center">
-                <Target className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600 dark:text-teal-400 mr-2" />
-                Core Strengths
-              </h4>
-              <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
-                <div className="flex items-center text-slate-700 dark:text-slate-300">
-                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-2 flex-shrink-0"></div>
-                  Quick Learner
-                </div>
-                <div className="flex items-center text-slate-700 dark:text-slate-300">
-                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-2 flex-shrink-0"></div>
-                  Team Player
-                </div>
-                <div className="flex items-center text-slate-700 dark:text-slate-300">
-                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-2 flex-shrink-0"></div>
-                  Detail-Oriented
-                </div>
-                <div className="flex items-center text-slate-700 dark:text-slate-300">
-                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-2 flex-shrink-0"></div>
-                  Problem Solver
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-slate-50 dark:bg-slate-800 p-4 sm:p-6 rounded-xl">
-              <h4 className="text-base sm:text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center">
-                <Lightbulb className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600 dark:text-teal-400 mr-2" />
-                Areas of Interest
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {['Cybersecurity', 'Cloud Computing', 'System Automation', 'DevSecOps', 'Network Defense'].map((interest, index) => (
-                  <span key={index} className="px-2 sm:px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full text-xs sm:text-sm font-medium">
-                    {interest}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
-            <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-md border-l-4 border-teal-500 hover:shadow-lg transition-shadow">
-              <div className="mb-4 bg-teal-100 dark:bg-teal-900/30 p-2 sm:p-3 rounded-full w-max">
-                <ShieldCheck className="h-6 w-6 sm:h-8 sm:w-8 text-teal-600 dark:text-teal-400" />
+          {/* Right Column - 2x2 Grid Layout for Cards */}
+          <div className="h-full flex flex-col space-y-6">
+            {/* Top Row - Main Expertise Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-md border-l-4 border-teal-500 hover:shadow-lg transition-shadow h-full">
+                <div className="mb-4 bg-teal-100 dark:bg-teal-900/30 p-2 sm:p-3 rounded-full w-max">
+                  <ShieldCheck className="h-6 w-6 sm:h-8 sm:w-8 text-teal-600 dark:text-teal-400" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-3">Cybersecurity</h3>
+                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3">
+                  Specialized in digital forensics, vulnerability assessment, and security auditing with industry-recognized certifications.
+                </p>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  <span className="font-medium">Tools:</span> Nmap, Burp Suite, Wireshark, Metasploit
+                </div>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-3">Cybersecurity</h3>
-              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3">
-                Specialized in digital forensics, vulnerability assessment, and security auditing with industry-recognized certifications.
-              </p>
-              <div className="text-xs text-slate-500 dark:text-slate-400">
-                <span className="font-medium">Tools:</span> Nmap, Burp Suite, Wireshark, Metasploit
-              </div>
-            </div>
-            
-            <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-md border-l-4 border-blue-500 hover:shadow-lg transition-shadow">
-              <div className="mb-4 bg-blue-100 dark:bg-blue-900/30 p-2 sm:p-3 rounded-full w-max">
-                <Code className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600 dark:text-blue-400" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-3">Web Development</h3>
-              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3">
-                Full-stack development expertise with modern frameworks, serving 200+ clients through ProgVision.
-              </p>
-              <div className="text-xs text-slate-500 dark:text-slate-400">
-                <span className="font-medium">Stack:</span> React.js, Node.js, WordPress, WooCommerce
-              </div>
-            </div>
-            
-            <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-md border-l-4 border-purple-500 hover:shadow-lg transition-shadow">
-              <div className="mb-4 bg-purple-100 dark:bg-purple-900/30 p-2 sm:p-3 rounded-full w-max">
-                <Briefcase className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600 dark:text-purple-400" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-3">System Administration</h3>
-              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3">
-                Linux system optimization and automation through Red Hat internship experience.
-              </p>
-              <div className="text-xs text-slate-500 dark:text-slate-400">
-                <span className="font-medium">Skills:</span> Bash scripting, Apache, MySQL, Security configs
+              
+              <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-md border-l-4 border-blue-500 hover:shadow-lg transition-shadow h-full">
+                <div className="mb-4 bg-blue-100 dark:bg-blue-900/30 p-2 sm:p-3 rounded-full w-max">
+                  <Code className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-3">Web Development</h3>
+                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3">
+                  Full-stack development expertise with modern frameworks, serving 200+ clients through ProgVision.
+                </p>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  <span className="font-medium">Stack:</span> React.js, Node.js, WordPress, WooCommerce
+                </div>
               </div>
             </div>
-            
-            <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-md border-l-4 border-orange-500 hover:shadow-lg transition-shadow">
-              <div className="mb-4 bg-orange-100 dark:bg-orange-900/30 p-2 sm:p-3 rounded-full w-max">
-                <GraduationCap className="h-6 w-6 sm:h-8 sm:w-8 text-orange-600 dark:text-orange-400" />
+
+            {/* Middle Row - Additional Expertise */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-md border-l-4 border-purple-500 hover:shadow-lg transition-shadow h-full">
+                <div className="mb-4 bg-purple-100 dark:bg-purple-900/30 p-2 sm:p-3 rounded-full w-max">
+                  <Briefcase className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-3">System Administration</h3>
+                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3">
+                  Linux system optimization and automation through Red Hat internship experience.
+                </p>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  <span className="font-medium">Skills:</span> Bash scripting, Apache, MySQL, Security configs
+                </div>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-3">Continuous Learning</h3>
-              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3">
-                Committed to staying current with emerging technologies and security practices.
-              </p>
-              <div className="text-xs text-slate-500 dark:text-slate-400">
-                <span className="font-medium">Recent:</span> QuickHeal Digital Forensics, Power Platform
+              
+              <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-md border-l-4 border-orange-500 hover:shadow-lg transition-shadow h-full">
+                <div className="mb-4 bg-orange-100 dark:bg-orange-900/30 p-2 sm:p-3 rounded-full w-max">
+                  <GraduationCap className="h-6 w-6 sm:h-8 sm:w-8 text-orange-600 dark:text-orange-400" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-3">Continuous Learning</h3>
+                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3">
+                  Committed to staying current with emerging technologies and security practices.
+                </p>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  <span className="font-medium">Recent:</span> QuickHeal Digital Forensics, Power Platform
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Row - Strengths and Interests */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 p-4 sm:p-6 rounded-xl h-full">
+                <h4 className="text-base sm:text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center">
+                  <Target className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600 dark:text-teal-400 mr-2" />
+                  Core Strengths
+                </h4>
+                <div className="grid grid-cols-1 gap-2 text-xs sm:text-sm">
+                  <div className="flex items-center text-slate-700 dark:text-slate-300">
+                    <div className="w-2 h-2 bg-teal-500 rounded-full mr-2 flex-shrink-0"></div>
+                    Quick Learner
+                  </div>
+                  <div className="flex items-center text-slate-700 dark:text-slate-300">
+                    <div className="w-2 h-2 bg-teal-500 rounded-full mr-2 flex-shrink-0"></div>
+                    Team Player
+                  </div>
+                  <div className="flex items-center text-slate-700 dark:text-slate-300">
+                    <div className="w-2 h-2 bg-teal-500 rounded-full mr-2 flex-shrink-0"></div>
+                    Detail-Oriented
+                  </div>
+                  <div className="flex items-center text-slate-700 dark:text-slate-300">
+                    <div className="w-2 h-2 bg-teal-500 rounded-full mr-2 flex-shrink-0"></div>
+                    Problem Solver
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-slate-50 dark:bg-slate-800 p-4 sm:p-6 rounded-xl h-full">
+                <h4 className="text-base sm:text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center">
+                  <Lightbulb className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600 dark:text-teal-400 mr-2" />
+                  Areas of Interest
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {['Cybersecurity', 'Cloud Computing', 'System Automation', 'DevSecOps', 'Network Defense'].map((interest, index) => (
+                    <span key={index} className="px-2 sm:px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full text-xs font-medium">
+                      {interest}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
