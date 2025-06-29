@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Menu as MenuIcon, X, Github, Linkedin, Mail, Code, Users, Briefcase, Home, User, Award, Briefcase as BriefcaseIcon, FolderOpen, GraduationCap, MessageCircle } from 'lucide-react';
+import { Menu as MenuIcon, X, Github, Linkedin, Mail, Code, Users, Briefcase, Home, User, Award, Briefcase as BriefcaseIcon, FolderOpen, GraduationCap, MessageCircle, ChevronDown, Building2, Target, Lightbulb } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showServices, setShowServices] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
   const navigate = useNavigate();
@@ -83,9 +84,35 @@ const Header: React.FC = () => {
     }
   ];
 
+  const aboutMenuItems = [
+    {
+      title: "Personal Background",
+      description: "My journey and education",
+      icon: <User className="h-4 w-4" />,
+      action: () => handleNavClick('#about')
+    },
+    {
+      title: "ProgVision Company",
+      description: "About my freelance agency",
+      icon: <Building2 className="h-4 w-4" />,
+      action: () => handleNavClick('#about')
+    },
+    {
+      title: "Core Strengths",
+      description: "My key skills and expertise",
+      icon: <Target className="h-4 w-4" />,
+      action: () => handleNavClick('#about')
+    },
+    {
+      title: "Interests & Goals",
+      description: "What drives me forward",
+      icon: <Lightbulb className="h-4 w-4" />,
+      action: () => handleNavClick('#about')
+    }
+  ];
+
   const navLinks = [
     { name: 'Home', link: '#home', icon: <Home className="h-4 w-4" /> },
-    { name: 'About', link: '#about', icon: <User className="h-4 w-4" /> },
     { name: 'Skills', link: '#skills', icon: <Award className="h-4 w-4" /> },
     { name: 'Experience', link: '#experience', icon: <BriefcaseIcon className="h-4 w-4" /> },
     { name: 'Services', link: '#services', icon: <Code className="h-4 w-4" /> },
@@ -102,6 +129,8 @@ const Header: React.FC = () => {
 
   const handleNavClick = (link: string) => {
     setIsOpen(false);
+    setShowAbout(false);
+    setShowServices(false);
     
     if (location.pathname !== '/') {
       // If not on home page, navigate to home first then scroll
@@ -147,7 +176,7 @@ const Header: React.FC = () => {
               onClick={() => handleNavClick('#home')}
               className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white transition-colors hover:text-teal-600 dark:hover:text-teal-400 z-50"
             >
-              <span className="text-teal-600">Ganesh</span>Krishna
+              <span className="text-teal-600">Ganesh</span>KrishnaReddy
             </button>
 
             {/* Desktop Navigation */}
@@ -166,14 +195,55 @@ const Header: React.FC = () => {
                 </button>
               ))}
               
+              {/* About Me Dropdown */}
+              <div className="relative">
+                <button
+                  onMouseEnter={() => setShowAbout(true)}
+                  onMouseLeave={() => setShowAbout(false)}
+                  className={`px-3 py-2 text-sm transition-colors rounded-md flex items-center gap-1 ${
+                    activeSection === 'about' && !isServicePage
+                      ? 'text-teal-600 dark:text-teal-400 font-medium bg-teal-50 dark:bg-teal-900/30'
+                      : 'text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                  }`}
+                >
+                  About Me
+                  <ChevronDown className="h-3 w-3" />
+                </button>
+                
+                {showAbout && (
+                  <div
+                    onMouseEnter={() => setShowAbout(true)}
+                    onMouseLeave={() => setShowAbout(false)}
+                    className="absolute top-full left-0 w-64 py-2 mt-1 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700"
+                  >
+                    {aboutMenuItems.map((item, index) => (
+                      <button
+                        key={index}
+                        onClick={item.action}
+                        className="flex items-start gap-3 w-full px-4 py-3 text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left"
+                      >
+                        <div className="mt-0.5">
+                          {item.icon}
+                        </div>
+                        <div>
+                          <div className="font-medium text-sm">{item.title}</div>
+                          <div className="text-xs text-slate-500 dark:text-slate-400">{item.description}</div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
               {/* Services Dropdown */}
               <div className="relative">
                 <button
                   onMouseEnter={() => setShowServices(true)}
                   onMouseLeave={() => setShowServices(false)}
-                  className="px-3 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 transition-colors rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                  className="px-3 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 transition-colors rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/50 flex items-center gap-1"
                 >
                   Service Pages
+                  <ChevronDown className="h-3 w-3" />
                 </button>
                 
                 {showServices && (
@@ -275,6 +345,30 @@ const Header: React.FC = () => {
                         {navLink.name}
                       </button>
                     ))}
+                  </div>
+
+                  {/* About Me Section */}
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-4 mb-3">
+                      About Me
+                    </h4>
+                    <div className="space-y-1">
+                      {aboutMenuItems.map((item, index) => (
+                        <button
+                          key={index}
+                          onClick={item.action}
+                          className="w-full flex items-start gap-3 px-4 py-3 text-slate-700 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors text-left rounded-lg"
+                        >
+                          <div className="mt-0.5">
+                            {item.icon}
+                          </div>
+                          <div>
+                            <div className="font-medium text-sm">{item.title}</div>
+                            <div className="text-xs text-slate-500 dark:text-slate-400">{item.description}</div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                   
                   {/* Services Section */}
