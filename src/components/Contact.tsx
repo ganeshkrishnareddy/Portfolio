@@ -1,42 +1,53 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, Calendar, MessageCircle, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, Calendar, MessageCircle, Clock, CheckCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    mobile: '',
     subject: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Create mailto link with form data
-    const subject = encodeURIComponent(formData.subject || 'Contact from Portfolio Website');
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    const mailtoLink = `mailto:pganeshkrishnareddy@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    });
-    
-    // Show success message
-    alert('Thank you for your message! Your email client should open now. I will get back to you soon.');
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('https://formspree.io/f/xvgrdjqn', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          mobile: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -124,11 +135,29 @@ const Contact: React.FC = () => {
           <div>
             <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Send me a message</h3>
             
+            {/* Success/Error Messages */}
+            {submitStatus === 'success' && (
+              <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-4 rounded-lg mb-6">
+                <div className="flex items-center text-green-700 dark:text-green-300">
+                  <CheckCircle className="h-5 w-5 mr-2" />
+                  <span className="font-medium">Message sent successfully! I'll get back to you soon.</span>
+                </div>
+              </div>
+            )}
+            
+            {submitStatus === 'error' && (
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4 rounded-lg mb-6">
+                <div className="flex items-center text-red-700 dark:text-red-300">
+                  <span className="font-medium">Something went wrong. Please try again or contact me directly.</span>
+                </div>
+              </div>
+            )}
+            
             <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mb-6">
               <div className="flex items-center text-blue-700 dark:text-blue-300">
                 <Mail className="h-5 w-5 mr-2" />
                 <span className="text-sm font-medium">
-                  All messages are forwarded directly to: pganeshkrishnareddy@gmail.com
+                  Messages are sent directly to: pganeshkrishnareddy@gmail.com
                 </span>
               </div>
             </div>
@@ -145,7 +174,8 @@ const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white disabled:opacity-50"
                   placeholder="John Doe"
                 />
               </div>
@@ -161,8 +191,27 @@ const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white disabled:opacity-50"
                   placeholder="john@example.com"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="mobile" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                  Mobile Number *
+                </label>
+                <input
+                  type="tel"
+                  id="mobile"
+                  name="mobile"
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  required
+                  pattern="[0-9]{10}"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white disabled:opacity-50"
+                  placeholder="Enter 10-digit number"
                 />
               </div>
               
@@ -170,16 +219,20 @@ const Contact: React.FC = () => {
                 <label htmlFor="subject" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Subject *
                 </label>
-                <input
-                  type="text"
+                <select
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
-                  placeholder="Job Opportunity / Project Inquiry / Collaboration"
-                />
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white disabled:opacity-50"
+                >
+                  <option value="" disabled>Select an option</option>
+                  <option value="Job Opportunity">Job Opportunity</option>
+                  <option value="Project Inquiry">Project Inquiry</option>
+                  <option value="Collaboration">Collaboration</option>
+                </select>
               </div>
               
               <div>
@@ -193,17 +246,28 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none disabled:opacity-50"
                   placeholder="Hello Ganesh, I would like to discuss..."
                 ></textarea>
               </div>
               
               <button
                 type="submit"
-                className="w-full py-3 px-6 bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition-colors shadow-md flex items-center justify-center"
+                disabled={isSubmitting}
+                className="w-full py-3 px-6 bg-teal-600 hover:bg-teal-700 disabled:bg-teal-400 text-white rounded-lg transition-colors shadow-md flex items-center justify-center disabled:cursor-not-allowed"
               >
-                <span className="mr-2">Send Message</span>
-                <Send className="h-4 w-4" />
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <span className="mr-2">Send Message</span>
+                    <Send className="h-4 w-4" />
+                  </>
+                )}
               </button>
             </form>
           </div>
