@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, GraduationCap, Briefcase, Code, Award, Users, Target, Lightbulb, ExternalLink } from 'lucide-react';
+import { ShieldCheck, GraduationCap, Briefcase, Code, Award, Users, Target, Lightbulb, ExternalLink, Building2, MapPin, Globe } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
@@ -56,6 +56,68 @@ const About: React.FC = () => {
                   <span><span className="font-medium">Web Application Security Audits</span> with comprehensive reporting</span>
                 </li>
               </ul>
+            </div>
+
+            {/* ProgVision Company Details */}
+            <div className="bg-gradient-to-br from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 p-8 rounded-xl border border-teal-100 dark:border-teal-800">
+              <div className="flex items-center mb-4">
+                <Building2 className="h-6 w-6 text-teal-600 dark:text-teal-400 mr-3" />
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white">About ProgVision</h3>
+              </div>
+              
+              <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+                <span className="font-semibold text-teal-600 dark:text-teal-400">ProgVision</span> is an innovative startup I founded to bring together the power of 
+                <span className="font-medium"> technology and financial strategy</span>. Our mission is to deliver smart, scalable solutions that help individuals and businesses thrive in the digital age.
+              </p>
+
+              <div className="mb-4">
+                <h4 className="font-semibold text-slate-800 dark:text-white mb-3">We offer three core services:</h4>
+                <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                  <li className="flex items-start">
+                    <span className="mr-2">💻</span>
+                    <div>
+                      <span className="font-medium">Software Development</span> – Building custom web and mobile apps, scalable platforms, and automation tools.
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">💹</span>
+                    <div>
+                      <span className="font-medium">Financial Consulting</span> – Providing tailored financial planning, investment advice, and strategic insights for sustainable growth.
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">📈</span>
+                    <div>
+                      <span className="font-medium">Stock Market Advisory</span> – Delivering in-depth market research, portfolio analysis, and real-time investment guidance.
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg mb-4">
+                <p className="text-slate-700 dark:text-slate-300 text-sm mb-3">
+                  With a talented team and a vision-driven approach, <span className="font-semibold text-teal-600 dark:text-teal-400">ProgVision</span> is committed to quality, transparency, and results that matter.
+                </p>
+                <div className="flex items-center text-slate-600 dark:text-slate-400 text-sm mb-2">
+                  <MapPin className="h-4 w-4 mr-2" />
+                  <span><span className="font-medium">Offices:</span> Hyderabad, Tirupati, Jalandhar</span>
+                </div>
+                <div className="flex items-center text-slate-600 dark:text-slate-400 text-sm">
+                  <Users className="h-4 w-4 mr-2" />
+                  <span>Available for in-person and remote consultations</span>
+                </div>
+              </div>
+
+              <a 
+                href="https://progvision.netlify.app/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-semibold transition-colors shadow-md"
+              >
+                <Globe className="h-5 w-5 mr-2" />
+                Explore ProgVision
+                <ExternalLink className="h-4 w-4 ml-2" />
+              </a>
             </div>
             
             <div className="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 p-6 rounded-xl">

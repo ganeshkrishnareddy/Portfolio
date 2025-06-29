@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDownCircle, Shield, Code, Server, Download, Calendar } from 'lucide-react';
+import { ArrowDownCircle, Shield, Code, Server, Download, Calendar, Building2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -15,10 +15,33 @@ const Hero: React.FC = () => {
               <p className="font-semibold text-2xl text-slate-800 dark:text-white mb-2">
                 Securing Systems. Building Solutions.
               </p>
-              <p className="text-lg">
+              <p className="text-lg mb-4">
                 Bridging <span className="font-semibold text-teal-600 dark:text-teal-400">Cybersecurity</span> & 
                 <span className="font-semibold text-teal-600 dark:text-teal-400"> Web Development</span> with Precision.
               </p>
+            </div>
+
+            {/* ProgVision Company Introduction */}
+            <div className="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 p-6 rounded-xl mb-6 border border-teal-100 dark:border-teal-800">
+              <div className="flex items-center mb-3">
+                <Building2 className="h-6 w-6 text-teal-600 dark:text-teal-400 mr-2" />
+                <h3 className="text-lg font-bold text-slate-800 dark:text-white">Founder of ProgVision</h3>
+              </div>
+              <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-3">
+                I'm the founder of <span className="font-semibold text-teal-600 dark:text-teal-400">ProgVision</span>, 
+                a dynamic company that bridges the gap between <span className="font-medium">technology, finance, and market intelligence</span>. 
+                We specialize in <span className="font-medium">software development</span>, <span className="font-medium">financial consulting</span>, 
+                and <span className="font-medium">stock market advisory</span>—empowering clients to grow with precision, innovation, and trust.
+              </p>
+              <a 
+                href="https://progvision.netlify.app/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 font-medium text-sm transition-colors"
+              >
+                🌐 Visit ProgVision
+                <ArrowDownCircle className="h-4 w-4 ml-1 rotate-[-90deg]" />
+              </a>
             </div>
             
             <div className="flex flex-wrap gap-4 mb-8">
