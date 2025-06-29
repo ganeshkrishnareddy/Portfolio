@@ -1,7 +1,12 @@
-import React from 'react';
-import { ShieldCheck, GraduationCap, Briefcase, Code, Award, Users, Target, Lightbulb, ExternalLink, Building2, MapPin, Globe, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ShieldCheck, GraduationCap, Briefcase, Code, Award, Users, Target, Lightbulb, ExternalLink, Building2, MapPin, Globe, Quote, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 
 const About: React.FC = () => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const testimonials = [
     {
       quote: "Working with Ganesh was a game-changer. His full-stack development skills and deep understanding of business requirements helped us launch our platform on time and with exceptional quality.",
@@ -40,19 +45,64 @@ const About: React.FC = () => {
     }
   ];
 
-  const scrollTestimonials = (direction: 'left' | 'right') => {
-    const container = document.getElementById('testimonials-container');
-    if (container) {
-      const scrollAmount = 320; // Width of one testimonial card + gap
-      const currentScroll = container.scrollLeft;
-      const targetScroll = direction === 'left' 
-        ? currentScroll - scrollAmount 
-        : currentScroll + scrollAmount;
-      
-      container.scrollTo({
-        left: targetScroll,
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (isAutoPlaying) {
+      intervalRef.current = setInterval(() => {
+        setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      }, 4000); // Change testimonial every 4 seconds
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isAutoPlaying, testimonials.length]);
+
+  // Scroll to current testimonial when index changes
+  useEffect(() => {
+    if (containerRef.current) {
+      const scrollAmount = currentTestimonial * 320; // Width of one testimonial card + gap
+      containerRef.current.scrollTo({
+        left: scrollAmount,
         behavior: 'smooth'
       });
+    }
+  }, [currentTestimonial]);
+
+  const scrollTestimonials = (direction: 'left' | 'right') => {
+    if (direction === 'left') {
+      setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    } else {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }
+  };
+
+  const goToTestimonial = (index: number) => {
+    setCurrentTestimonial(index);
+  };
+
+  const toggleAutoPlay = () => {
+    setIsAutoPlaying(!isAutoPlaying);
+  };
+
+  // Pause auto-scroll when user hovers over testimonials
+  const handleMouseEnter = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (isAutoPlaying) {
+      intervalRef.current = setInterval(() => {
+        setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      }, 4000);
     }
   };
 
@@ -280,7 +330,7 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Enhanced Testimonials Section with Horizontal Scrolling */}
+        {/* Enhanced Auto-Scrolling Testimonials Section */}
         <div className="mt-12 sm:mt-16">
           <div className="flex items-center justify-between mb-6 sm:mb-8">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white flex items-center">
@@ -288,36 +338,75 @@ const About: React.FC = () => {
               What People Say
             </h3>
             
-            {/* Navigation Buttons */}
-            <div className="hidden sm:flex gap-2">
+            {/* Auto-play Controls */}
+            <div className="flex items-center gap-3">
+              {/* Auto-play Toggle */}
               <button
-                onClick={() => scrollTestimonials('left')}
-                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
-                aria-label="Previous testimonial"
+                onClick={toggleAutoPlay}
+                className={`p-2 rounded-full transition-colors ${
+                  isAutoPlaying 
+                    ? 'bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400' 
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                }`}
+                aria-label={isAutoPlaying ? "Pause auto-scroll" : "Start auto-scroll"}
+                title={isAutoPlaying ? "Pause auto-scroll" : "Start auto-scroll"}
               >
-                <ChevronLeft className="h-5 w-5" />
+                {isAutoPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
               </button>
-              <button
-                onClick={() => scrollTestimonials('right')}
-                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
+
+              {/* Navigation Buttons */}
+              <div className="hidden sm:flex gap-2">
+                <button
+                  onClick={() => scrollTestimonials('left')}
+                  className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => scrollTestimonials('right')}
+                  className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </div>
             </div>
           </div>
 
+          {/* Auto-scrolling Progress Indicator */}
+          {isAutoPlaying && (
+            <div className="mb-4">
+              <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1">
+                <div 
+                  className="bg-teal-600 h-1 rounded-full transition-all duration-100 ease-linear"
+                  style={{
+                    width: `${((currentTestimonial + 1) / testimonials.length) * 100}%`
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
           {/* Scrollable Testimonials Container */}
-          <div className="relative">
+          <div 
+            className="relative"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <div 
-              id="testimonials-container"
+              ref={containerRef}
               className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {testimonials.map((testimonial, index) => (
                 <div 
                   key={index} 
-                  className="flex-none w-80 sm:w-96 bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 snap-start hover:shadow-xl transition-shadow"
+                  className={`flex-none w-80 sm:w-96 bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 snap-start transition-all duration-300 ${
+                    index === currentTestimonial 
+                      ? 'ring-2 ring-teal-500 shadow-xl scale-105' 
+                      : 'hover:shadow-xl'
+                  }`}
                 >
                   {/* Quote Icon */}
                   <div className="flex items-start mb-4">
@@ -345,31 +434,38 @@ const About: React.FC = () => {
               ))}
             </div>
 
-            {/* Mobile Navigation Dots */}
-            <div className="flex justify-center gap-2 mt-6 sm:hidden">
+            {/* Testimonial Indicators */}
+            <div className="flex justify-center gap-2 mt-6">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => {
-                    const container = document.getElementById('testimonials-container');
-                    if (container) {
-                      container.scrollTo({
-                        left: index * 320,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
-                  className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 hover:bg-teal-500 dark:hover:bg-teal-400 transition-colors"
+                  onClick={() => goToTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentTestimonial
+                      ? 'bg-teal-600 scale-125'
+                      : 'bg-slate-300 dark:bg-slate-600 hover:bg-teal-400 dark:hover:bg-teal-500'
+                  }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
               ))}
             </div>
-          </div>
 
-          {/* Scroll Hint for Mobile */}
-          <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-4 sm:hidden">
-            Swipe left or right to see more testimonials
-          </p>
+            {/* Auto-scroll Status */}
+            <div className="text-center mt-4">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                {isAutoPlaying ? (
+                  <>
+                    <span className="inline-flex items-center gap-1">
+                      <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
+                      Auto-scrolling • Hover to pause
+                    </span>
+                  </>
+                ) : (
+                  'Auto-scroll paused • Click play to resume'
+                )}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
