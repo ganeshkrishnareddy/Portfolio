@@ -506,7 +506,7 @@ const Projects: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-2 text-slate-800 dark:text-white">
-              Security <span className="text-red-600 dark:text-red-400">Projects</span> & Case Studies
+               <span className="text-red-600 dark:text-red-400">Projects</span> & Case Studies
             </h2>
             <div className="w-24 h-1 bg-teal-600 mx-auto mb-4"></div>
             <p className="max-w-3xl mx-auto text-slate-600 dark:text-slate-300 text-lg">
