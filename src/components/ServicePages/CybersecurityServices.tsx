@@ -88,7 +88,7 @@ const CybersecurityServices: React.FC = () => {
               <Shield className="h-10 w-10 text-red-600 dark:text-red-400" />
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-800 dark:text-white mb-6">
-              🔐 Cybersecurity <span className="text-red-600 dark:text-red-400">Services</span>
+              <span>Services</span>
             </h1>
             <p className="max-w-3xl mx-auto text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Safeguard your systems with cutting-edge security solutions. Comprehensive cybersecurity services 
