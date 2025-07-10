@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Code, Smartphone, TrendingUp, Briefcase, ArrowRight, Users, Globe, Zap, Star, Award } from 'lucide-react';
+import { Code, Smartphone, TrendingUp, Briefcase, ArrowRight, Users, Globe, Zap, Star, Award, Shield } from 'lucide-react';
 
 interface ServiceCardProps {
   title: string;

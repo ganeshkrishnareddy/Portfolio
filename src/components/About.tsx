@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ShieldCheck, GraduationCap, Briefcase, Code, Award, Users, Target, Lightbulb, ExternalLink, Building2, MapPin, Globe, Quote, ChevronLeft, ChevronRight, Play, Pause, ChevronDown, ChevronUp } from 'lucide-react';
+import { ShieldCheck, GraduationCap, Briefcase, Code, Award, Users, Target, Lightbulb, ExternalLink, Building2, MapPin, Globe, Quote, ChevronLeft, ChevronRight, Play, Pause, ChevronDown, ChevronUp, Shield, ArrowRight } from 'lucide-react';
 
 const About: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
