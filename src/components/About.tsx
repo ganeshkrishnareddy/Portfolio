@@ -129,112 +129,128 @@ const About: React.FC = () => {
               <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed text-sm sm:text-base">
                 I am <span className="font-semibold text-teal-600 dark:text-teal-400">P Ganesh Krishna Reddy</span>, 
                 a final-year B.Tech Computer Science and Engineering student at Lovely Professional University. 
-                I aspire to excel as a <span className="font-semibold">Cybersecurity Analyst</span>, 
-                <span className="font-semibold"> Full Stack Developer</span>, and <span className="font-semibold">Linux Administrator</span>.
+                I work as a <span className="font-semibold">Freelance Cybersecurity Analyst</span>, 
+                <span className="font-semibold"> Penetration Tester</span>, and <span className="font-semibold">Secure Web Developer</span>.
               </p>
               
               <div className="bg-teal-50 dark:bg-teal-900/20 p-3 sm:p-4 rounded-lg mb-4">
                 <h4 className="font-semibold text-slate-800 dark:text-white mb-2 text-sm sm:text-base">Key Achievements:</h4>
                 <ul className="space-y-1 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                  <li>• <span className="font-medium">Red Hat Internship:</span> Linux system administration & server optimization</li>
+                  <li>• <span className="font-medium">Security Expertise:</span> 75+ successful security audits and penetration tests</li>
                   <li>• <span className="font-medium">CompTIA Security+ CE & Network+ CE</span> certified</li>
+                  <li>• <span className="font-medium">Digital Forensics:</span> QuickHeal Certified Digital Forensic Investigator</li>
                   <li>• <span className="font-medium">Reliance Foundation Scholarship</span> recipient (₹2,00,000)</li>
-                  <li>• <span className="font-medium">200+ clients served</span> through ProgVision freelance agency</li>
+                  <li>• <span className="font-medium">Red Hat Internship:</span> Linux system administration & server optimization</li>
                 </ul>
               </div>
               
               <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed text-sm sm:text-base">
-                My technical foundation spans <span className="font-medium text-slate-800 dark:text-white">C++, Python, JavaScript, React.js, and Node.js</span>. 
+                My security expertise includes <span className="font-medium text-slate-800 dark:text-white">penetration testing, vulnerability assessment, digital forensics, and secure development</span>. 
                 I've developed impactful projects including:
               </p>
               
               <ul className="space-y-2 text-slate-600 dark:text-slate-300 mb-4 text-sm sm:text-base">
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                  <span><span className="font-medium">Web Application Security Audits</span> identifying critical vulnerabilities</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                  <span><span className="font-medium">Penetration Testing Framework</span> with automated reporting</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                  <span><span className="font-medium">Digital Forensics Toolkit</span> for incident response</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
                   <span><span className="font-medium">Secure File Transfer System</span> with AES encryption</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                  <span><span className="font-medium">Vulnerability Scanner</span> using Python & Nmap</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                  <span><span className="font-medium">Web Application Security Audits</span> with comprehensive reporting</span>
                 </li>
               </ul>
             </div>
 
-            {/* ProgVision Company Details - Now with Dropdown */}
-            <div className="bg-gradient-to-br from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 p-6 sm:p-8 rounded-xl border border-teal-100 dark:border-teal-800">
+            {/* Cybersecurity Specializations - Now with Dropdown */}
+            <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-6 sm:p-8 rounded-xl border border-red-100 dark:border-red-800">
               <button
                 onClick={() => setShowProgVision(!showProgVision)}
                 className="w-full flex items-center justify-between mb-4 text-left"
               >
                 <div className="flex items-center">
-                  <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-teal-600 dark:text-teal-400 mr-3" />
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white">About ProgVision</h3>
+                  <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-red-600 dark:text-red-400 mr-3" />
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white">Cybersecurity Specializations</h3>
                 </div>
                 {showProgVision ? (
-                  <ChevronUp className="h-5 w-5 text-teal-600 dark:text-teal-400" />
+                  <ChevronUp className="h-5 w-5 text-red-600 dark:text-red-400" />
                 ) : (
-                  <ChevronDown className="h-5 w-5 text-teal-600 dark:text-teal-400" />
+                  <ChevronDown className="h-5 w-5 text-red-600 dark:text-red-400" />
                 )}
               </button>
               
               {showProgVision && (
                 <div className="space-y-4">
                   <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
-                    <span className="font-semibold text-teal-600 dark:text-teal-400">ProgVision</span> is an innovative startup I founded to bring together the power of 
-                    <span className="font-medium"> technology and financial strategy</span>. Our mission is to deliver smart, scalable solutions that help individuals and businesses thrive in the digital age.
+                    As a <span className="font-semibold text-red-600 dark:text-red-400">certified cybersecurity professional</span>, I specialize in protecting organizations from 
+                    <span className="font-medium"> cyber threats and ensuring robust security postures</span>. My expertise spans multiple domains of cybersecurity.
                   </p>
 
                   <div className="mb-4">
-                    <h4 className="font-semibold text-slate-800 dark:text-white mb-3 text-sm sm:text-base">We offer three core services:</h4>
+                    <h4 className="font-semibold text-slate-800 dark:text-white mb-3 text-sm sm:text-base">Core Security Specializations:</h4>
                     <ul className="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
                       <li className="flex items-start">
-                        <span className="mr-2 text-base">💻</span>
+                        <span className="mr-2 text-base">🔍</span>
                         <div>
-                          <span className="font-medium">Software Development</span> – Building custom web and mobile apps, scalable platforms, and automation tools.
+                          <span className="font-medium">Penetration Testing</span> – Comprehensive security assessments using industry-standard methodologies (OWASP, NIST).
                         </div>
                       </li>
                       <li className="flex items-start">
-                        <span className="mr-2 text-base">💹</span>
+                        <span className="mr-2 text-base">🛡️</span>
                         <div>
-                          <span className="font-medium">Financial Consulting</span> – Providing tailored financial planning, investment advice, and strategic insights for sustainable growth.
+                          <span className="font-medium">Vulnerability Assessment</span> – Systematic identification and analysis of security weaknesses in systems and applications.
                         </div>
                       </li>
                       <li className="flex items-start">
-                        <span className="mr-2 text-base">📈</span>
+                        <span className="mr-2 text-base">🔬</span>
                         <div>
-                          <span className="font-medium">Stock Market Advisory</span> – Delivering in-depth market research, portfolio analysis, and real-time investment guidance.
+                          <span className="font-medium">Digital Forensics</span> – Investigation of security incidents, malware analysis, and evidence collection for legal proceedings.
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="mr-2 text-base">⚡</span>
+                        <div>
+                          <span className="font-medium">Incident Response</span> – Rapid response to security breaches, containment strategies, and recovery planning.
                         </div>
                       </li>
                     </ul>
                   </div>
 
                   <div className="bg-white dark:bg-slate-800 p-3 sm:p-4 rounded-lg mb-4">
+                    <h4 className="font-semibold text-slate-800 dark:text-white mb-2 text-sm sm:text-base">Tools & Technologies:</h4>
                     <p className="text-slate-700 dark:text-slate-300 text-xs sm:text-sm mb-3">
-                      With a talented team and a vision-driven approach, <span className="font-semibold text-teal-600 dark:text-teal-400">ProgVision</span> is committed to quality, transparency, and results that matter.
+                      <span className="font-medium">Security Tools:</span> Nmap, Burp Suite, Wireshark, Metasploit, GoPhish, OWASP ZAP, Nessus
                     </p>
-                    <div className="flex items-center text-slate-600 dark:text-slate-400 text-xs sm:text-sm mb-2">
-                      <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
-                      <span><span className="font-medium">Offices:</span> Hyderabad, Tirupati, Jalandhar</span>
-                    </div>
+                    <p className="text-slate-700 dark:text-slate-300 text-xs sm:text-sm mb-3">
+                      <span className="font-medium">Programming:</span> Python, Bash, C++, JavaScript for security automation and tool development
+                    </p>
                     <div className="flex items-center text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
-                      <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
-                      <span>Available for in-person and remote consultations</span>
+                      <Shield className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
+                      <span>Available for remote security assessments and on-site consultations</span>
                     </div>
                   </div>
 
                   <a 
-                    href="https://progvision.netlify.app/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-semibold transition-colors shadow-md text-sm sm:text-base"
+                    href="#contact" 
+                    className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors shadow-md text-sm sm:text-base"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.getElementById('contact');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
                   >
-                    <Globe className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                    Explore ProgVision
-                    <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 ml-2" />
+                    <Shield className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                    Request Security Assessment
+                    <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 ml-2" />
                   </a>
                 </div>
               )}

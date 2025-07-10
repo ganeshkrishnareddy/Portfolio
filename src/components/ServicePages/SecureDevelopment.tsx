@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Smartphone, Monitor, Layers, Zap, CheckCircle, ArrowLeft, ExternalLink } from 'lucide-react';
+import { Code, Shield, GitBranch, Zap, CheckCircle, ArrowLeft, ExternalLink, Lock } from 'lucide-react';
 import Header from '../Header';
 import Footer from '../Footer';
 
-const AppDevelopment: React.FC = () => {
+const SecureDevelopment: React.FC = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -29,43 +29,43 @@ const AppDevelopment: React.FC = () => {
 
   const offerings = [
     {
-      title: "Cross-Platform Mobile Apps",
-      description: "Native-quality apps that work seamlessly on both iOS and Android platforms"
+      title: "Secure Code Review",
+      description: "Comprehensive analysis of source code to identify security vulnerabilities and weaknesses"
     },
     {
-      title: "Desktop Applications",
-      description: "Powerful desktop software for Windows, macOS, and Linux operating systems"
+      title: "Security Testing Integration",
+      description: "Integration of security testing tools and processes into CI/CD pipelines"
     },
     {
-      title: "Progressive Web Apps (PWAs)",
-      description: "Web applications that provide native app-like experience across all devices"
+      title: "DevSecOps Implementation",
+      description: "Implementation of security practices throughout the software development lifecycle"
     },
     {
-      title: "API Development & Integration",
-      description: "Custom APIs and third-party service integrations for enhanced functionality"
+      title: "Secure API Development",
+      description: "Development of secure APIs with proper authentication, authorization, and data protection"
     },
     {
-      title: "App Modernization",
-      description: "Update and enhance existing applications with modern features and technologies"
+      title: "Threat Modeling",
+      description: "Systematic identification and analysis of potential security threats in applications"
     },
     {
-      title: "Maintenance & Support",
-      description: "Ongoing updates, bug fixes, and feature enhancements for your applications"
+      title: "Security Architecture Design",
+      description: "Design of secure application architectures with defense-in-depth principles"
     }
   ];
 
   const benefits = [
-    "Reach customers on their preferred devices",
-    "Improved user engagement and retention",
-    "Offline functionality and push notifications",
-    "Seamless integration with device features",
-    "Scalable architecture for future growth",
-    "Cross-platform compatibility and cost efficiency"
+    "Reduced security vulnerabilities in production",
+    "Early detection of security issues in development",
+    "Compliance with secure coding standards",
+    "Improved application security posture",
+    "Cost-effective security implementation",
+    "Enhanced developer security awareness"
   ];
 
   const technologies = [
-    "React Native", "Flutter", "Electron", "Node.js", "Python",
-    "SQLite & Firebase", "REST APIs", "Git & CI/CD"
+    "OWASP SAST Tools", "SonarQube", "Checkmarx", "Veracode", "Snyk",
+    "Docker Security", "Kubernetes Security", "AWS Security", "Azure Security"
   ];
 
   return (
@@ -84,15 +84,15 @@ const AppDevelopment: React.FC = () => {
 
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full mb-6">
-              <Smartphone className="h-10 w-10 text-blue-600 dark:text-blue-400" />
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 rounded-full mb-6">
+              <Code className="h-10 w-10 text-green-600 dark:text-green-400" />
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-800 dark:text-white mb-6">
-              App Development <span className="text-blue-600 dark:text-blue-400">Services</span>
+              Secure <span className="text-green-600 dark:text-green-400">Development</span>
             </h1>
             <p className="max-w-3xl mx-auto text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-              Bring your ideas to life with custom mobile and desktop applications that deliver exceptional user experiences 
-              and drive meaningful engagement across all platforms and devices.
+              Secure coding practices, code review, and implementation of security controls throughout 
+              the software development lifecycle to build resilient and secure applications.
             </p>
           </div>
 
@@ -102,18 +102,18 @@ const AppDevelopment: React.FC = () => {
               {/* About Section */}
               <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-xl">
                 <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center">
-                  <Monitor className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-3" />
-                  Building Tomorrow's Applications
+                  <Shield className="h-6 w-6 text-green-600 dark:text-green-400 mr-3" />
+                  Security-First Development
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-                  I develop innovative mobile and desktop applications that solve real-world problems while providing 
-                  intuitive user experiences. Whether you need a mobile app to connect with customers or a desktop 
-                  application to streamline business operations, I create solutions that are both functional and engaging.
+                  I specialize in integrating security practices into the software development process, ensuring 
+                  that applications are built with security as a fundamental requirement rather than an afterthought. 
+                  My approach focuses on secure coding practices, automated security testing, and continuous security monitoring.
                 </p>
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                  My approach focuses on understanding your unique requirements and translating them into applications 
-                  that not only meet your current needs but also scale with your business growth. Every app is built 
-                  with performance, security, and user experience as top priorities.
+                  From secure architecture design to implementation of security controls, I help development teams 
+                  build applications that are resilient against common security threats while maintaining performance 
+                  and usability requirements.
                 </p>
               </div>
 
@@ -134,15 +134,15 @@ const AppDevelopment: React.FC = () => {
             {/* Sidebar */}
             <div className="space-y-8">
               {/* Benefits */}
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-xl">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-xl">
                 <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center">
-                  <Zap className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
-                  Why Choose App Development?
+                  <Zap className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
+                  Development Benefits
                 </h3>
                 <ul className="space-y-3">
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700 dark:text-slate-300 text-sm">{benefit}</span>
                     </li>
                   ))}
@@ -152,8 +152,8 @@ const AppDevelopment: React.FC = () => {
               {/* Technologies */}
               <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md">
                 <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center">
-                  <Layers className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
-                  Development Stack
+                  <GitBranch className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
+                  Security Tools
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {technologies.map((tech, index) => (
@@ -164,15 +164,30 @@ const AppDevelopment: React.FC = () => {
                 </div>
               </div>
 
+              {/* Security Principles */}
+              <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-6 rounded-xl text-white">
+                <h3 className="text-lg font-bold mb-4 flex items-center">
+                  <Lock className="h-5 w-5 mr-2" />
+                  Security Principles
+                </h3>
+                <div className="space-y-2 text-sm">
+                  <div>• Defense in Depth</div>
+                  <div>• Principle of Least Privilege</div>
+                  <div>• Fail Secure</div>
+                  <div>• Input Validation</div>
+                  <div>• Secure by Default</div>
+                </div>
+              </div>
+
               {/* CTA */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 rounded-xl text-white text-center">
-                <h3 className="text-lg font-bold mb-2">Have an App Idea?</h3>
-                <p className="text-sm mb-4 opacity-90">Let's turn your vision into reality</p>
+              <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-6 rounded-xl text-white text-center">
+                <h3 className="text-lg font-bold mb-2">Secure Your Code?</h3>
+                <p className="text-sm mb-4 opacity-90">Let's build security into your development process</p>
                 <button 
                   onClick={handleContactClick}
-                  className="inline-flex items-center px-6 py-2 bg-white text-blue-600 rounded-lg font-semibold hover:bg-slate-100 transition-colors"
+                  className="inline-flex items-center px-6 py-2 bg-white text-green-600 rounded-lg font-semibold hover:bg-slate-100 transition-colors"
                 >
-                  Start Your Project
+                  Start Secure Development
                   <ExternalLink className="h-4 w-4 ml-2" />
                 </button>
               </div>
@@ -185,4 +200,4 @@ const AppDevelopment: React.FC = () => {
   );
 };
 
-export default AppDevelopment;
+export default SecureDevelopment;

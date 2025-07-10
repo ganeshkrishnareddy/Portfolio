@@ -67,31 +67,31 @@ const Header: React.FC = () => {
       path: "/services/web-development"
     },
     {
-      title: "App Development", 
-      icon: <Users className="h-4 w-4" />,
-      path: "/services/app-development"
+      title: "Cybersecurity Services", 
+      icon: <Shield className="h-4 w-4" />,
+      path: "/services/cybersecurity"
     },
     {
-      title: "Digital Marketing",
+      title: "Security Consulting",
       icon: <Users className="h-4 w-4" />,
-      path: "/services/digital-marketing"
+      path: "/services/security-consulting"
     },
     {
-      title: "Business Solutions",
+      title: "Secure Development",
       icon: <Briefcase className="h-4 w-4" />,
-      path: "/services/business-solutions"
+      path: "/services/secure-development"
     }
   ];
 
   const navLinks = [
-    { name: 'Home', link: '#home', icon: <Home className="h-4 w-4" /> },
-    { name: 'About', link: '#about', icon: <User className="h-4 w-4" /> },
-    { name: 'Skills', link: '#skills', icon: <Award className="h-4 w-4" /> },
-    { name: 'Experience', link: '#experience', icon: <BriefcaseIcon className="h-4 w-4" /> },
-    { name: 'Services', link: '#services', icon: <Code className="h-4 w-4" /> },
-    { name: 'Projects', link: '#projects', icon: <FolderOpen className="h-4 w-4" /> },
-    { name: 'Education', link: '#education', icon: <GraduationCap className="h-4 w-4" /> },
-    { name: 'Contact', link: '#contact', icon: <MessageCircle className="h-4 w-4" /> },
+    { name: 'Home', link: '#home', route: '/', icon: <Home className="h-4 w-4" /> },
+    { name: 'About', link: '#about', route: '/about', icon: <User className="h-4 w-4" /> },
+    { name: 'Skills', link: '#skills', route: '/skills', icon: <Award className="h-4 w-4" /> },
+    { name: 'Experience', link: '#experience', route: '/experience', icon: <BriefcaseIcon className="h-4 w-4" /> },
+    { name: 'Services', link: '#services', route: '/services', icon: <Code className="h-4 w-4" /> },
+    { name: 'Projects', link: '#projects', route: '/projects', icon: <FolderOpen className="h-4 w-4" /> },
+    { name: 'Education', link: '#education', route: '/education', icon: <GraduationCap className="h-4 w-4" /> },
+    { name: 'Contact', link: '#contact', route: '/contact', icon: <MessageCircle className="h-4 w-4" /> },
   ];
 
   const socialLinks = [
@@ -100,18 +100,22 @@ const Header: React.FC = () => {
     { icon: <Mail className="h-5 w-5" />, link: 'mailto:pganeshkrishnareddy@gmail.com', ariaLabel: 'Email' },
   ];
 
-  const handleNavClick = (link: string) => {
+  const handleNavClick = (link: string, route?: string) => {
     setIsOpen(false);
     
-    if (location.pathname !== '/') {
-      // If not on home page, navigate to home first then scroll
-      navigate('/');
-      setTimeout(() => {
-        scrollToSection(link);
-      }, 100);
+    // Check if we should navigate to a dedicated page
+    if (route && route !== '/') {
+      navigate(route);
     } else {
-      // If on home page, scroll directly
-      scrollToSection(link);
+      // Handle home page navigation and scrolling
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          scrollToSection(link);
+        }, 100);
+      } else {
+        scrollToSection(link);
+      }
     }
   };
 
@@ -155,9 +159,9 @@ const Header: React.FC = () => {
               {navLinks.map((navLink) => (
                 <button
                   key={navLink.name}
-                  onClick={() => handleNavClick(navLink.link)}
+                  onClick={() => handleNavClick(navLink.link, navLink.route)}
                   className={`px-3 py-2 text-sm transition-colors rounded-md ${
-                    activeSection === navLink.link.replace('#', '') && !isServicePage
+                    (activeSection === navLink.link.replace('#', '') && location.pathname === '/') || location.pathname === navLink.route
                       ? 'text-teal-600 dark:text-teal-400 font-medium bg-teal-50 dark:bg-teal-900/30'
                       : 'text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                   }`}
@@ -265,9 +269,9 @@ const Header: React.FC = () => {
                     {navLinks.map((navLink) => (
                       <button
                         key={navLink.name}
-                        onClick={() => handleNavClick(navLink.link)}
+                        onClick={() => handleNavClick(navLink.link, navLink.route)}
                         className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors rounded-lg ${
-                          activeSection === navLink.link.replace('#', '') && !isServicePage
+                          (activeSection === navLink.link.replace('#', '') && location.pathname === '/') || location.pathname === navLink.route
                             ? 'text-teal-600 dark:text-teal-400 font-medium bg-teal-50 dark:bg-teal-900/30'
                             : 'text-slate-800 hover:text-teal-600 dark:text-slate-200 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                         }`}

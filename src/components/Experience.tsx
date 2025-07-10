@@ -57,13 +57,14 @@ const Experience: React.FC = () => {
   const experiences = [
     {
       period: "February 2022 - Present",
-      title: "Founder & Web Developer",
-      organization: "ProgVision – Freelance Agency",
+      title: "Freelancer | Cybersecurity Analyst & Web Developer",
+      organization: "Independent Contractor",
       location: "Remote",
       description: [
-        "Developed over 25 websites and provided web development, SEO, and digital marketing services to 200+ clients, helping businesses grow their online presence.",
-        "Automated web data collection through software tools and custom scripts, streamlining repetitive tasks effectively.",
-        "Tech Stacks Used: Python, C#, C++, .NET Framework, React.js, PHP, HTML"
+        "Conducted comprehensive security audits and penetration testing for 75+ clients, identifying critical vulnerabilities and providing detailed remediation reports.",
+        "Developed secure web applications and implemented security best practices, resulting in 100% client satisfaction and zero security incidents post-deployment.",
+        "Specialized in digital forensics investigations, malware analysis, and incident response, helping organizations recover from security breaches and strengthen their defenses.",
+        "Built automated security scanning tools using Python and Bash, reducing manual testing time by 60% while improving accuracy of vulnerability detection."
       ]
     },
     {

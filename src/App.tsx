@@ -11,9 +11,16 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Services from './components/Services';
 import WebDevelopment from './components/ServicePages/WebDevelopment';
-import AppDevelopment from './components/ServicePages/AppDevelopment';
-import DigitalMarketing from './components/ServicePages/DigitalMarketing';
-import BusinessSolutions from './components/ServicePages/BusinessSolutions';
+import CybersecurityServices from './components/ServicePages/CybersecurityServices';
+import SecurityConsulting from './components/ServicePages/SecurityConsulting';
+import SecureDevelopment from './components/ServicePages/SecureDevelopment';
+import AboutPage from './components/Pages/AboutPage';
+import SkillsPage from './components/Pages/SkillsPage';
+import ExperiencePage from './components/Pages/ExperiencePage';
+import ServicesPage from './components/Pages/ServicesPage';
+import ProjectsPage from './components/Pages/ProjectsPage';
+import EducationPage from './components/Pages/EducationPage';
+import ContactPage from './components/Pages/ContactPage';
 import { Moon, Sun } from 'lucide-react';
 
 function App() {
@@ -79,10 +86,17 @@ function App() {
       
       <Routes>
         <Route path="/" element={<MainPortfolio />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/skills" element={<SkillsPage />} />
+        <Route path="/experience" element={<ExperiencePage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/education" element={<EducationPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/services/web-development" element={<WebDevelopment />} />
-        <Route path="/services/app-development" element={<AppDevelopment />} />
-        <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
-        <Route path="/services/business-solutions" element={<BusinessSolutions />} />
+        <Route path="/services/cybersecurity" element={<CybersecurityServices />} />
+        <Route path="/services/security-consulting" element={<SecurityConsulting />} />
+        <Route path="/services/secure-development" element={<SecureDevelopment />} />
       </Routes>
     </div>
   );

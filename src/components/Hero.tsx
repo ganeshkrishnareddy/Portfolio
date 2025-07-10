@@ -16,32 +16,27 @@ const Hero: React.FC = () => {
                 Securing Systems. Building Solutions.
               </p>
               <p className="text-base sm:text-lg mb-4">
-                Bridging <span className="font-semibold text-teal-600 dark:text-teal-400">Cybersecurity</span> & 
-                <span className="font-semibold text-teal-600 dark:text-teal-400"> Web Development</span> with Precision.
+                <span className="font-semibold text-teal-600 dark:text-teal-400">Freelancer</span> – 
+                <span className="font-semibold text-teal-600 dark:text-teal-400">Cybersecurity & Web Development</span>
               </p>
             </div>
 
-            {/* ProgVision Company Introduction */}
-            <div className="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 p-4 sm:p-6 rounded-xl mb-6 border border-teal-100 dark:border-teal-800">
+            {/* Freelance Services Introduction */}
+            <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-4 sm:p-6 rounded-xl mb-6 border border-red-100 dark:border-red-800">
               <div className="flex items-center mb-3">
-                <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-teal-600 dark:text-teal-400 mr-2" />
-                <h3 className="text-base sm:text-lg font-bold text-slate-800 dark:text-white">Founder of ProgVision</h3>
+                <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-red-600 dark:text-red-400 mr-2" />
+                <h3 className="text-base sm:text-lg font-bold text-slate-800 dark:text-white">Cybersecurity & Development Expert</h3>
               </div>
               <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-3">
-                I'm the founder of <span className="font-semibold text-teal-600 dark:text-teal-400">ProgVision</span>, 
-                a dynamic company that bridges the gap between <span className="font-medium">technology, finance, and market intelligence</span>. 
-                We specialize in <span className="font-medium">software development</span>, <span className="font-medium">financial consulting</span>, 
-                and <span className="font-medium">stock market advisory</span>—empowering clients to grow with precision, innovation, and trust.
+                As a <span className="font-semibold text-red-600 dark:text-red-400">freelance cybersecurity analyst</span> and 
+                <span className="font-semibold text-red-600 dark:text-red-400"> full-stack developer</span>, I help organizations secure their digital assets 
+                while building robust web solutions. With <span className="font-medium">CompTIA Security+ certification</span> and hands-on experience in 
+                <span className="font-medium"> penetration testing, vulnerability assessment, and secure development</span>, I deliver comprehensive security solutions.
               </p>
-              <a 
-                href="https://progvision.netlify.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 font-medium text-sm transition-colors"
-              >
-                🌐 Visit ProgVision
-                <ArrowDownCircle className="h-4 w-4 ml-1 rotate-[-90deg]" />
-              </a>
+              <div className="flex items-center text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
+                <Shield className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
+                <span>Serving 75+ clients worldwide with proven security expertise</span>
+              </div>
             </div>
             
             <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8">
@@ -51,11 +46,11 @@ const Hero: React.FC = () => {
               </div>
               <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm text-sm">
                 <Code className="h-4 w-4 sm:h-5 sm:w-5 text-teal-500" />
-                <span className="text-slate-700 dark:text-slate-200">Full Stack Developer</span>
+                <span className="text-slate-700 dark:text-slate-200">Penetration Tester</span>
               </div>
               <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm text-sm">
                 <Server className="h-4 w-4 sm:h-5 sm:w-5 text-teal-500" />
-                <span className="text-slate-700 dark:text-slate-200">Red Hat Trained</span>
+                <span className="text-slate-700 dark:text-slate-200">Digital Forensics</span>
               </div>
             </div>
             

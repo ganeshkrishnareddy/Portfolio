@@ -66,46 +66,46 @@ const Services: React.FC = () => {
       path: "/services/web-development"
     },
     {
-      title: "App Development",
-      description: "Cross-platform mobile and desktop applications designed to solve real-world problems with intuitive interfaces and robust functionality.",
-      icon: <Smartphone className="h-8 w-8 text-blue-600 dark:text-blue-400" />,
+      title: "Cybersecurity Services",
+      description: "Comprehensive security solutions to protect your digital assets, identify vulnerabilities, and ensure compliance with industry standards.",
+      icon: <Shield className="h-8 w-8 text-red-600 dark:text-red-400" />,
       features: [
-        "Cross-Platform Mobile Apps",
-        "Desktop Applications",
-        "API Integration",
-        "User Experience Design"
+        "Web Application Security Audit",
+        "Penetration Testing & Reporting",
+        "Digital Forensics & Incident Response",
+        "Vulnerability Assessment"
       ],
-      path: "/services/app-development"
+      path: "/services/cybersecurity"
     },
     {
-      title: "Digital Marketing",
-      description: "Comprehensive digital marketing strategies to enhance your online presence, drive traffic, and convert visitors into customers.",
-      icon: <TrendingUp className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
+      title: "Security Consulting",
+      description: "Expert guidance on security architecture, compliance requirements, and risk management strategies tailored to your organization.",
+      icon: <Briefcase className="h-8 w-8 text-blue-600 dark:text-blue-400" />,
       features: [
-        "Search Engine Optimization",
-        "Social Media Marketing",
-        "Content Strategy",
-        "Analytics & Reporting"
+        "Security Architecture Review",
+        "Compliance Assessment",
+        "Risk Management Strategy",
+        "Security Training & Awareness"
       ],
-      path: "/services/digital-marketing"
+      path: "/services/security-consulting"
     },
     {
-      title: "Business Solutions",
-      description: "Custom software solutions and automation tools designed to streamline operations, increase efficiency, and drive business growth.",
-      icon: <Briefcase className="h-8 w-8 text-orange-600 dark:text-orange-400" />,
+      title: "Secure Development",
+      description: "Secure coding practices, code review, and implementation of security controls throughout the software development lifecycle.",
+      icon: <Code className="h-8 w-8 text-green-600 dark:text-green-400" />,
       features: [
-        "Process Automation",
-        "Custom Software Development",
-        "System Integration",
-        "Data Analytics Solutions"
+        "Secure Code Review",
+        "Security Testing Integration",
+        "DevSecOps Implementation",
+        "Secure API Development"
       ],
-      path: "/services/business-solutions"
+      path: "/services/secure-development"
     }
   ];
 
   const stats = [
-    { number: "200+", label: "Projects Delivered", icon: <Users className="h-6 w-6" /> },
-    { number: "25+", label: "Websites Built", icon: <Globe className="h-6 w-6" /> },
+    { number: "75+", label: "Projects Delivered", icon: <Users className="h-6 w-6" /> },
+    { number: "20+", label: "Websites Built", icon: <Globe className="h-6 w-6" /> },
     { number: "3+", label: "Years Experience", icon: <Zap className="h-6 w-6" /> },
     { number: "100%", label: "Client Satisfaction", icon: <Star className="h-6 w-6" /> }
   ];
@@ -116,24 +116,23 @@ const Services: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-            Professional <span className="text-teal-600 dark:text-teal-400">Services</span>
+            🔐 Cybersecurity <span className="text-red-600 dark:text-red-400">Services</span>
           </h2>
           <div className="w-24 h-1 bg-teal-600 mx-auto mb-6"></div>
           <p className="max-w-3xl mx-auto text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
-            Comprehensive digital solutions through <span className="font-semibold text-teal-600 dark:text-teal-400">ProgVision</span>, 
-            my freelance agency. From web development to digital marketing, I help businesses establish and grow their online presence 
-            with cutting-edge technology and strategic insights.
+            Safeguard your systems with cutting-edge security solutions. As a certified cybersecurity professional, 
+            I provide comprehensive security services to protect your digital assets and ensure business continuity.
           </p>
         </div>
 
         {/* Achievement Banner */}
-        <div className="bg-gradient-to-r from-teal-600 to-blue-600 p-6 rounded-xl text-white text-center mb-16">
+        <div className="bg-gradient-to-r from-red-600 to-orange-600 p-6 rounded-xl text-white text-center mb-16">
           <div className="flex items-center justify-center mb-3">
             <Award className="h-6 w-6 mr-2" />
-            <span className="font-semibold">Trusted by 200+ Clients Worldwide</span>
+            <span className="font-semibold">Trusted by 75+ Clients Worldwide</span>
           </div>
           <p className="text-sm opacity-90">
-            Delivering exceptional digital solutions with proven results and client satisfaction
+            Delivering exceptional security solutions with proven results and zero security incidents post-engagement
           </p>
         </div>
 
