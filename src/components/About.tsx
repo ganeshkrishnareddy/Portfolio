@@ -10,37 +10,37 @@ const About: React.FC = () => {
 
   const testimonials = [
     {
-      quote: "Working with Ganesh was a game-changer. His full-stack development skills and deep understanding of business requirements helped us launch our platform on time and with exceptional quality.",
-      author: "Ramesh Varma",
-      position: "CEO, TechRise Solutions",
-      icon: <Code className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
-      bgColor: "bg-blue-100 dark:bg-blue-900/30"
-    },
-    {
-      quote: "Ganesh's cybersecurity insights saved our company from a critical vulnerability. His structured approach and hands-on testing proved his expertise in real-world environments.",
-      author: "Neha Sharma",
-      position: "CISO, FinSecure Corp",
+      quote: "Ganesh helped us identify critical vulnerabilities in our web application. His clear documentation and timely fixes helped us secure our infrastructure efficiently.",
+      author: "Rohit Mehta",
+      position: "CTO, Fintronix Systems Pvt. Ltd.",
       icon: <ShieldCheck className="h-5 w-5 text-red-600 dark:text-red-400" />,
       bgColor: "bg-red-100 dark:bg-red-900/30"
     },
     {
-      quote: "From idea to execution, Ganesh led our web revamp with strategy, precision, and creative flair. The new site boosted conversions by 35% in the first month.",
-      author: "Ankita Reddy",
-      position: "Marketing Director, Market Movers",
-      icon: <Award className="h-5 w-5 text-purple-600 dark:text-purple-400" />,
-      bgColor: "bg-purple-100 dark:bg-purple-900/30"
+      quote: "We hired Ganesh to revamp our company website and integrate security testing. He delivered a clean, responsive platform with strong security measures.",
+      author: "Anjali Deshmukh",
+      position: "CEO, CodeNest Technologies",
+      icon: <Code className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
+      bgColor: "bg-blue-100 dark:bg-blue-900/30"
     },
     {
-      quote: "ProgVision's comprehensive approach to digital transformation exceeded our expectations. Their team delivered both technical excellence and strategic business value.",
-      author: "Vikram Singh",
-      position: "CTO, InnovateTech",
-      icon: <Building2 className="h-5 w-5 text-green-600 dark:text-green-400" />,
+      quote: "Ganesh's automated network scanning solution saved our IT team countless hours. His cybersecurity expertise is top-notch.",
+      author: "Siddharth Rao",
+      position: "IT Head, SecureWave India",
+      icon: <Target className="h-5 w-5 text-green-600 dark:text-green-400" />,
       bgColor: "bg-green-100 dark:bg-green-900/30"
     },
     {
-      quote: "The automation solutions Ganesh developed for our operations reduced manual work by 60% and significantly improved our team's productivity and accuracy.",
-      author: "Priya Patel",
-      position: "Operations Manager, DataFlow Systems",
+      quote: "The phishing simulation tool built by Ganesh helped us educate our employees about real-world attacks. It was effective and easy to manage.",
+      author: "Kavita Nair",
+      position: "HR Manager, Orbit Infosec Pvt. Ltd.",
+      icon: <ShieldCheck className="h-5 w-5 text-purple-600 dark:text-purple-400" />,
+      bgColor: "bg-purple-100 dark:bg-purple-900/30"
+    },
+    {
+      quote: "Our internal server was successfully hardened using Ganesh's toolkit. He also provided documentation and training for our admins.",
+      author: "Vivek Reddy",
+      position: "System Administrator, NetCraft Solutions",
       icon: <Target className="h-5 w-5 text-orange-600 dark:text-orange-400" />,
       bgColor: "bg-orange-100 dark:bg-orange-900/30"
     }

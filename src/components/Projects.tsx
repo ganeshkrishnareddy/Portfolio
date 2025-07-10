@@ -53,17 +53,17 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-2 sm:p-4 overflow-y-auto">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto my-2 sm:my-0">
         {/* Header */}
-        <div className="sticky top-0 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-6 flex items-center justify-between">
+        <div className="sticky top-0 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-4 sm:p-6 flex items-center justify-between">
           <div className="flex items-center">
-            <div className="bg-teal-100 dark:bg-teal-900/30 p-2 rounded-full mr-4">
+            <div className="bg-teal-100 dark:bg-teal-900/30 p-2 rounded-full mr-3 sm:mr-4">
               {project.icon}
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white">{project.title}</h2>
-              <div className="flex items-center text-slate-500 dark:text-slate-400 text-sm mt-1">
+              <h2 className="text-lg sm:text-2xl font-bold text-slate-800 dark:text-white pr-4">{project.title}</h2>
+              <div className="flex items-center text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-1">
                 <Calendar className="h-4 w-4 mr-2" />
                 {project.period}
               </div>
@@ -71,24 +71,24 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-colors"
+            className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-colors flex-shrink-0"
           >
-            <X className="h-6 w-6 text-slate-500" />
+            <X className="h-5 w-5 sm:h-6 sm:w-6 text-slate-500" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-8">
+        <div className="p-4 sm:p-6 space-y-6 sm:space-y-8">
           {/* Project Image */}
-          <div className="relative h-64 rounded-lg overflow-hidden">
+          <div className="relative h-48 sm:h-64 rounded-lg overflow-hidden">
             <img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div className="absolute bottom-4 left-4 text-white">
-              <span className="bg-black/50 px-3 py-1 rounded-full text-sm">{project.category}</span>
+            <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 text-white">
+              <span className="bg-black/50 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">{project.category}</span>
             </div>
           </div>
 
@@ -241,34 +241,34 @@ const ProjectCard: React.FC<ProjectProps> = ({
 
   return (
     <div
-      className="relative bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-lg group"
+      className="relative bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="h-48 relative overflow-hidden">
+      <div className="h-40 sm:h-48 relative overflow-hidden">
         <img
           src={image}
           alt={title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div className="absolute top-4 left-4 bg-white dark:bg-slate-700 p-2 rounded-full">
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white dark:bg-slate-700 p-2 rounded-full">
           {icon}
         </div>
-        <div className="absolute bottom-4 left-4 flex items-center text-white">
+        <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 flex items-center text-white">
           <Calendar className="h-4 w-4 mr-2" />
-          <span className="text-sm">{period}</span>
+          <span className="text-xs sm:text-sm">{period}</span>
         </div>
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3">{title}</h3>
-        <p className="text-slate-600 dark:text-slate-300 mb-4">{description}</p>
+      <div className="p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2 sm:mb-3 line-clamp-2">{title}</h3>
+        <p className="text-slate-600 dark:text-slate-300 mb-3 sm:mb-4 text-sm sm:text-base line-clamp-3">{description}</p>
         {achievements && achievements.length > 0 && (
-          <div className="mb-4">
-            <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Key Achievements:</h4>
+          <div className="mb-3 sm:mb-4">
+            <h4 className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Key Achievements:</h4>
             <ul className="space-y-1">
               {achievements.slice(0, 2).map((a, i) => (
-                <li key={i} className="text-xs text-slate-600 dark:text-slate-400 flex items-start">
+                <li key={i} className="text-xs text-slate-600 dark:text-slate-400 flex items-start line-clamp-2">
                   <div className="w-1.5 h-1.5 bg-teal-500 rounded-full mr-2 mt-1.5 flex-shrink-0"></div>
                   {a}
                 </li>
@@ -276,25 +276,25 @@ const ProjectCard: React.FC<ProjectProps> = ({
             </ul>
           </div>
         )}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
           {technologies.slice(0, 3).map((tech, i) => (
             <span
               key={i}
-              className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs rounded-full"
+              className="px-2 sm:px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs rounded-full"
             >
               {tech}
             </span>
           ))}
           {technologies.length > 3 && (
-            <span className="px-3 py-1 bg-slate-200 dark:bg-slate-600 text-slate-600 dark:text-slate-400 text-xs rounded-full">
+            <span className="px-2 sm:px-3 py-1 bg-slate-200 dark:bg-slate-600 text-slate-600 dark:text-slate-400 text-xs rounded-full">
               +{technologies.length - 3} more
             </span>
           )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <button
             onClick={() => onViewDetails && onViewDetails()}
-            className="flex-1 py-2 px-4 bg-teal-600 text-white rounded-md flex items-center justify-center hover:bg-teal-700 transition-colors"
+            className="flex-1 py-2 px-3 sm:px-4 bg-teal-600 text-white rounded-md flex items-center justify-center hover:bg-teal-700 transition-colors"
           >
             <ExternalLink className="h-4 w-4 mr-2" />
             <span className="text-sm">Case Study</span>
@@ -304,7 +304,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
               href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-2 px-4 bg-slate-800 dark:bg-slate-700 text-white rounded-md flex items-center justify-center hover:bg-slate-900 dark:hover:bg-slate-600 transition-colors"
+              className="py-2 px-3 sm:px-4 bg-slate-800 dark:bg-slate-700 text-white rounded-md flex items-center justify-center hover:bg-slate-900 dark:hover:bg-slate-600 transition-colors sm:flex-initial sm:w-auto"
             >
               <Github className="h-4 w-4 mr-2" />
               <span className="text-sm">Code</span>
@@ -556,7 +556,7 @@ const Projects: React.FC = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
             {filtered.map((project, i) => (
               <ProjectCard 
                 key={i} 

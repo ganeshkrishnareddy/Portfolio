@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Code, Smartphone, TrendingUp, Briefcase, ArrowRight, Users, Globe, Zap, Star, Award, Shield } from 'lucide-react';
+import { Code, Smartphone, TrendingUp, Briefcase, ArrowRight, Users, Globe, Zap, Star, Award, Shield, Search, Target, Lock, FileText } from 'lucide-react';
 
 interface ServiceCardProps {
   title: string;
@@ -18,31 +18,33 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, fea
   };
 
   return (
-    <div className="group bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 hover:border-teal-200 dark:hover:border-teal-700 transform hover:-translate-y-2">
-      <div className="mb-6 bg-gradient-to-br from-teal-100 to-blue-100 dark:from-teal-900/30 dark:to-blue-900/30 p-4 rounded-full w-max group-hover:scale-110 transition-transform">
+    <div className="group bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 hover:border-teal-200 dark:hover:border-teal-700 transform hover:-translate-y-2">
+      <div className="mb-4 sm:mb-6 bg-gradient-to-br from-teal-100 to-blue-100 dark:from-teal-900/30 dark:to-blue-900/30 p-3 sm:p-4 rounded-full w-max group-hover:scale-110 transition-transform">
         {icon}
       </div>
       
-      <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+      <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-3 sm:mb-4 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
         {title}
       </h3>
       
-      <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+      <p className="text-slate-600 dark:text-slate-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
         {description}
       </p>
       
-      <ul className="space-y-2 mb-6">
+      <ul className="space-y-2 mb-4 sm:mb-6">
         {features.map((feature, index) => (
           <li key={index} className="flex items-center text-slate-600 dark:text-slate-300">
-            <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 flex-shrink-0"></div>
-            <span className="text-sm">{feature}</span>
+            <div className="mr-3 flex-shrink-0">
+              {typeof feature === 'object' ? feature.icon : <div className="w-2 h-2 bg-teal-500 rounded-full"></div>}
+            </div>
+            <span className="text-xs sm:text-sm">{typeof feature === 'object' ? feature.text : feature}</span>
           </li>
         ))}
       </ul>
       
       <button
         onClick={handleLearnMore}
-        className="flex items-center text-teal-600 dark:text-teal-400 font-semibold group-hover:text-teal-700 dark:group-hover:text-teal-300 transition-colors hover:gap-3"
+        className="flex items-center text-teal-600 dark:text-teal-400 font-semibold group-hover:text-teal-700 dark:group-hover:text-teal-300 transition-colors hover:gap-3 text-sm sm:text-base"
       >
         <span>Learn More</span>
         <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -58,10 +60,10 @@ const Services: React.FC = () => {
       description: "Custom websites and web applications built with modern technologies, focusing on performance, security, and user experience.",
       icon: <Code className="h-8 w-8 text-teal-600 dark:text-teal-400" />,
       features: [
-        "Responsive Design & Development",
-        "E-commerce Solutions",
-        "Content Management Systems",
-        "Performance Optimization"
+        { text: "Responsive Design & Development", icon: <Globe className="h-4 w-4 text-teal-500" /> },
+        { text: "E-commerce Solutions", icon: <Code className="h-4 w-4 text-teal-500" /> },
+        { text: "Content Management Systems", icon: <FileText className="h-4 w-4 text-teal-500" /> },
+        { text: "Performance Optimization", icon: <Zap className="h-4 w-4 text-teal-500" /> }
       ],
       path: "/services/web-development"
     },
@@ -70,10 +72,10 @@ const Services: React.FC = () => {
       description: "Comprehensive security solutions to protect your digital assets, identify vulnerabilities, and ensure compliance with industry standards.",
       icon: <Shield className="h-8 w-8 text-red-600 dark:text-red-400" />,
       features: [
-        "Web Application Security Audit",
-        "Penetration Testing & Reporting",
-        "Digital Forensics & Incident Response",
-        "Vulnerability Assessment"
+        { text: "Web Application Security Audit", icon: <Search className="h-4 w-4 text-red-500" /> },
+        { text: "Penetration Testing & Reporting", icon: <Target className="h-4 w-4 text-red-500" /> },
+        { text: "Digital Forensics & Incident Response", icon: <Shield className="h-4 w-4 text-red-500" /> },
+        { text: "Vulnerability Assessment", icon: <Lock className="h-4 w-4 text-red-500" /> }
       ],
       path: "/services/cybersecurity"
     },
@@ -82,10 +84,10 @@ const Services: React.FC = () => {
       description: "Expert guidance on security architecture, compliance requirements, and risk management strategies tailored to your organization.",
       icon: <Briefcase className="h-8 w-8 text-blue-600 dark:text-blue-400" />,
       features: [
-        "Security Architecture Review",
-        "Compliance Assessment",
-        "Risk Management Strategy",
-        "Security Training & Awareness"
+        { text: "Security Architecture Review", icon: <FileText className="h-4 w-4 text-blue-500" /> },
+        { text: "Compliance Assessment", icon: <Shield className="h-4 w-4 text-blue-500" /> },
+        { text: "Risk Management Strategy", icon: <Target className="h-4 w-4 text-blue-500" /> },
+        { text: "Security Training & Awareness", icon: <Users className="h-4 w-4 text-blue-500" /> }
       ],
       path: "/services/security-consulting"
     },
@@ -94,10 +96,10 @@ const Services: React.FC = () => {
       description: "Secure coding practices, code review, and implementation of security controls throughout the software development lifecycle.",
       icon: <Code className="h-8 w-8 text-green-600 dark:text-green-400" />,
       features: [
-        "Secure Code Review",
-        "Security Testing Integration",
-        "DevSecOps Implementation",
-        "Secure API Development"
+        { text: "Secure Code Review", icon: <Search className="h-4 w-4 text-green-500" /> },
+        { text: "Security Testing Integration", icon: <Zap className="h-4 w-4 text-green-500" /> },
+        { text: "DevSecOps Implementation", icon: <Code className="h-4 w-4 text-green-500" /> },
+        { text: "Secure API Development", icon: <Lock className="h-4 w-4 text-green-500" /> }
       ],
       path: "/services/secure-development"
     }
@@ -152,7 +154,7 @@ const Services: React.FC = () => {
         </div>
         
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
