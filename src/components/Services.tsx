@@ -18,12 +18,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, fea
   };
 
   return (
-    <div className="group bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 hover:border-teal-200 dark:hover:border-teal-700 transform hover:-translate-y-2">
+    <div className="group bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 dark:border-slate-700 hover:border-teal-200 dark:hover:border-teal-700 transform hover:-translate-y-3 hover:scale-105">
       <div className="mb-4 sm:mb-6 bg-gradient-to-br from-teal-100 to-blue-100 dark:from-teal-900/30 dark:to-blue-900/30 p-3 sm:p-4 rounded-full w-max group-hover:scale-110 transition-transform">
         {icon}
       </div>
       
-      <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-3 sm:mb-4 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+      <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-3 sm:mb-4 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors duration-300">
         {title}
       </h3>
       
@@ -33,7 +33,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, fea
       
       <ul className="space-y-2 mb-4 sm:mb-6">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-center text-slate-600 dark:text-slate-300">
+          <li key={index} className="flex items-center text-slate-600 dark:text-slate-300 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
             <div className="mr-3 flex-shrink-0">
               {typeof feature === 'object' ? feature.icon : <div className="w-2 h-2 bg-teal-500 rounded-full"></div>}
             </div>
@@ -44,10 +44,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, fea
       
       <button
         onClick={handleLearnMore}
-        className="flex items-center text-teal-600 dark:text-teal-400 font-semibold group-hover:text-teal-700 dark:group-hover:text-teal-300 transition-colors hover:gap-3 text-sm sm:text-base"
+        className="flex items-center text-teal-600 dark:text-teal-400 font-semibold group-hover:text-teal-700 dark:group-hover:text-teal-300 transition-all duration-300 hover:gap-3 text-sm sm:text-base group-hover:scale-105"
       >
         <span>Learn More</span>
-        <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+        <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
       </button>
     </div>
   );

@@ -12,7 +12,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
       const sections = ['home', 'about', 'skills', 'experience', 'services', 'projects', 'education', 'contact'];
@@ -142,14 +142,14 @@ const Header: React.FC = () => {
     <>
       <header className={`fixed w-full top-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg py-2' 
-          : 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm py-4'
+          ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-xl py-2 border-b border-slate-200/50 dark:border-slate-700/50' 
+          : 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm py-4'
       }`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <button 
               onClick={() => handleNavClick('#home')}
-              className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white transition-colors hover:text-teal-600 dark:hover:text-teal-400 z-50"
+              className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white transition-all duration-300 hover:text-teal-600 dark:hover:text-teal-400 hover:scale-105 z-50"
             >
               <span className="text-teal-600">Ganesh</span>Krishna<span className="text-teal-600">Reddy</span>
             </button>
@@ -160,13 +160,18 @@ const Header: React.FC = () => {
                 <button
                   key={navLink.name}
                   onClick={() => handleNavClick(navLink.link, navLink.route)}
-                  className={`px-3 py-2 text-sm transition-colors rounded-md ${
+                  className={`px-3 py-2 text-sm transition-all duration-300 rounded-md relative group ${
                     (activeSection === navLink.link.replace('#', '') && location.pathname === '/') || location.pathname === navLink.route
-                      ? 'text-teal-600 dark:text-teal-400 font-medium bg-teal-50 dark:bg-teal-900/30 border-b-2 border-teal-600'
-                      : 'text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:border-b-2 hover:border-teal-300'
+                      ? 'text-teal-600 dark:text-teal-400 font-medium bg-teal-50 dark:bg-teal-900/30'
+                      : 'text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                   }`}
                 >
                   {navLink.name}
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-teal-600 transform transition-transform duration-300 ${
+                    (activeSection === navLink.link.replace('#', '') && location.pathname === '/') || location.pathname === navLink.route
+                      ? 'scale-x-100'
+                      : 'scale-x-0 group-hover:scale-x-100'
+                  }`}></span>
                 </button>
               ))}
               
@@ -175,30 +180,31 @@ const Header: React.FC = () => {
                 <button
                   onMouseEnter={() => setShowServices(true)}
                   onMouseLeave={() => setShowServices(false)}
-                  className="px-3 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 transition-colors rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/50 flex items-center gap-1"
+                  className="px-3 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 transition-all duration-300 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/50 flex items-center gap-1 group"
                 >
                   Service Pages
-                  <ChevronDown className="h-3 w-3" />
+                  <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
                 </button>
                 
-                {showServices && (
+                <div className={`absolute top-full left-0 w-48 py-2 mt-1 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 transition-all duration-300 ${
+                  showServices ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}>
                   <div
                     onMouseEnter={() => setShowServices(true)}
                     onMouseLeave={() => setShowServices(false)}
-                    className="absolute top-full left-0 w-48 py-2 mt-1 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700"
                   >
                     {services.map((service, index) => (
                       <button
                         key={index}
                         onClick={() => handleServiceNavigation(service.path)}
-                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left"
+                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-all duration-200 text-left"
                       >
                         {service.icon}
                         {service.title}
                       </button>
                     ))}
                   </div>
-                )}
+                </div>
               </div>
             </nav>
 
@@ -211,7 +217,7 @@ const Header: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.ariaLabel}
-                  className="p-2 text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+                  className="p-2 text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-300 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-110"
                 >
                   {item.icon}
                 </a>
@@ -220,7 +226,7 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu Toggle */}
             <button
-              className="lg:hidden text-slate-800 dark:text-white focus:outline-none p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors z-50 mobile-menu-container"
+              className="lg:hidden text-slate-800 dark:text-white focus:outline-none p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 z-50 mobile-menu-container hover:scale-110"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsOpen(!isOpen);

@@ -10,9 +10,29 @@ interface SkillBarProps {
 
 const SkillBar: React.FC<SkillBarProps> = ({ skill, percentage, color, tooltip }) => {
   const [showTooltip, setShowTooltip] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  // Intersection Observer for animation trigger
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    
+    const element = document.getElementById(`skill-${skill.replace(/\s+/g, '-').toLowerCase()}`);
+    if (element) {
+      observer.observe(element);
+    }
+    
+    return () => observer.disconnect();
+  }, [skill]);
   
   return (
-    <div className="mb-6 relative">
+    <div id={`skill-${skill.replace(/\s+/g, '-').toLowerCase()}`} className="mb-6 relative">
       <div className="flex justify-between mb-1">
         <div className="flex items-center">
           <span className="text-slate-700 dark:text-slate-300 font-medium">{skill}</span>
@@ -24,7 +44,7 @@ const SkillBar: React.FC<SkillBarProps> = ({ skill, percentage, color, tooltip }
                 onMouseLeave={() => setShowTooltip(false)}
               />
               {showTooltip && (
-                <div className="absolute bottom-full left-0 mb-2 px-3 py-2 bg-slate-800 text-white text-xs rounded-lg shadow-lg z-10 w-64">
+                <div className="absolute bottom-full left-0 mb-2 px-3 py-2 bg-slate-800 text-white text-xs rounded-lg shadow-lg z-10 w-64 animate-fadeIn">
                   {tooltip}
                 </div>
               )}
@@ -33,10 +53,13 @@ const SkillBar: React.FC<SkillBarProps> = ({ skill, percentage, color, tooltip }
         </div>
         <span className="text-slate-600 dark:text-slate-400">{percentage}%</span>
       </div>
-      <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+      <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden">
         <div
-          className={`h-2.5 rounded-full ${color}`}
-          style={{ width: `${percentage}%`, transition: 'width 1s ease-in-out' }}
+          className={`h-3 rounded-full ${color} transition-all duration-1000 ease-out relative overflow-hidden`}
+          style={{ 
+            width: isVisible ? `${percentage}%` : '0%',
+            transition: 'width 1.5s ease-out'
+          }}
         ></div>
       </div>
     </div>

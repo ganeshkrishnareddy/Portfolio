@@ -17,6 +17,16 @@
     animation: fadeIn 1s ease-in-out;
   }
   
+  .animate-slideInLeft {
+    animation: slideInLeft 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .animate-slideInRight {
+    animation: slideInRight 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -28,6 +38,28 @@
     }
   }
   
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
   /* Smooth hover transitions */
   .transition-transform {
     transition: transform 0.3s ease;
@@ -35,6 +67,10 @@
   
   .transition-colors {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .transition-all {
+    transition: all 0.3s ease;
   }
   
   /* Line clamp utilities for text truncation */
@@ -62,6 +98,27 @@
     display: none;
   }
   
+  /* Fluid typography using clamp */
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    line-height: 1.4;
+  }
+  
+  /* Responsive spacing */
+  .section-padding {
+    padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+  }
+  
   /* Mobile-specific improvements */
   @media (max-width: 640px) {
     .container {
@@ -73,11 +130,51 @@
     button, .btn {
       min-height: 44px; /* iOS recommended touch target size */
       word-wrap: break-word;
+      touch-action: manipulation; /* Prevents zoom on double-tap */
     }
     
     /* Improve modal spacing on mobile */
     .modal-content {
       margin: 0.5rem;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    /* Better mobile text readability */
+    p, li {
+      line-height: 1.6;
+    }
+    
+    /* Improved touch targets */
+    a, button {
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+  /* Focus states for accessibility */
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #0d9488;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  /* Smooth scrolling for better UX */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .bg-gradient-to-r,
+    .bg-gradient-to-br {
+      background: var(--tw-bg-opacity, 1) solid;
     }
   }
 }
