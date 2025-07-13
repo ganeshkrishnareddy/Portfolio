@@ -1,5 +1,5 @@
-import React from 'react';
-import { Calendar, MapPin, Code, Users, Briefcase } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, MapPin, Code, Users, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface TimelineItemProps {
   period: string;
@@ -54,6 +54,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 };
 
 const Experience: React.FC = () => {
+  const [showExperience, setShowExperience] = useState(false);
+
   const experiences = [
     {
       period: "February 2022 - Present",
@@ -94,17 +96,58 @@ const Experience: React.FC = () => {
         </div>
         
         <div className="max-w-3xl mx-auto">
-          {experiences.map((exp, index) => (
-            <TimelineItem 
-              key={index}
-              period={exp.period}
-              title={exp.title}
-              organization={exp.organization}
-              location={exp.location}
-              description={exp.description}
-              isLast={index === experiences.length - 1}
-            />
-          ))}
+          {/* Experience Dropdown Toggle */}
+          <button
+            onClick={() => setShowExperience(!showExperience)}
+            className="w-full text-left flex items-center justify-between bg-slate-100 dark:bg-slate-800 p-6 rounded-lg mb-6 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shadow-md"
+          >
+            <h3 className="text-xl font-semibold text-slate-800 dark:text-white flex items-center">
+              <Briefcase className="h-6 w-6 mr-3 text-teal-600 dark:text-teal-400" />
+              Professional Experience Details
+            </h3>
+            {showExperience ? (
+              <ChevronUp className="h-6 w-6 text-slate-600 dark:text-slate-400" />
+            ) : (
+              <ChevronDown className="h-6 w-6 text-slate-600 dark:text-slate-400" />
+            )}
+          </button>
+
+          {/* Experience Timeline - Collapsible */}
+          {showExperience && (
+            <div className="space-y-0">
+              {experiences.map((exp, index) => (
+                <TimelineItem 
+                  key={index}
+                  period={exp.period}
+                  title={exp.title}
+                  organization={exp.organization}
+                  location={exp.location}
+                  description={exp.description}
+                  isLast={index === experiences.length - 1}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Summary when collapsed */}
+          {!showExperience && (
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-teal-600 dark:text-teal-400 mb-2">3+</div>
+                  <div className="text-slate-600 dark:text-slate-300 text-sm">Years of Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">75+</div>
+                  <div className="text-slate-600 dark:text-slate-300 text-sm">Projects Completed</div>
+                </div>
+              </div>
+              <p className="text-slate-600 dark:text-slate-300 text-center mt-4">
+                Freelance Cybersecurity Analyst & Full-Stack Developer with expertise in security audits, 
+                web development, and system administration.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

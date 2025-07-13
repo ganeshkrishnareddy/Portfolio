@@ -80,28 +80,40 @@ const services = [
     path: "/services/cybersecurity"
   },
   {
-    title: "App Development",
-    description: "Custom mobile apps for Android and iOS built with scalable architecture and smooth user experience using modern frameworks.",
+    title: "About",
+    description: "Learn more about my journey, expertise, and passion for cybersecurity and technology. Discover my background and professional achievements.",
     icon: <Smartphone className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
     features: [
-      { text: "Cross-platform Development", icon: <Code className="h-4 w-4 text-purple-500" /> },
-      { text: "User-Centric UI/UX", icon: <Smartphone className="h-4 w-4 text-purple-500" /> },
-      { text: "API Integration & Backend", icon: <Zap className="h-4 w-4 text-purple-500" /> },
-      { text: "App Store Deployment", icon: <Globe className="h-4 w-4 text-purple-500" /> }
+      { text: "Professional Background", icon: <Users className="h-4 w-4 text-purple-500" /> },
+      { text: "Technical Expertise", icon: <Code className="h-4 w-4 text-purple-500" /> },
+      { text: "Certifications & Achievements", icon: <Award className="h-4 w-4 text-purple-500" /> },
+      { text: "Career Journey", icon: <Briefcase className="h-4 w-4 text-purple-500" /> }
+    ],
+    path: "/about"
+  },
+  {
+    title: "App Development",
+    description: "Custom mobile applications for Android and iOS with modern frameworks, secure architecture, and seamless user experience.",
+    icon: <Code className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    features: [
+      { text: "Cross-Platform Development", icon: <Smartphone className="h-4 w-4 text-green-500" /> },
+      { text: "Native iOS & Android Apps", icon: <Code className="h-4 w-4 text-green-500" /> },
+      { text: "Backend API Integration", icon: <Zap className="h-4 w-4 text-green-500" /> },
+      { text: "App Store Deployment", icon: <Globe className="h-4 w-4 text-green-500" /> }
     ],
     path: "/services/app-development"
   },
   {
-    title: "Secure Development",
-    description: "Secure coding practices, code review, and implementation of security controls throughout the software development lifecycle.",
-    icon: <Code className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    title: "Marketing Services with SEO",
+    description: "Digital marketing strategies, search engine optimization, and online presence enhancement to grow your business visibility.",
+    icon: <TrendingUp className="h-8 w-8 text-blue-600 dark:text-blue-400" />,
     features: [
-      { text: "Secure Code Review", icon: <Search className="h-4 w-4 text-green-500" /> },
-      { text: "Security Testing Integration", icon: <Zap className="h-4 w-4 text-green-500" /> },
-      { text: "DevSecOps Implementation", icon: <Code className="h-4 w-4 text-green-500" /> },
-      { text: "Secure API Development", icon: <Lock className="h-4 w-4 text-green-500" /> }
+      { text: "Search Engine Optimization", icon: <Search className="h-4 w-4 text-blue-500" /> },
+      { text: "Content Marketing Strategy", icon: <FileText className="h-4 w-4 text-blue-500" /> },
+      { text: "Social Media Management", icon: <Users className="h-4 w-4 text-blue-500" /> },
+      { text: "Analytics & Performance Tracking", icon: <TrendingUp className="h-4 w-4 text-blue-500" /> }
     ],
-    path: "/services/secure-development"
+    path: "/services/marketing-seo"
   }
 ];
 

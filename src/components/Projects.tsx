@@ -506,32 +506,32 @@ const Projects: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-2 text-slate-800 dark:text-white">
-               <span>Projects</span> & Case Studies
+               Full-Stack <span className="text-teal-600 dark:text-teal-400">Projects</span> & Cybersecurity Case Studies
             </h2>
             <div className="w-24 h-1 bg-teal-600 mx-auto mb-4"></div>
             <p className="max-w-3xl mx-auto text-slate-600 dark:text-slate-300 text-lg">
-              Comprehensive case studies showcasing real-world cybersecurity solutions, penetration testing engagements, 
-              and secure development projects with detailed problem-solving approaches and measurable outcomes.
+              Comprehensive portfolio showcasing full-stack web development, mobile applications, cybersecurity solutions, 
+              and digital marketing projects with detailed case studies and measurable business outcomes.
             </p>
           </div>
 
           {/* Stats Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             <div className="text-center bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md">
-              <div className="text-2xl font-bold text-red-600 dark:text-red-400 mb-2">75+</div>
+              <div className="text-2xl font-bold text-teal-600 dark:text-teal-400 mb-2">25+</div>
+              <div className="text-slate-600 dark:text-slate-300 text-sm">Websites Developed</div>
+            </div>
+            <div className="text-center bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md">
+              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">10+</div>
+              <div className="text-slate-600 dark:text-slate-300 text-sm">Apps Developed</div>
+            </div>
+            <div className="text-center bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md">
+              <div className="text-2xl font-bold text-red-600 dark:text-red-400 mb-2">50+</div>
               <div className="text-slate-600 dark:text-slate-300 text-sm">Security Audits</div>
             </div>
             <div className="text-center bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">150+</div>
-              <div className="text-slate-600 dark:text-slate-300 text-sm">Vulnerabilities Found</div>
-            </div>
-            <div className="text-center bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md">
               <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">100%</div>
-              <div className="text-slate-600 dark:text-slate-300 text-sm">Success Rate</div>
-            </div>
-            <div className="text-center bg-white dark:bg-slate-700 p-6 rounded-xl shadow-md">
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">0</div>
-              <div className="text-slate-600 dark:text-slate-300 text-sm">Security Incidents</div>
+              <div className="text-slate-600 dark:text-slate-300 text-sm">Client Satisfaction</div>
             </div>
           </div>
 

@@ -12,8 +12,6 @@ import Footer from './components/Footer';
 import Services from './components/Services';
 import WebDevelopment from './components/ServicePages/WebDevelopment';
 import CybersecurityServices from './components/ServicePages/CybersecurityServices';
-import SecurityConsulting from './components/ServicePages/SecurityConsulting';
-import SecureDevelopment from './components/ServicePages/SecureDevelopment';
 import AboutPage from './components/Pages/AboutPage';
 import SkillsPage from './components/Pages/SkillsPage';
 import ExperiencePage from './components/Pages/ExperiencePage';
@@ -95,8 +93,6 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/services/web-development" element={<WebDevelopment />} />
         <Route path="/services/cybersecurity" element={<CybersecurityServices />} />
-        <Route path="/services/security-consulting" element={<SecurityConsulting />} />
-        <Route path="/services/secure-development" element={<SecureDevelopment />} />
       </Routes>
     </div>
   );
