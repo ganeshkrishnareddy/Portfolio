@@ -1,123 +1,218 @@
-import React from 'react';
-import { ArrowDownCircle, Shield, Code, Server, Download, Calendar, Building2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, MapPin, ChevronDown, ChevronUp, Clock, Building2, Award, CheckCircle } from 'lucide-react';
 
-const Hero: React.FC = () => {
+interface ExperienceItemProps {
+  period: string;
+  duration: string;
+  title: string;
+  company: string;
+  location: string;
+  type: string;
+  achievements: string[];
+  tools?: string[];
+  isLast?: boolean;
+  companyLogo?: React.ReactNode;
+}
+
+const ExperienceItem: React.FC<ExperienceItemProps> = ({
+  period,
+  duration,
+  title,
+  company,
+  location,
+  type,
+  achievements,
+  tools,
+  isLast = false,
+  companyLogo
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <section id="home" className="min-h-screen flex items-center pt-20 pb-8 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="order-2 lg:order-1 animate-fadeIn">
-            <p className="text-teal-600 dark:text-teal-400 font-medium mb-2 text-sm sm:text-base">Hello, I am</p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 dark:text-white mb-4 leading-tight">
-              P Ganesh Krishna Reddy
-            </h1>
-            <div className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6">
-              <p className="font-semibold text-xl sm:text-2xl text-slate-800 dark:text-white mb-2">
-                Securing Systems. Building Solutions.
-              </p>
-              <p className="text-base sm:text-lg mb-4">
-                <span className="font-semibold text-teal-600 dark:text-teal-400">Freelancer</span> – 
-                <span className="font-semibold text-teal-600 dark:text-teal-400">Cybersecurity & Web Development</span>
-              </p>
-            </div>
+    <div className="relative">
+      {/* Timeline Line */}
+      {!isLast && (
+        <div className="absolute left-4 top-12 w-0.5 h-full bg-gradient-to-b from-teal-500 to-teal-300 dark:from-teal-400 dark:to-teal-600" />
+      )}
+      
+      {/* Timeline Dot - Clickable */}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="absolute left-0 top-6 w-8 h-8 bg-teal-500 hover:bg-teal-600 rounded-full border-4 border-white dark:border-slate-900 z-10 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+        aria-expanded={isExpanded}
+        aria-label={`Toggle details for ${title}`}
+      >
+        <div className="w-full h-full rounded-full bg-teal-500 flex items-center justify-center">
+          {isExpanded ? (
+            <ChevronUp className="h-4 w-4 text-white" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-white" />
+          )}
+        </div>
+      </button>
 
-            {/* Freelance Services Introduction */}
-            <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-4 sm:p-6 rounded-xl mb-6 border border-red-100 dark:border-red-800">
-              <div className="flex items-center mb-3">
-                <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-red-600 dark:text-red-400 mr-2" />
-                <h3 className="text-base sm:text-lg font-bold text-slate-800 dark:text-white">Cybersecurity & Development Expert</h3>
-              </div>
-              <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-3">
-                As a <span className="font-semibold text-red-600 dark:text-red-400">freelance cybersecurity analyst</span> and 
-                <span className="font-semibold text-red-600 dark:text-red-400"> full-stack developer</span>, I help organizations secure their digital assets 
-                while building robust web solutions. With <span className="font-medium">CompTIA Security+ certification</span> and hands-on experience in 
-                <span className="font-medium"> penetration testing, vulnerability assessment, and secure development</span>, I deliver comprehensive security solutions.
-              </p>
-              <div className="flex items-center text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
-                <Shield className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
-                <span>Serving 75+ clients worldwide with proven security expertise</span>
-              </div>
+      {/* Experience Card */}
+      <div className="ml-12 mb-8">
+        {/* Header - Always Visible */}
+        <div 
+          className="bg-slate-800 dark:bg-slate-700 p-4 sm:p-6 rounded-lg shadow-lg cursor-pointer hover:bg-slate-700 dark:hover:bg-slate-600 transition-all duration-300"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+            <div className="flex items-center mb-2 sm:mb-0">
+              <Calendar className="h-4 w-4 text-slate-400 mr-2" />
+              <span className="text-slate-300 text-sm">{period}</span>
+              <span className="mx-2 text-slate-500">•</span>
+              <Clock className="h-4 w-4 text-slate-400 mr-1" />
+              <span className="text-slate-300 text-sm">{duration}</span>
             </div>
-            
-            <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8">
-              <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm text-sm">
-                <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-teal-500" />
-                <span className="text-slate-700 dark:text-slate-200">Security+ Certified</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm text-sm">
-                <Code className="h-4 w-4 sm:h-5 sm:w-5 text-teal-500" />
-                <span className="text-slate-700 dark:text-slate-200">Penetration Tester</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm text-sm">
-                <Server className="h-4 w-4 sm:h-5 sm:w-5 text-teal-500" />
-                <span className="text-slate-700 dark:text-slate-200">Digital Forensics</span>
-              </div>
-            </div>
-            
-            <div className="flex flex-wrap gap-3 sm:gap-4">
-              <a 
-                href="#projects" 
-                className="px-4 sm:px-6 py-2 sm:py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-md transition-colors shadow-md flex items-center text-sm sm:text-base"
-              >
-                View Projects
-              </a>
-              <a 
-                href="#contact" 
-                className="px-4 sm:px-6 py-2 sm:py-3 bg-white dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md transition-colors shadow-md border border-slate-200 dark:border-slate-600 text-sm sm:text-base"
-              >
-                Hire Me
-              </a>
-              <a 
-                href="https://drive.google.com/file/d/19lJoyBZQaV3dGkbjDskPyDy4GvjsapZM/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 sm:px-6 py-2 sm:py-3 bg-slate-800 dark:bg-white text-white dark:text-slate-800 hover:bg-slate-900 dark:hover:bg-slate-100 rounded-md transition-colors shadow-md flex items-center gap-2 text-sm sm:text-base"
-              >
-                <Download className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden sm:inline">Download Resume</span>
-                <span className="sm:hidden">Resume</span>
-              </a>
-              <a 
-                href="https://topmate.io/pganeshkrishnareddy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors shadow-md flex items-center gap-2 text-sm sm:text-base"
-              >
-                <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden sm:inline">Book Consultation</span>
-                <span className="sm:hidden">Book Call</span>
-              </a>
+            <div className="flex items-center">
+              <MapPin className="h-4 w-4 text-slate-400 mr-1" />
+              <span className="text-slate-300 text-sm">{type}</span>
             </div>
           </div>
           
-          <div className="order-1 lg:order-2 flex justify-center">
-            <div className="relative">
-              <div className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-teal-400 to-blue-500 blur-3xl opacity-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-              <img 
-                src="https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                alt="Ganesh Krishna Reddy - Cybersecurity Analyst & Full Stack Developer" 
-                className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 object-cover rounded-full border-4 sm:border-8 border-white dark:border-slate-800 shadow-xl relative z-10"
-              />
-              
-              {/* Decorative elements */}
-              <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-24 sm:h-24 bg-yellow-400 rounded-lg rotate-12 opacity-70 z-0"></div>
-              <div className="absolute -bottom-3 -left-3 sm:-bottom-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-teal-500 rounded-full opacity-70 z-0"></div>
+          <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+            {title}
+          </h3>
+          
+          <div className="flex items-center">
+            {companyLogo && (
+              <div className="mr-3 bg-white dark:bg-slate-600 p-2 rounded-full">
+                {companyLogo}
+              </div>
+            )}
+            <div>
+              <p className="text-teal-400 font-semibold">{company}</p>
+              <p className="text-slate-400 text-sm">{location}</p>
             </div>
           </div>
         </div>
-        
-        <div className="flex justify-center mt-12 sm:mt-16">
-          <a 
-            href="#about" 
-            className="animate-bounce text-slate-400 hover:text-teal-600 transition-colors"
-            aria-label="Scroll down"
-          >
-            <ArrowDownCircle className="h-8 w-8 sm:h-10 sm:w-10" />
-          </a>
+
+        {/* Expandable Details */}
+        <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
+          isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-b-lg shadow-lg border-t-2 border-teal-500">
+            {/* Achievements */}
+            <div className="mb-6">
+              <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4 flex items-center">
+                <Award className="h-5 w-5 text-teal-600 dark:text-teal-400 mr-2" />
+                Key Achievements
+              </h4>
+              <ul className="space-y-3">
+                {achievements.map((achievement, index) => (
+                  <li key={index} className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-teal-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {achievement}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Tools & Technologies */}
+            {tools && tools.length > 0 && (
+              <div>
+                <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center">
+                  🔧 Tools & Technologies
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {tools.map((tool, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-gradient-to-r from-teal-100 to-blue-100 dark:from-teal-900/30 dark:to-blue-900/30 text-teal-700 dark:text-teal-300 rounded-full text-sm font-medium hover:scale-105 transition-transform duration-200"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Experience: React.FC = () => {
+  const experiences = [
+    {
+      period: "February 2022 - Present",
+      duration: "3+ years",
+      title: "Freelancer | Cybersecurity Analyst & Web Developer",
+      company: "Independent Contractor",
+      location: "Remote",
+      type: "Remote",
+      companyLogo: <Building2 className="h-6 w-6 text-teal-600" />,
+      achievements: [
+        "Conducted comprehensive security audits and penetration testing for 75+ clients, identifying critical vulnerabilities and providing detailed remediation reports.",
+        "Developed secure web applications and implemented security best practices, resulting in 100% client satisfaction and zero security incidents post-deployment.",
+        "Specialized in digital forensics investigations, malware analysis, and incident response, helping organizations recover from security breaches and strengthen their defenses.",
+        "Built automated security scanning tools using Python and Bash, reducing manual testing time by 60% while improving accuracy of vulnerability detection."
+      ],
+      tools: ["Python", "Burp Suite", "Nmap", "Wireshark", "Metasploit", "React.js", "Node.js", "Linux", "Bash", "MySQL"]
+    },
+    {
+      period: "June 2024 - July 2024",
+      duration: "2 months",
+      title: "Linux System Administration Training",
+      company: "Red Hat",
+      location: "Remote",
+      type: "Remote",
+      companyLogo: (
+        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="#EE0000">
+          <path d="M18.5 9.5c0-1.1-.9-2-2-2h-1c-.6 0-1-.4-1-1s.4-1 1-1h1c1.1 0 2-.9 2-2s-.9-2-2-2h-1c-1.7 0-3 1.3-3 3 0 .8.3 1.5.8 2-.5.5-.8 1.2-.8 2 0 1.7 1.3 3 3 3h1c1.1 0 2-.9 2-2zm-6-6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2s2-.9 2-2v-10c0-1.1-.9-2-2-2z"/>
+        </svg>
+      ),
+      achievements: [
+        "Gained practical experience in Linux system administration by configuring and managing servers, focusing on system optimization and security.",
+        "Automated server management tasks using Bash scripting, reducing manual efforts and improving system efficiency.",
+        "Assisted in configuring firewalls and managing network services to maintain secure communication across systems."
+      ],
+      tools: ["Linux", "Red Hat Enterprise Linux", "Bash Scripting", "Apache", "MySQL", "SSH", "Firewall Configuration"],
+      isLast: true
+    }
+  ];
+
+  return (
+    <section id="experience" className="py-20 bg-slate-900 dark:bg-slate-800">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            Work <span className="text-teal-400">Experience</span>
+          </h2>
+          <div className="w-24 h-1 bg-teal-500 mx-auto mb-6"></div>
+          <p className="max-w-3xl mx-auto text-slate-300 text-lg">
+            My professional journey and hands-on experience in the technology industry.
+          </p>
+        </div>
+
+        {/* Professional Experience Details - Always Expanded */}
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-slate-800 dark:bg-slate-700 p-4 sm:p-6 rounded-lg mb-8 border border-slate-700 dark:border-slate-600">
+            <div className="flex items-center">
+              <Building2 className="h-6 w-6 text-teal-400 mr-3" />
+              <h3 className="text-xl font-bold text-white">Professional Experience Details</h3>
+            </div>
+          </div>
+
+          {/* Timeline */}
+          <div className="relative">
+            {experiences.map((exp, index) => (
+              <ExperienceItem
+                key={index}
+                {...exp}
+                isLast={exp.isLast || index === experiences.length - 1}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default Hero;
+export default Experience;
