@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Menu as MenuIcon, X, Github, Linkedin, Mail, Code, Users, Briefcase, Home, User, Award, Briefcase as BriefcaseIcon, FolderOpen, GraduationCap, MessageCircle, ChevronDown, Shield } from 'lucide-react';
+import { Menu as MenuIcon, X, Github, Linkedin, Mail, Code, Users, Briefcase, Home, User, Award, Briefcase as BriefcaseIcon, FolderOpen, GraduationCap, MessageCircle, ChevronDown, Shield, Download, Calendar } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -140,11 +140,11 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header 
-        className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg py-2' : 'bg-transparent py-4'
-        }`}
-      >
+      <header className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+        scrolled 
+          ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg py-2' 
+          : 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm py-4'
+      }`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <button 
@@ -162,8 +162,8 @@ const Header: React.FC = () => {
                   onClick={() => handleNavClick(navLink.link, navLink.route)}
                   className={`px-3 py-2 text-sm transition-colors rounded-md ${
                     (activeSection === navLink.link.replace('#', '') && location.pathname === '/') || location.pathname === navLink.route
-                      ? 'text-teal-600 dark:text-teal-400 font-medium bg-teal-50 dark:bg-teal-900/30'
-                      : 'text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                      ? 'text-teal-600 dark:text-teal-400 font-medium bg-teal-50 dark:bg-teal-900/30 border-b-2 border-teal-600'
+                      : 'text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:border-b-2 hover:border-teal-300'
                   }`}
                 >
                   {navLink.name}
@@ -305,6 +305,34 @@ const Header: React.FC = () => {
               
               {/* Mobile Menu Footer */}
               <div className="border-t border-slate-200 dark:border-slate-700 p-6">
+                {/* CTA Buttons */}
+                <div className="mb-6 space-y-3">
+                  <a 
+                    href="#contact" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      const element = document.getElementById('contact');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
+                    className="w-full flex items-center justify-center px-4 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition-colors"
+                  >
+                    <MessageCircle className="h-4 w-4 mr-2" />
+                    Hire Me
+                  </a>
+                  <a 
+                    href="https://drive.google.com/file/d/19lJoyBZQaV3dGkbjDskPyDy4GvjsapZM/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center px-4 py-3 bg-slate-800 dark:bg-white text-white dark:text-slate-800 rounded-lg font-semibold hover:bg-slate-900 dark:hover:bg-slate-100 transition-colors"
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download Resume
+                  </a>
+                </div>
+                
                 <h4 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
                   Connect With Me
                 </h4>
