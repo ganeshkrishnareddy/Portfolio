@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, CheckCircle, Clock, Target, Download, ChevronDown, ChevronUp, Award, Code, Shield, Globe, TrendingUp } from 'lucide-react';
+import { Calendar, CheckCircle, Clock, Target, Download, ChevronDown, ChevronUp, Award, Code, Shield, Globe, TrendingUp, ExternalLink, GraduationCap } from 'lucide-react';
 
 interface PhaseProps {
   title: string;
@@ -7,6 +7,14 @@ interface PhaseProps {
   description: string;
   skills: string[];
   tools: string[];
+  certifications?: Array<{
+    name: string;
+    issuer: string;
+    date: string;
+    id: string;
+    link?: string;
+    status: 'completed' | 'ongoing' | 'planned';
+  }>;
   icon: React.ReactNode;
   color: string;
   isExpanded: boolean;
@@ -19,6 +27,7 @@ const PhaseCard: React.FC<PhaseProps> = ({
   description,
   skills,
   tools,
+  certifications,
   icon,
   color,
   isExpanded,
@@ -48,6 +57,15 @@ const PhaseCard: React.FC<PhaseProps> = ({
       case 'ongoing': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400';
       case 'planned': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400';
       case 'future': return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400';
+    }
+  };
+
+  const getCertStatusIcon = (certStatus: string) => {
+    switch (certStatus) {
+      case 'completed': return '✅';
+      case 'ongoing': return '⏳';
+      case 'planned': return '🔒';
+      default: return '✅';
     }
   };
 
@@ -82,7 +100,7 @@ const PhaseCard: React.FC<PhaseProps> = ({
         <div className="px-6 pb-6 border-t border-slate-200 dark:border-slate-700 pt-4">
           <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">{description}</p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div>
               <h4 className="font-semibold text-slate-800 dark:text-white mb-2 flex items-center">
                 🛠 Skills Acquired
@@ -110,6 +128,43 @@ const PhaseCard: React.FC<PhaseProps> = ({
               </div>
             </div>
           </div>
+
+          {/* Certifications Section */}
+          {certifications && certifications.length > 0 && (
+            <div>
+              <h4 className="font-semibold text-slate-800 dark:text-white mb-3 flex items-center">
+                🏆 Related Certifications
+              </h4>
+              <div className="space-y-3">
+                {certifications.map((cert, index) => (
+                  <div key={index} className="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-sm">{getCertStatusIcon(cert.status)}</span>
+                          <h5 className="font-medium text-slate-800 dark:text-white text-sm">{cert.name}</h5>
+                        </div>
+                        <p className="text-xs text-slate-600 dark:text-slate-400 mb-1">{cert.issuer}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-500">
+                          {cert.date} • ID: {cert.id}
+                        </p>
+                      </div>
+                      {cert.link && (
+                        <a
+                          href={cert.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 ml-2"
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -134,6 +189,32 @@ const CareerRoadmap: React.FC = () => {
       description: "Built strong foundation in cybersecurity, networking, and web development fundamentals through certifications and hands-on projects.",
       skills: ["Networking Fundamentals", "Linux System Administration", "Web Development Basics", "Security Principles", "Version Control"],
       tools: ["Nmap", "Wireshark", "Git", "Visual Studio Code", "Linux CLI", "HTML/CSS/JS"],
+      certifications: [
+        {
+          name: "CS50's Understanding Technology",
+          issuer: "Harvard University",
+          date: "November 2023",
+          id: "1f305a31-6d98-4043-ac2b-35c76bc38a0c",
+          link: "https://cs50.harvard.edu/certificates/1f305a31-6d98-4043-ac2b-35c76bc38a0c",
+          status: 'completed' as const
+        },
+        {
+          name: "CompTIA Network+ CE",
+          issuer: "CompTIA",
+          date: "August 2024",
+          id: "83JGFW2TN2RQQCKG",
+          link: "https://www.certmetrics.com/comptia/public/verification.aspx?code=9LGHCR89B7LLFLS1",
+          status: 'completed' as const
+        },
+        {
+          name: "Summer Training on Linux System Administration",
+          issuer: "Lovely Professional University",
+          date: "August 2024",
+          id: "Registration No: 12212186",
+          link: "https://drive.google.com/file/d/1ZfYZAIalNs9-qdog4RvJONdAzibGeSUb/view?usp=sharing",
+          status: 'completed' as const
+        }
+      ],
       icon: <Shield className="h-6 w-6 text-green-600" />,
       color: "border-green-500"
     },
@@ -143,36 +224,92 @@ const CareerRoadmap: React.FC = () => {
       description: "Advancing cybersecurity expertise with specialized certifications and practical experience in threat detection and digital forensics.",
       skills: ["SOC Analysis", "Threat Detection", "Digital Forensics", "Incident Response", "Log Analysis"],
       tools: ["YARA", "Autopsy", "Splunk", "FTK Imager", "Volatility", "SIEM Tools"],
+      certifications: [
+        {
+          name: "CompTIA Security+ CE",
+          issuer: "CompTIA",
+          date: "January 2025",
+          id: "QDR90YBSZJVQQKWS",
+          link: "https://www.certmetrics.com/comptia/public/verification.aspx?code=YLP7LZ44L706VHCZ",
+          status: 'completed' as const
+        },
+        {
+          name: "QuickHeal Certified Digital Forensic Investigator",
+          issuer: "Quick Heal Academy",
+          date: "January 2025",
+          id: "LPU-0000-780553",
+          link: "https://lms.quickhealacademy.com/certificates/verification/exam?id=LPU-0000-780553",
+          status: 'completed' as const
+        },
+        {
+          name: "Microsoft Power Platform Fundamentals (PL-900)",
+          issuer: "Coursera",
+          date: "April 2025",
+          id: "SHY8XOE77RB5",
+          link: "https://coursera.org/verify/specialization/SHY8XOE77RB5",
+          status: 'completed' as const
+        },
+        {
+          name: "Tata Group - Cybersecurity Analyst Job Simulation",
+          issuer: "Forage",
+          date: "June 2025",
+          id: "X5R5dKq9DkjnwSQW4",
+          link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ifobHAoMjQs9s6bKS/gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_SLa4iANMguG7m2Zin_1749878938454_completion_certificate.pdf",
+          status: 'completed' as const
+        },
+        {
+          name: "Deloitte Australia - Cyber Job Simulation",
+          issuer: "Forage",
+          date: "June 2025",
+          id: "3o683ubu49Fa5G3wB",
+          link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/E9pA6qsdbeyEkp3ti_9PBTqmSxAf6zZTseP_SLa4iANMguG7m2Zin_1748834447065_completion_certificate.pdf",
+          status: 'completed' as const
+        }
+      ],
       icon: <Target className="h-6 w-6 text-yellow-600" />,
       color: "border-yellow-500"
     },
     {
-      title: "PHASE 3: Offensive Security",
-      status: 'planned' as const,
-      description: "Developing penetration testing and ethical hacking skills to identify and exploit vulnerabilities in secure environments.",
-      skills: ["Web App Pentesting", "Privilege Escalation", "Exploit Development", "Social Engineering", "Red Team Operations"],
-      tools: ["Burp Suite", "Metasploit", "Hydra", "SQLmap", "Gobuster", "Cobalt Strike"],
-      icon: <Code className="h-6 w-6 text-blue-600" />,
-      color: "border-blue-500"
-    },
-    {
-      title: "PHASE 4: Full-Stack Dev Mastery",
+      title: "PHASE 3: Full-Stack Dev Mastery",
       status: 'ongoing' as const,
       description: "Mastering modern full-stack development with focus on secure, scalable applications and DevOps practices.",
       skills: ["React/Redux", "Node.js/Express", "Database Design", "API Development", "DevOps/CI-CD", "Cloud Architecture"],
       tools: ["React", "Node.js", "MongoDB", "Docker", "AWS", "GitHub Actions"],
       icon: <Globe className="h-6 w-6 text-teal-600" />,
       color: "border-teal-500"
+    },
+    {
+      title: "PHASE 4: Offensive Security",
+      status: 'planned' as const,
+      description: "Developing penetration testing and ethical hacking skills to identify and exploit vulnerabilities in secure environments.",
+      skills: ["Web App Pentesting", "Privilege Escalation", "Exploit Development", "Social Engineering", "Red Team Operations"],
+      tools: ["Burp Suite", "Metasploit", "Hydra", "SQLmap", "Gobuster", "Cobalt Strike"],
+      certifications: [
+        {
+          name: "CompTIA CySA+",
+          issuer: "CompTIA",
+          date: "Target: Sept 2025",
+          id: "Planned",
+          status: 'ongoing' as const
+        },
+        {
+          name: "CompTIA PenTest+",
+          issuer: "CompTIA",
+          date: "Target: Dec 2025",
+          id: "Planned",
+          status: 'planned' as const
+        },
+        {
+          name: "OSCP",
+          issuer: "Offensive Security",
+          date: "Goal: 2026",
+          id: "Future",
+          status: 'planned' as const
+        }
+      ],
+      icon: <Code className="h-6 w-6 text-blue-600" />,
+      color: "border-blue-500"
     }
-  ];
-
-  const certifications = [
-    { name: "CompTIA Security+", status: "✅ Done", target: "–" },
-    { name: "CompTIA Network+", status: "✅ Done", target: "–" },
-    { name: "QuickHeal Digital Forensics", status: "✅ Done", target: "–" },
-    { name: "CompTIA CySA+", status: "⏳ Ongoing", target: "Sept 2025" },
-    { name: "CompTIA PenTest+", status: "🔒 Planned", target: "Dec 2025" },
-    { name: "OSCP", status: "🎯 Future", target: "2026" }
   ];
 
   const careerGoals = [
@@ -182,6 +319,13 @@ const CareerRoadmap: React.FC = () => {
     "Publish GitHub Security Automation Tools – Coming Soon",
     "Get ₹40+ LPA role via blended Tech + Security skills"
   ];
+
+  const handleEducationClick = () => {
+    const element = document.getElementById('education');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <section className="py-20 bg-slate-900 dark:bg-slate-800">
@@ -209,34 +353,6 @@ const CareerRoadmap: React.FC = () => {
           ))}
         </div>
 
-        {/* Certification Timeline */}
-        <div className="bg-white dark:bg-slate-800 rounded-xl p-8 mb-16">
-          <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center">
-            <Award className="h-6 w-6 text-teal-500 mr-3" />
-            📊 Certification Timeline
-          </h3>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-700">
-                  <th className="text-left py-3 text-slate-800 dark:text-white">Certification</th>
-                  <th className="text-left py-3 text-slate-800 dark:text-white">Status</th>
-                  <th className="text-left py-3 text-slate-800 dark:text-white">Target</th>
-                </tr>
-              </thead>
-              <tbody>
-                {certifications.map((cert, index) => (
-                  <tr key={index} className="border-b border-slate-100 dark:border-slate-700">
-                    <td className="py-3 text-slate-600 dark:text-slate-300">{cert.name}</td>
-                    <td className="py-3 text-slate-600 dark:text-slate-300">{cert.status}</td>
-                    <td className="py-3 text-slate-600 dark:text-slate-300">{cert.target}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
         {/* Career Goals */}
         <div className="bg-gradient-to-r from-teal-600 to-blue-600 rounded-xl p-8 text-white mb-8">
           <h3 className="text-2xl font-bold mb-6 flex items-center">
@@ -255,18 +371,24 @@ const CareerRoadmap: React.FC = () => {
 
         {/* Download CTA */}
         <div className="text-center">
-          <a
-            href="https://medium.com/@pganeshkrishnareddy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-3 bg-white text-slate-800 rounded-lg font-semibold hover:bg-slate-100 transition-colors shadow-lg mr-4"
-          >
-            <Download className="h-5 w-5 mr-2" />
-            Read My Medium Articles
-          </a>
-          <button className="inline-flex items-center px-8 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition-colors shadow-lg">
-            📄 Download Full Roadmap (PDF)
-          </button>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a
+              href="https://medium.com/@pganeshkrishnareddy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-8 py-3 bg-white text-slate-800 rounded-lg font-semibold hover:bg-slate-100 transition-colors shadow-lg"
+            >
+              <Download className="h-5 w-5 mr-2" />
+              Read My Medium Articles
+            </a>
+            <button 
+              onClick={handleEducationClick}
+              className="inline-flex items-center px-8 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition-colors shadow-lg"
+            >
+              <GraduationCap className="h-5 w-5 mr-2" />
+              View More in Education
+            </button>
+          </div>
         </div>
       </div>
     </section>
