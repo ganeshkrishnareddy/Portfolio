@@ -80,21 +80,9 @@ const services = [
     path: "/services/cybersecurity"
   },
   {
-    title: "About",
-    description: "Learn more about my journey, expertise, and passion for cybersecurity and technology. Discover my background and professional achievements.",
-    icon: <Smartphone className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
-    features: [
-      { text: "Professional Background", icon: <Users className="h-4 w-4 text-purple-500" /> },
-      { text: "Technical Expertise", icon: <Code className="h-4 w-4 text-purple-500" /> },
-      { text: "Certifications & Achievements", icon: <Award className="h-4 w-4 text-purple-500" /> },
-      { text: "Career Journey", icon: <Briefcase className="h-4 w-4 text-purple-500" /> }
-    ],
-    path: "/about"
-  },
-  {
     title: "App Development",
     description: "Custom mobile applications for Android and iOS with modern frameworks, secure architecture, and seamless user experience.",
-    icon: <Code className="h-8 w-8 text-green-600 dark:text-green-400" />,
+    icon: <Smartphone className="h-8 w-8 text-green-600 dark:text-green-400" />,
     features: [
       { text: "Cross-Platform Development", icon: <Smartphone className="h-4 w-4 text-green-500" /> },
       { text: "Native iOS & Android Apps", icon: <Code className="h-4 w-4 text-green-500" /> },
@@ -130,23 +118,22 @@ const services = [
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-            🔐 Cybersecurity <span className="text-red-600 dark:text-red-400">Services</span>
+            My <span className="text-teal-600 dark:text-teal-400">Services</span>
           </h2>
           <div className="w-24 h-1 bg-teal-600 mx-auto mb-6"></div>
           <p className="max-w-3xl mx-auto text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
-            Safeguard your systems with cutting-edge security solutions. As a certified cybersecurity professional, 
-            I provide comprehensive security services to protect your digital assets and ensure business continuity.
+            Comprehensive cybersecurity and full-stack development services to protect and build your digital infrastructure.
           </p>
         </div>
 
         {/* Achievement Banner */}
-        <div className="bg-gradient-to-r from-red-600 to-orange-600 p-6 rounded-xl text-white text-center mb-16">
+        <div className="bg-gradient-to-r from-teal-600 to-blue-600 p-6 rounded-xl text-white text-center mb-16">
           <div className="flex items-center justify-center mb-3">
             <Award className="h-6 w-6 mr-2" />
             <span className="font-semibold">Trusted by 75+ Clients Worldwide</span>
           </div>
           <p className="text-sm opacity-90">
-            Delivering exceptional security solutions with proven results and zero security incidents post-engagement
+            Delivering exceptional cybersecurity and development solutions with proven results
           </p>
         </div>
 

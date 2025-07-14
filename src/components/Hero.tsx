@@ -25,17 +25,17 @@ const Hero: React.FC = () => {
             <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-4 sm:p-6 rounded-xl mb-6 border border-red-100 dark:border-red-800 animate-slideInLeft hover:shadow-lg transition-shadow" style={{animationDelay: '0.4s'}}>
               <div className="flex items-center mb-3">
                 <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-red-600 dark:text-red-400 mr-2" />
-                <h3 className="text-base sm:text-lg font-bold text-slate-800 dark:text-white">Cybersecurity & Development Expert</h3>
+                <h3 className="text-base sm:text-lg font-bold text-slate-800 dark:text-white">Cybersecurity & Full-Stack Development Expert</h3>
               </div>
               <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-3">
-                As a <span className="font-semibold text-red-600 dark:text-red-400">freelance cybersecurity analyst</span> and 
+                As a <span className="font-semibold text-red-600 dark:text-red-400">cybersecurity analyst</span> and 
                 <span className="font-semibold text-red-600 dark:text-red-400"> full-stack developer</span>, I help organizations secure their digital assets 
                 while building robust web solutions. With <span className="font-medium">CompTIA Security+ certification</span> and hands-on experience in 
                 <span className="font-medium"> penetration testing, vulnerability assessment, and secure development</span>, I deliver comprehensive security solutions.
               </p>
               <div className="flex items-center text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
                 <Shield className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
-                <span>Serving 75+ clients worldwide with proven security expertise</span>
+                <span>Proven expertise in both cybersecurity and full-stack development</span>
               </div>
             </div>
             

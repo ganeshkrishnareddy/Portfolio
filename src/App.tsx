@@ -9,9 +9,12 @@ import Projects from './components/Projects';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CareerRoadmap from './components/CareerRoadmap';
 import Services from './components/Services';
 import WebDevelopment from './components/ServicePages/WebDevelopment';
 import CybersecurityServices from './components/ServicePages/CybersecurityServices';
+import AppDevelopment from './components/ServicePages/AppDevelopment';
+import MarketingSEO from './components/ServicePages/MarketingSEO';
 import AboutPage from './components/Pages/AboutPage';
 import SkillsPage from './components/Pages/SkillsPage';
 import ExperiencePage from './components/Pages/ExperiencePage';
@@ -60,12 +63,8 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Experience />
+        <CareerRoadmap />
         <Services />
-        <Projects />
-        <Education />
         <Contact />
       </main>
       <Footer />
@@ -93,6 +92,8 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/services/web-development" element={<WebDevelopment />} />
         <Route path="/services/cybersecurity" element={<CybersecurityServices />} />
+        <Route path="/services/app-development" element={<AppDevelopment />} />
+        <Route path="/services/marketing-seo" element={<MarketingSEO />} />
       </Routes>
     </div>
   );
