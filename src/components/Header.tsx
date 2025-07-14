@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Menu as MenuIcon, X, Github, Linkedin, Mail, Code, Users, Briefcase, Home, User, Award, Briefcase as BriefcaseIcon, FolderOpen, GraduationCap, MessageCircle, ChevronDown, Shield, Download, Calendar } from 'lucide-react';
+import { Menu as MenuIcon, X, Github, Linkedin, Mail, Code, Users, Briefcase, Home, User, Award, Briefcase as BriefcaseIcon, FolderOpen, GraduationCap, MessageCircle, ChevronDown, Shield, Download, Calendar, Smartphone, TrendingUp } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
