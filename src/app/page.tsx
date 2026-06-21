@@ -184,7 +184,7 @@ export default function Home() {
                   <img 
                     src="/profile.jpeg" 
                     alt="P Ganesh Krishna Reddy" 
-                    className="w-full h-full object-cover filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-500"
                   />
                   
                   {/* Cyber Scanning Scanline overlay */}

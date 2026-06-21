@@ -53,7 +53,7 @@ export function AboutContent() {
                             <img 
                                 src="/profile.jpeg" 
                                 alt="P Ganesh Krishna Reddy" 
-                                className="w-full h-full object-cover filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-500"
+                                className="w-full h-full object-cover object-top filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-500"
                             />
                             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/20 to-transparent w-full h-[30%] -top-[30%] animate-scan pointer-events-none z-20" />
                         </div>
