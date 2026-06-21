@@ -7,6 +7,15 @@ import { ProjectCard3D } from '@/components/3d/ProjectCard3D';
 export function ProjectsContent() {
     const projects = [
         {
+            title: "CRAG – Cognitive Resilience and Automated Governance",
+            description: "Built an AI-powered third-party vendor risk monitoring prototype with real-time risk scoring (0–100) and automated alerts.",
+            problem: "Organizations struggle to monitor vendor risks in real-time, often relying on manual periodic surveys that fail to capture immediate threat posture changes.",
+            methodology: "Implemented RBAC for Admin/Vendor views, APScheduler-driven dynamic scoring engine, and compliance audit log. Designed a live glassmorphism dashboard with Chart.js visualizations.",
+            outcome: "Delivered a dynamic risk score monitoring dashboard with continuous vendor risk visibility, backed by FastAPI, SQLAlchemy, and Firebase.",
+            tags: ["Full-Stack", "AI Governance", "FastAPI", "SQLAlchemy", "Firebase"],
+            githubUrl: "https://github.com/ganeshkrishnareddy/CRAG"
+        },
+        {
             title: "SentinelMind – Autonomous Threat Guardian for Agentic AI Systems",
             description: "Zero-trust security layer and real-time monitoring gateway built for multi-agent AI ecosystems. Developed for the Microsoft Build AI Hackathon.",
             problem: "As AI agents transition to taking autonomous, real-world actions, they become vulnerable to adversarial command hijacking, privilege escalation, and data exfiltration from compromised internal components.",
@@ -27,23 +36,21 @@ export function ProjectsContent() {
         },
         {
             title: "IDS Defense – SOC-Grade ML Intrusion Detection",
-            description: "Built an enterprise-grade IDS dashboard featuring real-time ML-powered anomaly detection, actionable SOC KPIs, and deep-inspection threat telemetry.",
-            problem: "Network security teams lack real-time visibility into complex attack vectors, often overwhelmed by raw logs without actionable insights or ML context.",
-            methodology: "Implemented a hybrid detection engine using XGBoost for anomaly classification. Developed a high-frequency WebSocket streaming dashboard with Standalone Demo Mode fallback.",
-            outcome: "Delivered a production-ready SOC interface with sub-10ms inference latency, providing instant forensic visibility into DDoS, SQLi, and Brute Force attacks.",
-            tags: ["Full-Stack", "ML/AI", "Backend", "Cybersecurity"],
-            githubUrl: "https://github.com/ganeshkrishnareddy/IDS-Defense",
-            liveUrl: "https://ids-defense.netlify.app"
+            description: "Addressed lack of real-time visibility into network attacks faced by SOC teams handling high-volume logs.",
+            problem: "Network security teams lack real-time visibility into complex attack vectors, overwhelmed by raw logs without actionable insights or ML context.",
+            methodology: "Developed a real-time intrusion detection system with ML-based anomaly detection and live SOC dashboards. Implemented XGBoost models with WebSocket streaming to detect DDoS, SQL injection, and brute-force attacks.",
+            outcome: "Integrated high-volume network log ingestion pipeline to provide continuous visibility for SOC analysts, delivering sub-10ms inference latency.",
+            tags: ["Full-Stack", "ML/AI", "XGBoost", "FastAPI", "Next.js"],
+            githubUrl: "https://github.com/ganeshkrishnareddy/IDS-Defense"
         },
         {
             title: "MailShield – AI-Powered Phishing Defense",
-            description: "Developed an automated phishing detection system utilizing heuristic analysis and real-time URL sandboxing to protect enterprise communication channels.",
+            description: "Built an automated phishing detection system for email and URL analysis targeting enterprise spam filter gaps.",
             problem: "High-velocity phishing attacks bypassing traditional spam filters, leading to credential theft and malware delivery within organizations.",
-            methodology: "Integrated AI-driven heuristic analysis for URL classification. Implemented a real-time sandboxing environment for threat validation and automated remediation.",
-            outcome: "Reduced phishing exposure by 85% through proactive URL blocking and delivered an automated remediation landing page for end-user education.",
-            tags: ["Full-Stack", "AppSec", "Automation", "Python"],
-            githubUrl: "https://github.com/ganeshkrishnareddy/mailsheild",
-            liveUrl: "https://mailsheild.netlify.app"
+            methodology: "Applied heuristic-based AI analysis with sandbox validation for real-time threat classification and alerting. Engineered URL reputation checks and header anomaly detection.",
+            outcome: "Reduced phishing exposure by proactive URL blocking and sandbox validation, protecting enterprise communication channels.",
+            tags: ["Python", "AI/ML Heuristics", "API Security", "Automation"],
+            githubUrl: "https://github.com/ganeshkrishnareddy/mailsheild"
         },
         {
             title: "MealRoute – Secure Logistics Platform",

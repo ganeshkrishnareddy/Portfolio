@@ -5,12 +5,13 @@ import { Briefcase, GraduationCap, Award, Shield, Terminal as TerminalIcon } fro
 import { SkillBadge } from '@/components/SkillBadge';
 
 export function AboutContent() {
-    const skills = {
-        "Security & Governance": ["Risk Assessment", "Data Classification", "Data Exposure Analysis", "Compliance"],
-        "Security Tools": ["Burp Suite", "OWASP ZAP", "Nmap", "Wireshark", "Metasploit"],
-        "Domains": ["Web App Security", "Threat Detection", "Linux Hardening", "Network Security"],
-        "Scripting & Auto": ["Python", "Bash", "Git", "GitHub Actions"],
-    };
+        const skills = {
+            "Security Domains": ["SOC Operations", "Penetration Testing", "Application Security", "Network Security", "Threat Detection"],
+            "Security Tools": ["Burp Suite", "Wireshark", "Wazuh (SIEM/EDR)", "Nmap", "Metasploit"],
+            "Detection & Defense": ["IDS/IPS", "Phishing Detection", "Log Analysis", "Anomaly Detection"],
+            "Programming & Frameworks": ["Python", "FastAPI", "Next.js", "JavaScript", "Bash", "HTML", "CSS"],
+            "Concepts": ["OWASP ASVS", "SSL Pinning", "RBAC", "API Security", "CVE Research", "Secure Storage"]
+        };
 
     return (
         <div className="container max-w-4xl mx-auto px-4 py-12 space-y-20">
@@ -104,41 +105,24 @@ export function AboutContent() {
                         <div className="absolute -left-[41px] top-1 h-5 w-5 rounded-full border-4 border-background bg-primary" />
                         <div className="space-y-2">
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                                <h3 className="text-xl font-bold text-text-primary">Freelance Web Architect & Technical Lead</h3>
-                                <span className="text-sm font-mono text-text-muted">Feb 2020 - Present</span>
+                                <h3 className="text-xl font-bold text-text-primary">Technical Lead (Cyber Security)</h3>
+                                <span className="text-sm font-mono text-text-muted">Apr 2026 - Present</span>
                             </div>
-                            <div className="text-secondary font-medium">ProgVision <span className="text-text-muted font-normal">• Worldwide / Remote</span></div>
+                            <div className="text-secondary font-medium">Zentoja Technologies Private Limited <span className="text-text-muted font-normal">• Remote</span></div>
                             <ul className="list-disc list-inside text-text-muted space-y-2 pt-2">
-                                <li>Started as a freelance designer and evolved into a full-cycle web architect.</li>
-                                <li>Delivered 10+ high-performance, secure websites for global clients across various industries.</li>
-                                <li>Mastered the complete lifecycle: from initial design to secure production deployment and scaling.</li>
-                                <li>Integrated security-first principles into every freelance build from the ground up.</li>
+                                <li>Established and implemented cybersecurity policies and security standards to strengthen the organization’s security posture.</li>
+                                <li>Led security initiatives including vulnerability assessment, risk identification, remediation tracking, and security compliance.</li>
+                                <li>Developed security awareness resources, best-practice documentation, and security guidelines for internal teams.</li>
+                                <li>Performed threat analysis, log review, and incident monitoring to proactively detect and respond to security events.</li>
                             </ul>
                             <div className="flex flex-wrap gap-2 pt-2">
-                                <SkillBadge name="React" level="Intermediate" className="border-surface" />
-                                <SkillBadge name="Node.js" level="Intermediate" className="border-surface" />
-                                <SkillBadge name="Firebase" level="Intermediate" className="border-surface" />
-                                <SkillBadge name="Secure Auth" level="Intermediate" className="border-surface" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="relative">
-                        <div className="absolute -left-[41px] top-1 h-5 w-5 rounded-full border-4 border-background bg-surface-hover" />
-                        <div className="space-y-2">
-                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                                <h3 className="text-xl font-bold text-text-primary">Linux System Administration Trainee</h3>
-                                <span className="text-sm font-mono text-text-muted">Jun 2024 - Jul 2024</span>
-                            </div>
-                            <div className="text-secondary font-medium">Red Hat <span className="text-text-muted font-normal">• Remote</span></div>
-                            <ul className="list-disc list-inside text-text-muted space-y-2 pt-2">
-                                <li>Hardened systems through SSH security, privilege management, and firewall rule enforcement.</li>
-                                <li>Performed system security assessments using audit tools and manual validation techniques.</li>
-                                <li>Supported remediation efforts by applying configuration fixes and validating post-change security posture.</li>
-                            </ul>
-                            <div className="flex gap-2 pt-2">
-                                <SkillBadge name="Linux" level="Intermediate" className="border-surface" />
-                                <SkillBadge name="Bash" level="Basic" className="border-surface" />
-                                <SkillBadge name="Ansible" level="Basic" className="border-surface" />
+                                <SkillBadge name="Kali Linux" level="Applied" className="border-surface" />
+                                <SkillBadge name="Burp Suite" level="Applied" className="border-surface" />
+                                <SkillBadge name="Wireshark" level="Applied" className="border-surface" />
+                                <SkillBadge name="Metasploit" level="Applied" className="border-surface" />
+                                <SkillBadge name="Wazuh" level="Applied" className="border-surface" />
+                                <SkillBadge name="Linux" level="Applied" className="border-surface" />
+                                <SkillBadge name="Cloud Security" level="Applied" className="border-surface" />
                             </div>
                         </div>
                     </div>
@@ -179,12 +163,19 @@ export function AboutContent() {
                             <div className="text-text-muted">(Cyber Security)</div>
                             <div className="text-secondary">Lovely Professional University</div>
                             <div className="text-sm text-text-muted font-mono mt-1">2022 - 2026</div>
-                            <div className="text-sm text-text-muted mt-2">CGPA: 7.35 (Till 6th Semester)</div>
+                            <div className="text-sm text-text-muted mt-2">CGPA: 7.51</div>
                         </div>
                         <div>
                             <h3 className="text-lg font-bold text-text-primary">Intermediate (MPC)</h3>
                             <div className="text-secondary">Narayana Junior College</div>
                             <div className="text-sm text-text-muted font-mono mt-1">2020 - 2022</div>
+                            <div className="text-sm text-text-muted mt-2">Percentage: 79.4%</div>
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-text-primary">Secondary Education</h3>
+                            <div className="text-secondary">Narayana E.M High School</div>
+                            <div className="text-sm text-text-muted font-mono mt-1">2019 - 2020</div>
+                            <div className="text-sm text-text-muted mt-2">Percentage: 98%</div>
                         </div>
                     </div>
                 </section>
@@ -204,35 +195,49 @@ export function AboutContent() {
                         </li>
                         <li className="flex items-start justify-between group">
                             <div>
-                                <h3 className="font-bold text-text-primary group-hover:text-primary transition-colors">CompTIA CySA+</h3>
+                                <h3 className="font-bold text-text-primary group-hover:text-primary transition-colors">CompTIA Network+, Security+, CySA+, PenTest+</h3>
                                 <div className="text-sm text-text-muted">CompTIA</div>
                             </div>
                             <span className="text-xs font-mono text-text-muted border border-surface px-2 py-1 rounded">Aug 2025</span>
                         </li>
                         <li className="flex items-start justify-between group">
                             <div>
-                                <h3 className="font-bold text-text-primary group-hover:text-primary transition-colors">CompTIA PenTest+</h3>
-                                <div className="text-sm text-text-muted">CompTIA</div>
-                            </div>
-                            <span className="text-xs font-mono text-text-muted border border-surface px-2 py-1 rounded">Aug 2025</span>
-                        </li>
-                        <li className="flex items-start justify-between group">
-                            <div>
-                                <h3 className="font-bold text-text-primary group-hover:text-primary transition-colors">CompTIA Security+</h3>
-                                <div className="text-sm text-text-muted">CompTIA</div>
+                                <h3 className="font-bold text-text-primary group-hover:text-primary transition-colors">QuickHeal Certified Digital Forensic Investigator</h3>
+                                <div className="text-sm text-text-muted">QuickHeal</div>
                             </div>
                             <span className="text-xs font-mono text-text-muted border border-surface px-2 py-1 rounded">Jan 2025</span>
-                        </li>
-                        <li className="flex items-start justify-between group">
-                            <div>
-                                <h3 className="font-bold text-text-primary group-hover:text-primary transition-colors">CompTIA Network+</h3>
-                                <div className="text-sm text-text-muted">CompTIA</div>
-                            </div>
-                            <span className="text-xs font-mono text-text-muted border border-surface px-2 py-1 rounded">Aug 2024</span>
                         </li>
                     </ul>
                 </section>
             </div>
+
+            {/* Achievements Section */}
+            <section className="space-y-8 pt-8 border-t border-surface">
+                <div className="flex items-center gap-2 pb-2">
+                    <Award className="w-6 h-6 text-primary" />
+                    <h2 className="text-2xl font-bold text-text-primary">Key Achievements</h2>
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                    <div className="bg-surface/30 p-6 rounded-lg border border-surface hover:border-surface-hover transition-colors space-y-2">
+                        <div className="text-lg font-bold text-primary">Reliance Foundation Scholarship</div>
+                        <p className="text-text-muted text-sm leading-relaxed">
+                            Awarded the prestigious scholarship worth <b>Rs. 2,00,000</b> for academic excellence in engineering.
+                        </p>
+                    </div>
+                    <div className="bg-surface/30 p-6 rounded-lg border border-surface hover:border-surface-hover transition-colors space-y-2">
+                        <div className="text-lg font-bold text-primary">Bug Bounty Programs</div>
+                        <p className="text-text-muted text-sm leading-relaxed">
+                            Participated in bug bounty programs, identifying and responsibly disclosing vulnerabilities in web applications.
+                        </p>
+                    </div>
+                    <div className="bg-surface/30 p-6 rounded-lg border border-surface hover:border-surface-hover transition-colors space-y-2">
+                        <div className="text-lg font-bold text-primary">Best Freelancer of 2024</div>
+                        <p className="text-text-muted text-sm leading-relaxed">
+                            Recognized as <b>Best Freelancer of 2024</b> by IPSE; completed CS50 certification by Harvard University.
+                        </p>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }

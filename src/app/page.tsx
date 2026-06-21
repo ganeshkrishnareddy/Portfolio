@@ -305,15 +305,14 @@ export default function Home() {
               githubUrl="https://github.com/ganeshkrishnareddy/Sentinel-Mind"
             />
             <ProjectCard
-              title="Sarathi AI – Agentic Customer Acquisition & Onboarding Concierge"
-              description="Intelligent customer onboarding portal and automated qualification system engineered for State Bank of India. Developed for the SBI Hackathon."
-              whyItMatters="Streamlines retail customer acquisition using a secure multi-agent orchestrator and real-time compliance guardrails."
-              problem="Traditional banking onboarding systems are slow and complex, often lacking conversational support, leading to high drop-off rates and insecure KYC validation."
-              methodology="Developed a Vite + React + TypeScript interface. Integrated Gemini LLM for product matching, qualification agents for suitability scoring, and a Compliance Agent for real-time conversation safety monitoring."
-              outcome="Successfully implemented dynamic e-KYC (Aadhaar & OTP simulation) and low-latency product matching, with interactive live log traces of agent orchestration."
-              tags={["Full-Stack", "AI Agents", "Vite + React", "Compliance Engine", "Secure Authentication"]}
-              githubUrl="https://github.com/ganeshkrishnareddy/SBIHackathonGFF2026"
-              liveUrl="https://sarathi-sbi.web.app"
+              title="CRAG – Cognitive Resilience and Automated Governance"
+              description="Built an AI-powered third-party vendor risk monitoring prototype with real-time risk scoring (0–100) and automated alerts."
+              whyItMatters="Provides continuous risk visibility and automated compliance auditing for third-party vendor ecosystems."
+              problem="Organizations struggle to monitor vendor risks in real-time, often relying on manual periodic surveys that fail to capture immediate threat posture changes."
+              methodology="Implemented RBAC for Admin/Vendor views, APScheduler-driven dynamic scoring engine, and compliance audit log. Designed a live glassmorphism dashboard with Chart.js visualizations."
+              outcome="Delivered a dynamic risk score monitoring dashboard with continuous vendor risk visibility, backed by FastAPI, SQLAlchemy, and Firebase."
+              tags={["Full-Stack", "AI Governance", "FastAPI", "SQLAlchemy", "Firebase"]}
+              githubUrl="https://github.com/ganeshkrishnareddy/CRAG"
             />
           </div>
 
