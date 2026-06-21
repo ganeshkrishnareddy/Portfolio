@@ -7,6 +7,25 @@ import { ProjectCard3D } from '@/components/3d/ProjectCard3D';
 export function ProjectsContent() {
     const projects = [
         {
+            title: "SentinelMind – Autonomous Threat Guardian for Agentic AI Systems",
+            description: "Zero-trust security layer and real-time monitoring gateway built for multi-agent AI ecosystems. Developed for the Microsoft Build AI Hackathon.",
+            problem: "As AI agents transition to taking autonomous, real-world actions, they become vulnerable to adversarial command hijacking, privilege escalation, and data exfiltration from compromised internal components.",
+            methodology: "Designed a zero-trust scoring engine with keyword analyzers and payload inspection. Built a highly responsive Next.js dashboard with Recharts telemetry visualizing threat vectors in real-time.",
+            outcome: "Achieved sub-12ms mitigation gateway latency with customizable threshold blocking (ALLOW / QUARANTINE / BLOCK) and immutable action audit logging.",
+            tags: ["AI/ML Security", "Next.js", "TypeScript", "Zero-Trust", "Threat Defense"],
+            githubUrl: "https://github.com/ganeshkrishnareddy/Sentinel-Mind"
+        },
+        {
+            title: "Sarathi AI – Agentic Customer Acquisition & Onboarding Concierge",
+            description: "Intelligent customer onboarding portal and automated qualification system engineered for State Bank of India. Developed for the SBI Hackathon.",
+            problem: "Traditional banking onboarding systems are slow and complex, often lacking conversational support, leading to high drop-off rates and insecure KYC validation.",
+            methodology: "Developed a Vite + React + TypeScript interface. Integrated Gemini LLM for product matching, qualification agents for suitability scoring, and a Compliance Agent for real-time conversation safety monitoring.",
+            outcome: "Successfully implemented dynamic e-KYC (Aadhaar & OTP simulation) and low-latency product matching, with interactive live log traces of agent orchestration.",
+            tags: ["Full-Stack", "AI Agents", "Vite + React", "Compliance Engine", "Secure Authentication"],
+            githubUrl: "https://github.com/ganeshkrishnareddy/SBIHackathonGFF2026",
+            liveUrl: "https://sarathi-sbi.web.app"
+        },
+        {
             title: "IDS Defense – SOC-Grade ML Intrusion Detection",
             description: "Built an enterprise-grade IDS dashboard featuring real-time ML-powered anomaly detection, actionable SOC KPIs, and deep-inspection threat telemetry.",
             problem: "Network security teams lack real-time visibility into complex attack vectors, often overwhelmed by raw logs without actionable insights or ML context.",

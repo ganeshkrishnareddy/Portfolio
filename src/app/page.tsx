@@ -64,12 +64,12 @@ export default function Home() {
         </div>
 
         <div className="container max-w-7xl mx-auto px-4 z-10 relative">
-          <div className="flex flex-col items-center text-center gap-12">
+          <div className="grid md:grid-cols-12 gap-12 items-center text-center md:text-left">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-6 max-w-3xl"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="md:col-span-7 space-y-6"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
                 <ShieldCheck className="w-4 h-4" />
@@ -86,11 +86,11 @@ export default function Home() {
                 Secure Software Engineer • Full-Stack Development • Application Security
               </p>
 
-              <p className="text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-text-muted max-w-2xl mx-auto md:mx-0 leading-relaxed">
                 Architecting resilient systems by combining deep full-stack engineering with a security-first defensive mindset.
               </p>
 
-              <div className="flex flex-wrap justify-center gap-4 pt-4">
+              <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
                 <Link href="/projects">
                   <Button size="lg" className="gap-2">
                     Explore Projects
@@ -124,7 +124,7 @@ export default function Home() {
                     initial={{ opacity: 0, scale: 0.95, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                    className="mt-8 p-4 rounded-xl bg-primary/5 border border-primary/20 backdrop-blur-md max-w-2xl mx-auto"
+                    className="mt-8 p-4 rounded-xl bg-primary/5 border border-primary/20 backdrop-blur-md max-w-2xl mx-auto md:mx-0"
                   >
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                       <div className="flex items-center gap-2">
@@ -155,16 +155,57 @@ export default function Home() {
               </AnimatePresence>
             </motion.div>
 
+            {/* Glowing Cyberpunk Profile Image */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-full max-w-2xl min-h-[100px]"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="md:col-span-5 flex justify-center items-center relative py-8 md:py-0"
             >
-              {/* 3D Hero removed as requested */}
+              <div className="relative w-[260px] h-[260px] md:w-[320px] md:h-[320px] group">
+                {/* Outer Holographic Glow */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-secondary/30 rounded-3xl blur-xl opacity-80 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+                
+                {/* Outer Rotating Dotted Ring */}
+                <div className="absolute inset-[-12px] rounded-3xl border border-primary/20 border-dashed animate-[spin_30s_linear_infinite] pointer-events-none" />
+                
+                {/* Inner Counter-Rotating Double Ring */}
+                <div className="absolute inset-[-24px] rounded-3xl border border-secondary/15 border-double animate-[spin_40s_linear_infinite_reverse] pointer-events-none" />
+                
+                {/* Tech brackets / corners */}
+                <div className="absolute top-[-6px] left-[-6px] w-6 h-6 border-t-2 border-l-2 border-primary rounded-tl-lg pointer-events-none" />
+                <div className="absolute top-[-6px] right-[-6px] w-6 h-6 border-t-2 border-r-2 border-primary rounded-tr-lg pointer-events-none" />
+                <div className="absolute bottom-[-6px] left-[-6px] w-6 h-6 border-b-2 border-l-2 border-primary rounded-bl-lg pointer-events-none" />
+                <div className="absolute bottom-[-6px] right-[-6px] w-6 h-6 border-b-2 border-r-2 border-primary rounded-br-lg pointer-events-none" />
+                
+                {/* Image Mask/Container */}
+                <div className="w-full h-full rounded-2xl overflow-hidden border border-white/10 bg-surface relative z-10">
+                  {/* Profile Image */}
+                  <img 
+                    src="/profile.jpeg" 
+                    alt="P Ganesh Krishna Reddy" 
+                    className="w-full h-full object-cover filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-500"
+                  />
+                  
+                  {/* Cyber Scanning Scanline overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/20 to-transparent w-full h-[30%] -top-[30%] animate-scan pointer-events-none z-20" />
+                  
+                  {/* Cyber grid pattern overlay */}
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none z-15" />
+                  
+                  {/* Holographic tint overlay */}
+                  <div className="absolute inset-0 bg-primary/5 mix-blend-overlay pointer-events-none" />
+                </div>
+                
+                {/* Floating Status Badge */}
+                <div className="absolute -bottom-3 -right-3 z-20 px-3 py-1 rounded-md bg-background border border-primary/40 text-[10px] font-mono text-primary shadow-[0_0_15px_rgba(0,255,65,0.2)]">
+                  SYS_SEC: ACTIVE
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
+
       </section>
 
       {/* Interactive Terminal Section (Prominent & Centered) */}
@@ -264,23 +305,25 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <ProjectCard
-              title="Web App Security Assessment"
-              description="Structured risk assessment focusing on authorization flaws and access control weaknesses according to OWASP ASVS."
-              whyItMatters="Simulates real enterprise AppSec reviews aligned with OWASP ASVS."
-              problem="Potential unauthorized access to sensitive user data due to weak session management."
-              methodology="Manual testing with Burp Suite combined with automated scanning tailored to business logic."
-              outcome="Identified and remediated 3 critical IDOR vulnerabilities and enforced role-based access control."
-              tags={["Backend", "AppSec", "APIs", "OWASP ASVS"]}
+              title="SentinelMind – Autonomous Threat Guardian for Agentic AI Systems"
+              description="Zero-trust security layer and real-time monitoring gateway built for multi-agent AI ecosystems. Developed for the Microsoft Build AI Hackathon."
+              whyItMatters="Protects autonomous agent networks against adversarial prompt injections and privilege escalations with sub-12ms interception latency."
+              problem="As AI agents transition to taking autonomous, real-world actions, they become vulnerable to adversarial command hijacking, privilege escalation, and data exfiltration from compromised internal components."
+              methodology="Designed a zero-trust scoring engine with keyword analyzers and payload inspection. Built a highly responsive Next.js dashboard with Recharts telemetry visualizing threat vectors in real-time."
+              outcome="Achieved sub-12ms mitigation gateway latency with customizable threshold blocking (ALLOW / QUARANTINE / BLOCK) and immutable action audit logging."
+              tags={["AI/ML Security", "Next.js", "TypeScript", "Zero-Trust", "Threat Defense"]}
+              githubUrl="https://github.com/ganeshkrishnareddy/Sentinel-Mind"
             />
             <ProjectCard
-              title="MealRoute – Secure Logistics Platform"
-              description="Production-style logistics system with secure authentication, RBAC, and real-time synchronization for food delivery operations."
-              whyItMatters="Prevented unauthorized access and data leakage in a multi-tenant delivery system."
-              problem="Unauthorized access risks and data leakage across multi-tenant delivery operations."
-              methodology="Implemented secure auth flows, role-based dashboards, and encrypted data channels."
-              outcome="Prevented unauthorized access to operational data and streamlined delivery management."
-              tags={["Full-Stack", "Backend", "Security Systems", "Firebase"]}
-              githubUrl="https://github.com/ganeshkrishnareddy/mealroute"
+              title="Sarathi AI – Agentic Customer Acquisition & Onboarding Concierge"
+              description="Intelligent customer onboarding portal and automated qualification system engineered for State Bank of India. Developed for the SBI Hackathon."
+              whyItMatters="Streamlines retail customer acquisition using a secure multi-agent orchestrator and real-time compliance guardrails."
+              problem="Traditional banking onboarding systems are slow and complex, often lacking conversational support, leading to high drop-off rates and insecure KYC validation."
+              methodology="Developed a Vite + React + TypeScript interface. Integrated Gemini LLM for product matching, qualification agents for suitability scoring, and a Compliance Agent for real-time conversation safety monitoring."
+              outcome="Successfully implemented dynamic e-KYC (Aadhaar & OTP simulation) and low-latency product matching, with interactive live log traces of agent orchestration."
+              tags={["Full-Stack", "AI Agents", "Vite + React", "Compliance Engine", "Secure Authentication"]}
+              githubUrl="https://github.com/ganeshkrishnareddy/SBIHackathonGFF2026"
+              liveUrl="https://sarathi-sbi.web.app"
             />
           </div>
 

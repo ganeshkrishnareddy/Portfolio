@@ -15,21 +15,51 @@ export function AboutContent() {
     return (
         <div className="container max-w-4xl mx-auto px-4 py-12 space-y-20">
             {/* Header */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="space-y-4"
-            >
-                <h1 className="text-4xl md:text-5xl font-bold text-text-primary">About Me</h1>
-                <p className="text-xl text-text-muted leading-relaxed">
-                    I am a final-year Computer Science student focused on building <b>secure, scalable software systems</b>.
-                    My work combines full-stack development (React, Node.js, databases, cloud) with cybersecurity practices
-                    such as application security testing, Linux hardening, and secure authentication.
-                </p>
-                <p className="text-lg text-text-muted leading-relaxed">
-                    I approach security as part of the software engineering lifecycle — not as a separate role.
-                </p>
-            </motion.div>
+            <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="md:col-span-8 space-y-4"
+                >
+                    <h1 className="text-4xl md:text-5xl font-bold text-text-primary">About Me</h1>
+                    <p className="text-xl text-text-muted leading-relaxed">
+                        I am a final-year Computer Science student focused on building <b>secure, scalable software systems</b>.
+                        My work combines full-stack development (React, Node.js, databases, cloud) with cybersecurity practices
+                        such as application security testing, Linux hardening, and secure authentication.
+                    </p>
+                    <p className="text-lg text-text-muted leading-relaxed">
+                        I approach security as part of the software engineering lifecycle — not as a separate role.
+                    </p>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="md:col-span-4 flex justify-center"
+                >
+                    <div className="relative w-[220px] h-[220px] group">
+                        {/* Glowing Background */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+                        
+                        {/* Brackets */}
+                        <div className="absolute top-[-6px] left-[-6px] w-4 h-4 border-t-2 border-l-2 border-primary rounded-tl" />
+                        <div className="absolute top-[-6px] right-[-6px] w-4 h-4 border-t-2 border-r-2 border-primary rounded-tr" />
+                        <div className="absolute bottom-[-6px] left-[-6px] w-4 h-4 border-b-2 border-l-2 border-primary rounded-bl" />
+                        <div className="absolute bottom-[-6px] right-[-6px] w-4 h-4 border-b-2 border-r-2 border-primary rounded-br" />
+
+                        {/* Image Frame */}
+                        <div className="w-full h-full rounded-2xl overflow-hidden border border-white/10 bg-surface relative z-10">
+                            <img 
+                                src="/profile.jpeg" 
+                                alt="P Ganesh Krishna Reddy" 
+                                className="w-full h-full object-cover filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/20 to-transparent w-full h-[30%] -top-[30%] animate-scan pointer-events-none z-20" />
+                        </div>
+                    </div>
+                </motion.div>
+            </div>
 
             {/* How I Approach Security - Engineering Maturity */}
             <section className="bg-surface/30 border border-surface rounded-xl p-8 relative overflow-hidden">
