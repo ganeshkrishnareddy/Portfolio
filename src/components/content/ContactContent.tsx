@@ -43,6 +43,45 @@ export function ContactContent() {
                                 <span className="font-bold text-text-primary group-hover:text-white transition-colors">GitHub</span>
                             </Link>
                         </div>
+
+                        {/* Security & Hacker Profiles */}
+                        <div className="space-y-4 pt-2">
+                            <h3 className="text-sm font-mono text-text-muted uppercase tracking-wider">Hacker & Security Profiles</h3>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                {[
+                                    { name: "HackerOne", url: "https://hackerone.com/pganeshkrishnareddy", borderHover: "hover:border-[#ff6600]/50 hover:bg-[#ff6600]/5", textHover: "hover:text-[#ff6600]" },
+                                    { name: "YesWeHack", url: "https://yeswehack.com/hunters/pganeshkrishnareddy", borderHover: "hover:border-[#e91e63]/50 hover:bg-[#e91e63]/5", textHover: "hover:text-[#e91e63]" },
+                                    { name: "Hack The Box", url: "https://profile.hackthebox.com/profile/019ec51d-f016-710d-88bb-8a98ebb8cc9b", borderHover: "hover:border-[#9fe522]/50 hover:bg-[#9fe522]/5", textHover: "hover:text-[#9fe522]" },
+                                    { name: "TryHackMe", url: "https://tryhackme.com/p/pganeshkrishnareddy", borderHover: "hover:border-[#de112b]/50 hover:bg-[#de112b]/5", textHover: "hover:text-[#de112b]" },
+                                    { name: "Comolho", url: "https://cyber.comolho.com/researcher/profile/pganeshkrishnareddy_7104d6dc/", borderHover: "hover:border-[#00bcd4]/50 hover:bg-[#00bcd4]/5", textHover: "hover:text-[#00bcd4]" },
+                                    { name: "HackerEarth", url: "https://www.hackerearth.com/@pganeshkrishnareddy/", borderHover: "hover:border-[#20d48a]/50 hover:bg-[#20d48a]/5", textHover: "hover:text-[#20d48a]" },
+                                ].map((profile) => (
+                                    <Link 
+                                        key={profile.name}
+                                        href={profile.url} 
+                                        target="_blank" 
+                                        className={`flex items-center justify-center p-3 rounded-lg bg-surface/30 border border-surface text-xs font-bold text-text-muted hover:text-text-primary transition-all ${profile.borderHover} ${profile.textHover}`}
+                                    >
+                                        {profile.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Social Profiles */}
+                        <div className="space-y-4 pt-2">
+                            <h3 className="text-sm font-mono text-text-muted uppercase tracking-wider">Social Channels</h3>
+                            <div className="flex gap-4">
+                                <Link href="https://x.com/_this_is_ganesh" target="_blank" className="flex-1 flex items-center justify-center gap-2 p-4 rounded-lg bg-surface/30 border border-surface hover:border-primary/50 hover:bg-primary/5 transition-all group">
+                                    <span className="font-bold text-text-primary group-hover:text-primary transition-colors flex items-center gap-2">
+                                        <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                        </svg>
+                                        X (formerly Twitter)
+                                    </span>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </motion.div>
 
