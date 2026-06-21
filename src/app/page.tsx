@@ -9,7 +9,6 @@ import Link from 'next/link';
 import { Button } from '@/components/Button';
 import { ProjectCard } from '@/components/ProjectCard';
 import { TiltCard } from '@/components/3d/TiltCard';
-import { InteractiveTerminal } from '@/components/InteractiveTerminal';
 
 export default function Home() {
   const [isAuditing, setIsAuditing] = useState(false);
@@ -208,16 +207,7 @@ export default function Home() {
 
       </section>
 
-      {/* Interactive Terminal Section (Prominent & Centered) */}
-      <section className="container max-w-7xl mx-auto px-4 -mt-20 mb-8 relative z-20">
-        <div className="flex flex-col gap-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-3xl font-bold text-text-primary">Secure System Architecture Interface</h2>
-            <p className="text-text-muted font-mono text-sm tracking-tighter uppercase opacity-60">Visualizing layered frontend, backend, and security controls.</p>
-          </div>
-          <InteractiveTerminal />
-        </div>
-      </section>
+
 
       {/* Top Expertise & Certifications */}
       <section className="container max-w-7xl mx-auto px-4">
